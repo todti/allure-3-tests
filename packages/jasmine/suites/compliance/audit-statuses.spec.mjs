@@ -1,9 +1,13 @@
-import { describe, it } from "mocha";
+import { fileURLToPath } from "node:url";
 import { testAuditStatuses } from "@allure-tests/shared";
+import { describe, it, registerSpecTitles } from "../../helpers/spec-api.mjs";
+
+registerSpecTitles(fileURLToPath(import.meta.url), [
+  "Audit pipeline records passed, skipped, and broken steps",
+]);
 
 describe("Compliance", () => {
-  it("Audit pipeline records passed, skipped, and broken steps", async function () {
-    this.timeout(30_000);
+  it("Audit pipeline records passed, skipped, and broken steps", async () => {
     await testAuditStatuses({ framework: "jasmine", runner: "node" });
-  });
+  }, 30_000);
 });

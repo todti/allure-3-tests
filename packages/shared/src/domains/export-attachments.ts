@@ -1,15 +1,12 @@
 import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { ShowcaseContext } from "../types.js";
 
 export async function testExportAttachments(ctx: ShowcaseContext): Promise<void> {
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "export-attachments");
   await allure.displayName("Reporting export bundles multiple attachment formats");
   await allure.testCaseId(`${ctx.framework}-export-attachments`);
-  await allure.epic("Reporting");
-  await allure.feature("Exports");
-  await allure.story("Attachment bundle");
   await allure.severity("normal");
 
   await allure.step("Generate export bundle", async () => {

@@ -1,16 +1,13 @@
 import * as allure from "allure-js-commons";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { ShowcaseContext } from "../types.js";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function testPasswordReset(ctx: ShowcaseContext): Promise<void> {
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "password-reset");
   await allure.displayName("Password reset journey sends token and confirms delivery");
   await allure.testCaseId(`${ctx.framework}-password-reset`);
-  await allure.epic("Customer journeys");
-  await allure.feature("Self-service");
-  await allure.story("Password reset");
   await allure.link("https://allurereport.org/docs/v3/", "Allure docs");
 
   await allure.step("Request reset token", async (step) => {

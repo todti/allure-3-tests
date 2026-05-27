@@ -1,15 +1,12 @@
 import * as allure from "allure-js-commons";
 import { ContentType, Status } from "allure-js-commons";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { ShowcaseContext } from "../types.js";
 
 export async function testAuditStatuses(ctx: ShowcaseContext): Promise<void> {
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "audit-statuses");
   await allure.displayName("Audit pipeline records passed, skipped, and broken steps");
   await allure.testCaseId(`${ctx.framework}-audit-statuses`);
-  await allure.epic("Compliance");
-  await allure.feature("Audit");
-  await allure.story("Mixed step statuses");
   await allure.severity("minor");
 
   await allure.step("Collect audit events", async () => {

@@ -1,15 +1,12 @@
 import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { ShowcaseContext } from "../types.js";
 
 export async function testCatalogSearch(ctx: ShowcaseContext): Promise<void> {
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "catalog-search");
   await allure.displayName("Product search applies filters and pagination");
   await allure.testCaseId(`${ctx.framework}-catalog-search`);
-  await allure.epic("Commerce");
-  await allure.feature("Catalog");
-  await allure.story("Search");
   await allure.tag("catalog");
   await allure.severity("normal");
 

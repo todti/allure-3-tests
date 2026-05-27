@@ -1,11 +1,22 @@
-import { describe, it } from "mocha";
+import { fileURLToPath } from "node:url";
 import { testFlakyInventory } from "@allure-tests/shared";
+import { describe, it, registerSpecTitles } from "../../helpers/spec-api.mjs";
 
-describe("Inventory", function () {
-  this.retries(2);
+registerSpecTitles(fileURLToPath(import.meta.url), [
+  "Inventory shard lock causes intermittent sync failures",
+]);
 
-  it("Inventory shard lock causes intermittent sync failures", async function () {
-    this.timeout(30_000);
-    await testFlakyInventory({ framework: "jasmine", runner: "node" }, { attempt: this.currentTest?.currentRetry() ?? 0 });
-  });
+describe("Inventory", () => {
+  it("Inventory shard lock causes intermittent sync failures", async () => {
+    let lastError;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        await testFlakyInventory({ framework: "jasmine", runner: "node" }, { attempt });
+        return;
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    throw lastError;
+  }, 30_000);
 });

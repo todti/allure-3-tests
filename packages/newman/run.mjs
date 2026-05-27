@@ -1,9 +1,12 @@
 import { run } from "newman";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { runGlobalSetupFiles, runGlobalTeardownFiles, buildEnvironmentInfo } from "@allure-tests/shared";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
+
+runGlobalSetupFiles({ framework: "newman" });
 
 await new Promise((resolve, reject) => {
   run(
@@ -13,10 +16,7 @@ await new Promise((resolve, reject) => {
       reporter: {
         allure: {
           resultsDir: path.resolve(__dirname, resultsDir),
-          environmentInfo: {
-            framework: "newman",
-            node_version: process.version,
-          },
+          environmentInfo: buildEnvironmentInfo("newman"),
         },
       },
     },
@@ -29,4 +29,7 @@ await new Promise((resolve, reject) => {
       resolve(failures);
     },
   );
-}).then((failures) => process.exit(Number(failures) > 0 ? 1 : 0));
+}).then(async (failures) => {
+  runGlobalTeardownFiles({ framework: "newman" });
+  process.exit(Number(failures) > 0 ? 1 : 0);
+});

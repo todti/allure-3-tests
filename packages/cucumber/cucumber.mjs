@@ -1,4 +1,4 @@
-import * as os from "node:os";
+import { buildEnvironmentInfo } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
@@ -8,10 +8,6 @@ export default {
   format: ["progress", "allure-cucumberjs/reporter"],
   formatOptions: {
     resultsDir,
-    environmentInfo: {
-      framework: "cucumber",
-      node_version: process.version,
-      os_platform: os.platform(),
-    },
+    environmentInfo: buildEnvironmentInfo("cucumber"),
   },
 };

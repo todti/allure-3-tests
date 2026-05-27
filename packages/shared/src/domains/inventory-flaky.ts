@@ -1,7 +1,7 @@
 import * as allure from "allure-js-commons";
 import { Status } from "allure-js-commons";
 import { shouldSimulateTransientFailure } from "../flaky.js";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { RuntimeHints, ShowcaseContext } from "../types.js";
 
 export async function testFlakyInventory(
@@ -11,12 +11,9 @@ export async function testFlakyInventory(
   const attempt = hints.attempt ?? 0;
   const testId = `${ctx.framework}-inventory-sync`;
 
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "inventory-flaky");
   await allure.displayName("Inventory shard lock causes intermittent sync failures");
   await allure.testCaseId(testId);
-  await allure.epic("Warehouse");
-  await allure.feature("Inventory");
-  await allure.story("Stock synchronization");
   await allure.tag("flaky");
   await allure.tag("inventory");
 

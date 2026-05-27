@@ -108,6 +108,15 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
+      - name: Upload global attachments
+        if: always() && steps.results.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-global-${{ matrix.framework }}
+          path: packages/${{ matrix.framework }}/allure-global
+          if-no-files-found: ignore
+          retention-days: 7
+
   report:
     name: Generate and publish Allure Report
     runs-on: ubuntu-latest
@@ -127,12 +136,33 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build shared package
+        run: pnpm --filter @allure-tests/shared build
+
       - name: Download all framework results
         uses: actions/download-artifact@v4
         with:
           path: ./allure-results
           pattern: allure-results-*
           merge-multiple: true
+
+      - name: Download global attachments
+        uses: actions/download-artifact@v4
+        with:
+          path: ./global-artifacts
+          pattern: allure-global-*
+
+      - name: Restore global attachment paths
+        shell: bash
+        run: |
+          shopt -s nullglob
+          for dir in global-artifacts/allure-global-*; do
+            fw="${dir##*/allure-global-}"
+            mkdir -p "packages/${fw}/allure-global"
+            cp -R "${dir}/." "packages/${fw}/allure-global/"
+          done
+          echo "Global attachment files:"
+          find packages -path '*/allure-global/*' -type f | wc -l
 
       - name: Verify merged Allure results
         shell: bash
@@ -141,13 +171,19 @@ jobs:
           files=(allure-results/*-result.json)
           echo "Merged *-result.json files: ${#files[@]}"
           ls -la allure-results/*-result.json || true
-          if [ "${#files[@]}" -lt 120 ]; then
-            echo "Expected at least 120 merged test results (14 independent domain tests × frameworks)."
+          if [ "${#files[@]}" -lt 130 ]; then
+            echo "Expected at least 130 merged test results (15 specs × 11 frameworks, incl. globals)."
             exit 1
           fi
 
       - name: Generate Allure 3 report
         run: pnpm exec allure generate ./allure-results --output=./allure-report
+
+      - name: Patch per-framework report titles
+        run: node scripts/patch-framework-report-names.mjs ./allure-report
+
+      - name: Evaluate quality gates
+        run: pnpm exec allure quality-gate ./allure-results || true
 
       - name: Allure Report action
         uses: allure-framework/allure-action@v0

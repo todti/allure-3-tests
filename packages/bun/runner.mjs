@@ -1,26 +1,31 @@
 import { glob } from "glob";
 import Mocha from "mocha";
-import * as os from "node:os";
+import { buildEnvironmentInfo, runGlobalSetupFiles, runGlobalTeardownFiles } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
+
+runGlobalSetupFiles({ framework: "bun" });
 
 const mocha = new Mocha({
   reporter: "allure-mocha",
   retries: 2,
   reporterOptions: {
     resultsDir,
-    environmentInfo: {
-      framework: "bun",
-      runner: "bun",
-      runtime_version: typeof Bun !== "undefined" ? Bun.version : "unknown",
-      os_platform: os.platform(),
-    },
+    environmentInfo: buildEnvironmentInfo("bun", {
+      Runner: "bun",
+      Runtime: typeof Bun !== "undefined" ? Bun.version : "unknown",
+    }),
   },
 });
+
+mocha.addFile(new URL("./hooks/globals.mjs", import.meta.url).pathname);
 
 for (const file of glob.sync("suites/**/*.spec.mjs")) {
   mocha.addFile(file);
 }
 
 await mocha.loadFilesAsync();
-mocha.run((failures) => process.exit(failures ? 1 : 0));
+mocha.run((failures) => {
+  runGlobalTeardownFiles({ framework: "bun" });
+  process.exit(failures ? 1 : 0);
+});

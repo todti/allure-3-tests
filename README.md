@@ -63,6 +63,22 @@ Each framework runs **14 independent domain tests** — each in its own spec/fea
 Shared code lives in `packages/shared/src/domains/*` — **one module per domain**, not one mega-scenario.
 Regenerate adapter specs: `python3 scripts/generate-domain-specs.py`
 
+## Quality gates, global errors & global attachments
+
+[`allurerc.mjs`](allurerc.mjs) defines:
+
+- **Global quality gate** — `maxFailures: 20`, `minTestsCount: 100`, `successRate: 0.7`
+- **Per-framework gates** (`gate-playwright`, `gate-mocha`, …) — filtered by `framework` label
+- **`globalAttachments`** — globs `./allure-global/**` and `./packages/*/allure-global/**`
+
+Each adapter calls [`runGlobalSetup` / `runGlobalTeardown`](packages/shared/src/globals.ts) before/after tests:
+
+- `allure.globalAttachment` / `globalAttachmentPath` — JSON context + runner logs
+- `allure.globalError` — demo global warnings (visible in **Global Errors** tab)
+- Files on disk for report-level **Global Attachments** tab
+
+CI runs `allure quality-gate ./allure-results` after report generation.
+
 ## Allure features demonstrated
 - HTTP smoke via `fetch` (no browser)
 - Optional browser smoke (Playwright, WebdriverIO, CodeceptJS)

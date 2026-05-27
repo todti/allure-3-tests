@@ -1,7 +1,7 @@
 import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
 import { shouldSimulateTransientFailure } from "../flaky.js";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { RuntimeHints, ShowcaseContext } from "../types.js";
 
 export async function testFlakyPayment(
@@ -11,12 +11,9 @@ export async function testFlakyPayment(
   const attempt = hints.attempt ?? 0;
   const testId = `${ctx.framework}-payment-gateway`;
 
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "payment-flaky");
   await allure.displayName("Payment gateway may timeout before authorization");
   await allure.testCaseId(testId);
-  await allure.epic("Payments");
-  await allure.feature("Card processing");
-  await allure.story("Gateway retries");
   await allure.tag("flaky");
   await allure.severity("critical");
 

@@ -1,14 +1,11 @@
 import * as allure from "allure-js-commons";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { ShowcaseContext } from "../types.js";
 
 export async function testUserProfile(ctx: ShowcaseContext): Promise<void> {
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "user-profile");
   await allure.displayName("User profile stores masked and hidden parameters");
   await allure.testCaseId(`${ctx.framework}-user-profile`);
-  await allure.epic("Accounts");
-  await allure.feature("Profile");
-  await allure.story("Sensitive fields");
   await allure.owner("accounts-team");
 
   await allure.step("Update profile", async (step) => {

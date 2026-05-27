@@ -1,15 +1,32 @@
 import AllureJasmineReporter from "allure-jasmine";
-import * as os from "node:os";
+import { buildEnvironmentInfo } from "@allure-tests/shared";
+import { resolveRegisteredSpecFile } from "./spec-file-registry.mjs";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
-jasmine.getEnv().addReporter(
-  new AllureJasmineReporter({
-    resultsDir,
-    environmentInfo: {
-      framework: "jasmine",
-      node_version: process.version,
-      os_platform: os.platform(),
-    },
-  }),
-);
+const reporter = new AllureJasmineReporter({
+  resultsDir,
+  environmentInfo: buildEnvironmentInfo("jasmine"),
+});
+
+function applySpecFile(spec) {
+  const filename = resolveRegisteredSpecFile(spec.description);
+  if (filename) {
+    spec.filename = filename;
+  }
+}
+
+const originalSpecStarted = reporter.specStarted.bind(reporter);
+reporter.specStarted = (spec) => {
+  applySpecFile(spec);
+  return originalSpecStarted(spec);
+};
+
+const originalSpecDone = reporter.specDone.bind(reporter);
+reporter.specDone = (spec) => {
+  applySpecFile(spec);
+  return originalSpecDone(spec);
+};
+
+jasmine.getEnv().addReporter(reporter);
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 30_000;

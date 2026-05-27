@@ -1,18 +1,15 @@
 import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { ShowcaseContext } from "../types.js";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function testAuthLogin(ctx: ShowcaseContext): Promise<void> {
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "auth-login");
   await allure.displayName("OAuth login grants access token");
   await allure.testCaseId(`${ctx.framework}-auth-login`);
   await allure.historyId(`history-${ctx.framework}-auth-login`);
-  await allure.epic("Security");
-  await allure.feature("Authentication");
-  await allure.story("OAuth2 authorization code");
   await allure.severity("blocker");
   await allure.tag("auth");
   await allure.owner("identity-team");

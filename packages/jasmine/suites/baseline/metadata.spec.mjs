@@ -1,9 +1,13 @@
-import { describe, it } from "mocha";
+import { fileURLToPath } from "node:url";
 import { testMetadataShowcase } from "@allure-tests/shared";
+import { describe, it, registerSpecTitles } from "../../helpers/spec-api.mjs";
+
+registerSpecTitles(fileURLToPath(import.meta.url), [
+  "Allure metadata baseline documents runtime API surface",
+]);
 
 describe("Adapter parity", () => {
-  it("Allure metadata baseline documents runtime API surface", async function () {
-    this.timeout(30_000);
+  it("Allure metadata baseline documents runtime API surface", async () => {
     await testMetadataShowcase({ framework: "jasmine", runner: "node" });
-  });
+  }, 30_000);
 });

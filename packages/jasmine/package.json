@@ -7,13 +7,21 @@
     "test": "jasmine --config=jasmine.json"
   },
   "dependencies": {
-    "@allure-tests/shared": "workspace:*"
+    "@allure-tests/shared": "workspace:*",
+    "allure-codeceptjs": "3.9.0",
+    "allure-cucumberjs": "3.9.0",
+    "allure-cypress": "3.9.0",
+    "allure-jest": "3.9.0",
+    "allure-mocha": "3.9.0",
+    "allure-playwright": "3.9.0",
+    "allure-vitest": "3.9.0",
+    "newman-reporter-allure": "3.9.0"
   },
   "devDependencies": {
     "@types/jasmine": "^5.1.5",
     "@types/node": "^20.17.6",
-    "allure-jasmine": "^3.4.1",
-    "allure-js-commons": "^3.4.1",
+    "allure-jasmine": "3.9.0",
+    "allure-js-commons": "3.9.0",
     "glob": "^11.0.0",
     "jasmine": "^5.5.0",
     "typescript": "^5.6.3"

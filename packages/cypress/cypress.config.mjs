@@ -1,6 +1,6 @@
 import { defineConfig } from "cypress";
 import { allureCypress } from "allure-cypress/reporter";
-import * as os from "node:os";
+import { buildEnvironmentInfo } from "@allure-tests/shared";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,11 +16,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       allureCypress(on, config, {
         resultsDir: path.resolve(__dirname, resultsDir),
-        environmentInfo: {
-          framework: "cypress",
-          node_version: process.version,
-          os_platform: os.platform(),
-        },
+        environmentInfo: buildEnvironmentInfo("cypress"),
       });
       return config;
     },

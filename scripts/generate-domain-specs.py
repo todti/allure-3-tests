@@ -198,6 +198,79 @@ describe("{suite}", () => {{
         write(base / folder / f"{slug}.cy.ts", body)
 
 
+def jasmine_suite() -> None:
+    suites = ROOT / "packages" / "jasmine" / "suites"
+    for folder, slug, fn, suite, flaky, browser in DOMAINS:
+        title = TITLES[fn]
+        ctx = '{ framework: "jasmine", runner: "node" }'
+        if flaky:
+            body = f"""import {{ fileURLToPath }} from "node:url";
+import {{ {fn} }} from "@allure-tests/shared";
+import {{ describe, it, registerSpecTitles }} from "../../helpers/spec-api.mjs";
+
+registerSpecTitles(fileURLToPath(import.meta.url), [
+  "{title}",
+]);
+
+describe("{suite}", () => {{
+  it("{title}", async () => {{
+    let lastError;
+    for (let attempt = 0; attempt < 3; attempt++) {{
+      try {{
+        await {fn}({ctx}, {{ attempt }});
+        return;
+      }} catch (error) {{
+        lastError = error;
+      }}
+    }}
+    throw lastError;
+  }}, 30_000);
+}});
+"""
+        else:
+            body = f"""import {{ fileURLToPath }} from "node:url";
+import {{ {fn} }} from "@allure-tests/shared";
+import {{ describe, it, registerSpecTitles }} from "../../helpers/spec-api.mjs";
+
+registerSpecTitles(fileURLToPath(import.meta.url), [
+  "{title}",
+]);
+
+describe("{suite}", () => {{
+  it("{title}", async () => {{
+    await {fn}({ctx});
+  }}, 30_000);
+}});
+"""
+        write(suites / folder / f"{slug}.spec.mjs", body)
+
+    write(
+        suites / "_globals" / "allure-globals.spec.mjs",
+        """import { runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
+import { beforeAll, afterAll, describe, expect, it, registerSpecTitles } from "../../helpers/spec-api.mjs";
+import { fileURLToPath } from "node:url";
+
+registerSpecTitles(fileURLToPath(import.meta.url), [
+  "registers global errors and attachments",
+]);
+
+describe("Allure globals", () => {
+  beforeAll(async () => {
+    await runGlobalSetup({ framework: "jasmine", runner: "node" });
+  });
+
+  afterAll(async () => {
+    await runGlobalTeardown({ framework: "jasmine", runner: "node" });
+  });
+
+  it("registers global errors and attachments", () => {
+    expect(true).toBe(true);
+  });
+});
+""",
+    )
+
+
 def jest_suite() -> None:
     suites = ROOT / "packages" / "jest" / "suites"
     for folder, slug, fn, suite, flaky, browser in DOMAINS:
@@ -307,7 +380,7 @@ def main() -> None:
     remove_legacy()
     mocha_like("mocha", "node", "mjs", "mocha")
     mocha_like("bun", "bun", "mjs", "bun")
-    mocha_like("jasmine", "node", "mjs", "jasmine")
+    jasmine_suite()
     jest_suite()
     vitest_suite()
     playwright_suite()

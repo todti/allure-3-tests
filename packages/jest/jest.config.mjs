@@ -1,4 +1,4 @@
-import * as os from "node:os";
+import { buildEnvironmentInfo } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
@@ -6,12 +6,11 @@ const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 export default {
   testEnvironment: "allure-jest/node",
   testMatch: ["<rootDir>/suites/**/*.spec.mjs"],
+  globalSetup: "<rootDir>/global-setup.mjs",
+  globalTeardown: "<rootDir>/global-teardown.mjs",
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.mjs"],
   testEnvironmentOptions: {
     resultsDir,
-    environmentInfo: {
-      framework: "jest",
-      node_version: process.version,
-      os_platform: os.platform(),
-    },
+    environmentInfo: buildEnvironmentInfo("jest"),
   },
 };

@@ -1,4 +1,4 @@
-import * as os from "node:os";
+import { buildEnvironmentInfo, runGlobalSetupFiles, runGlobalTeardownFiles } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
@@ -6,6 +6,12 @@ export const config: WebdriverIO.Config = {
   runner: "local",
   specs: ["./suites/**/*.spec.ts"],
   maxInstances: 1,
+  onPrepare: async () => {
+    runGlobalSetupFiles({ framework: "webdriverio" });
+  },
+  onComplete: async () => {
+    runGlobalTeardownFiles({ framework: "webdriverio" });
+  },
   capabilities: [
     {
       browserName: "chrome",
@@ -24,11 +30,7 @@ export const config: WebdriverIO.Config = {
         outputDir: resultsDir,
         disableWebdriverStepsReporting: false,
         disableWebdriverScreenshotsReporting: false,
-        reportedEnvironmentVars: {
-          framework: "webdriverio",
-          node_version: process.version,
-          os_platform: os.platform(),
-        },
+        reportedEnvironmentVars: buildEnvironmentInfo("webdriverio"),
       },
     ],
   ],

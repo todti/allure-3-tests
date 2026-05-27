@@ -1,23 +1,20 @@
 import { defineConfig, devices } from "@playwright/test";
-import * as os from "node:os";
+import { buildEnvironmentInfo } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
 export default defineConfig({
   testDir: "./suites",
   retries: process.env.CI ? 2 : 1,
+  globalSetup: "./global-setup.ts",
+  globalTeardown: "./global-teardown.ts",
   reporter: [
     ["list"],
     [
       "allure-playwright",
       {
         resultsDir,
-        environmentInfo: {
-          framework: "playwright",
-          node_version: process.version,
-          os_platform: os.platform(),
-          os_release: os.release(),
-        },
+        environmentInfo: buildEnvironmentInfo("playwright"),
       },
     ],
   ],

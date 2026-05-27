@@ -1,11 +1,11 @@
 import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
-import { applyFrameworkLabels } from "../showcase.js";
+import { applyDomainLabels } from "../labels.js";
 import type { ShowcaseContext } from "../types.js";
 
 /** Legacy baseline kept as a standalone domain test (metadata + attachments + async). */
 export async function testMetadataShowcase(ctx: ShowcaseContext): Promise<void> {
-  await applyFrameworkLabels(ctx);
+  await applyDomainLabels(ctx, "metadata-baseline");
   await allure.displayName("Allure metadata baseline documents runtime API surface");
   await allure.testCaseId(`${ctx.framework}-metadata-baseline`);
   await allure.description("Baseline metadata, links, hierarchy, and attachments for adapter comparison.");
@@ -15,12 +15,6 @@ export async function testMetadataShowcase(ctx: ShowcaseContext): Promise<void> 
   await allure.issue("https://github.com/allure-framework/allure-js/issues/1", "ALLURE-JS-1");
   await allure.tms("https://github.com/allure-framework/allure-js", "TMS-1");
   await allure.link("https://allurereport.org/docs/v3/", "Allure 3 docs");
-  await allure.epic("Allure demo");
-  await allure.feature("Runtime API");
-  await allure.story("Metadata baseline");
-  await allure.parentSuite("Multi-framework suite");
-  await allure.suite("Adapter parity");
-  await allure.subSuite("Baseline");
 
   await allure.step("Record adapter metadata", async (step) => {
     await step.parameter("adapter", ctx.framework);

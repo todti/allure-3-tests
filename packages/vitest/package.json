@@ -7,13 +7,21 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@allure-tests/shared": "workspace:*"
+    "@allure-tests/shared": "workspace:*",
+    "allure-codeceptjs": "3.9.0",
+    "allure-cucumberjs": "3.9.0",
+    "allure-cypress": "3.9.0",
+    "allure-jasmine": "3.9.0",
+    "allure-jest": "3.9.0",
+    "allure-mocha": "3.9.0",
+    "allure-playwright": "3.9.0",
+    "newman-reporter-allure": "3.9.0"
   },
   "devDependencies": {
     "@types/node": "^20.17.6",
     "@vitest/runner": "^3.0.0",
-    "allure-js-commons": "^3.4.1",
-    "allure-vitest": "^3.4.1",
+    "allure-js-commons": "3.9.0",
+    "allure-vitest": "3.9.0",
     "typescript": "^5.6.3",
     "vitest": "^3.0.0"
   }
