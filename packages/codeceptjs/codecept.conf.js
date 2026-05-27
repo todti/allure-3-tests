@@ -10,6 +10,7 @@ exports.config = {
   tests: "./suites/**/*_test.ts",
   output: "./output",
   timeout: 60,
+  retry: 2,
   helpers: {
     Playwright: {
       url: "https://playwright.dev",

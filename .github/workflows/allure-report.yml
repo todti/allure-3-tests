@@ -22,7 +22,7 @@ jobs:
     name: Tests (${{ matrix.framework }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 25
-    continue-on-error: false
+    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
@@ -167,9 +167,12 @@ jobs:
           dumps=(allure-dumps/*.zip)
           echo "Dump archives: ${#dumps[@]}"
           ls -la allure-dumps/*.zip || true
-          if [ "${#dumps[@]}" -lt 30 ]; then
-            echo "Expected at least 30 dump archives (11 frameworks × 3 hosts, with headroom)."
+          if [ "${#dumps[@]}" -eq 0 ]; then
+            echo "No dump archives found — cannot generate a report."
             exit 1
+          fi
+          if [ "${#dumps[@]}" -lt 30 ]; then
+            echo "Warning: only ${#dumps[@]} dump archives (expected up to 33). Generating a partial merged report."
           fi
 
       - name: Validate Allure config

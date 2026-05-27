@@ -80,14 +80,24 @@ Per [Allure 3 globals docs](https://allurereport.org/docs/global-errors-and-atta
 | `gate-<framework>` | per-framework thresholds + `filter` | One gate per adapter label |
 | `gate-os-<os>` | per-OS thresholds + `filter` | Linux / macOS / Windows slices |
 
-Matrix jobs set `ALLURE_STAGE=matrix` to skip aggregate quality gates during per-framework dumps ([multistage builds](https://allurereport.org/docs/multistage-builds/)); full gate rules apply on a complete local run:
+Matrix jobs set `ALLURE_STAGE=matrix` to skip aggregate quality gates during per-framework dumps ([multistage builds](https://allurereport.org/docs/multistage-builds/)). Full gate rules apply on a complete local run:
 
 ```bash
 pnpm exec allure run -- pnpm test
 pnpm exec allure quality-gate "./**/allure-results"
 ```
 
-**CI multistage flow** ([docs](https://allurereport.org/docs/multistage-builds/)): each matrix job runs `allure run --dump=…`; the report job runs `allure generate --dump="allure-dumps/*.zip"`. Flaky demo scenarios skip simulated failures in CI so matrix jobs stay deterministic (retries still apply locally).
+### CI: failures in the report, not hidden
+
+Matrix jobs use **`continue-on-error: true`** so a red test run in one framework/OS does not block the rest. Each job still:
+
+1. Runs **`allure run --dump=…`** — records real results (failed, broken, retries, stdout/stderr, global errors) into a dump archive even when the wrapped test command exits non-zero.
+2. Uploads the dump with **`if: always()`** when the archive exists.
+3. The **report job** (`needs: test`, `if: always()`) merges every uploaded dump via `allure generate --dump="allure-dumps/*.zip"` and publishes to GitHub Pages.
+
+So the dashboard is the source of truth: flaky retries appear in the **Flaky** filter, `known-regression` stays **broken**, critical payment timeouts show as **failed** until runner retries pass. A matrix slice that never produced a dump is simply missing from the merge (partial report), not silently faked as green.
+
+Per-framework runners configure retries where needed (Mocha/Cypress/Playwright/Jest/Vitest `retry: 2`, Cucumber `retry: 2`, CodeceptJS `retry: 2`). Shared flaky helpers use the runner attempt counter + in-process cache so Allure sees intermediate failures before the passing retry.
 
 Each adapter writes setup/teardown artifacts to `packages/<framework>/allure-global/` and calls the globals API when the reporter is active. File names include the framework prefix so merged **Global Attachments** stay distinguishable.
 

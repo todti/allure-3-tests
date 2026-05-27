@@ -25,14 +25,12 @@ export function shouldSimulateTransientFailure(
   randomFailRate = 0,
 ): boolean {
   const attempt = resolveAttempt(testId, runtimeAttempt);
-  const effectiveFailUntil = process.env.CI ? 0 : failUntilAttempt;
 
-  if (attempt < effectiveFailUntil) {
+  if (attempt < failUntilAttempt) {
     return true;
   }
 
-  const effectiveRandomFailRate = process.env.CI ? 0 : randomFailRate;
-  if (effectiveRandomFailRate > 0 && randomRoll(`${testId}:${attempt}`) < effectiveRandomFailRate) {
+  if (randomFailRate > 0 && randomRoll(`${testId}:${attempt}`) < randomFailRate) {
     return true;
   }
 
