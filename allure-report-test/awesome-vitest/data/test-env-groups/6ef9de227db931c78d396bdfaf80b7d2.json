@@ -1,1 +1,0 @@
-{"id":"6ef9de227db931c78d396bdfaf80b7d2","fullName":"@allure-tests/mocha:suites/inventory/flaky-sync.spec.mjs: Inventory > Inventory shard lock causes intermittent sync failures","name":"Inventory shard lock causes intermittent sync failures","status":"broken","testResultsByEnv":{"default":"195ece565f91eac70411bba20b848bc1"}}

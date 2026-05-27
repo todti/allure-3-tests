@@ -1,7 +1,0 @@
-{
-  "framework": "jasmine",
-  "profile": "gate-jasmine",
-  "maxFailures": 2,
-  "minTestsCount": 12,
-  "successRate": 0.75
-}

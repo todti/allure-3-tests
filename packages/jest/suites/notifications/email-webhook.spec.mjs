@@ -1,4 +1,4 @@
-import { describe, it } from "@jest/globals";
+import { describe, it, jest } from "@jest/globals";
 import { testEmailWebhook } from "@allure-tests/shared";
 
 describe("Notifications", () => {

@@ -1,1 +1,0 @@
-{"id":"7cf648ab6aea3e3556f7a7ab10698095","fullName":"@allure-tests/mocha:suites/analytics/known-regression.spec.mjs: Analytics > Known regression remains red for dashboard analytics","name":"Known regression remains red for dashboard analytics","status":"broken","testResultsByEnv":{"default":"94d877da74f687ccd3964d50d17f6a53"}}
