@@ -1,4 +1,4 @@
-import { testKnownRegression } from "@allure-tests/shared";
+import { testKnownRegression } from "@allure-tests/shared/domains";
 
 describe("Analytics", () => {
   it("Known regression remains red for dashboard analytics", () => {

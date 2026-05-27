@@ -1,4 +1,4 @@
-import { testUserProfile } from "@allure-tests/shared";
+import { testUserProfile } from "@allure-tests/shared/domains";
 
 describe("Users", () => {
   it("User profile stores masked and hidden parameters", () => {

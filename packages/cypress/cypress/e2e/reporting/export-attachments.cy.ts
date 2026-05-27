@@ -1,4 +1,4 @@
-import { testExportAttachments } from "@allure-tests/shared";
+import { testExportAttachments } from "@allure-tests/shared/domains";
 
 describe("Reporting", () => {
   it("Reporting export bundles multiple attachment formats", () => {

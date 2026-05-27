@@ -1,4 +1,4 @@
-import { testCacheRetry } from "@allure-tests/shared";
+import { testCacheRetry } from "@allure-tests/shared/domains";
 
 describe("Reliability", () => {
   it("Distributed cache misses on cold start then recovers after retry", () => {

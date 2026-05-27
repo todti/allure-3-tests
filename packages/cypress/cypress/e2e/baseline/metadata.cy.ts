@@ -1,4 +1,4 @@
-import { testMetadataShowcase } from "@allure-tests/shared";
+import { testMetadataShowcase } from "@allure-tests/shared/domains";
 
 describe("Adapter parity", () => {
   it("Allure metadata baseline documents runtime API surface", () => {

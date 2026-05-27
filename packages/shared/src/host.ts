@@ -1,11 +1,11 @@
-import * as os from "node:os";
-
 export const HOST_NAMES = ["Linux", "macOS", "Windows"] as const;
 
 export type HostName = (typeof HOST_NAMES)[number];
 
 export function resolveHostName(): HostName | string {
-  switch (os.platform()) {
+  const platform = typeof process !== "undefined" ? process.platform : undefined;
+
+  switch (platform) {
     case "darwin":
       return "macOS";
     case "win32":
@@ -13,7 +13,7 @@ export function resolveHostName(): HostName | string {
     case "linux":
       return "Linux";
     default:
-      return os.platform();
+      return platform ?? "Browser";
   }
 }
 

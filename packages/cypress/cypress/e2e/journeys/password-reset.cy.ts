@@ -1,4 +1,4 @@
-import { testPasswordReset } from "@allure-tests/shared";
+import { testPasswordReset } from "@allure-tests/shared/domains";
 
 describe("Customer journeys", () => {
   it("Password reset journey sends token and confirms delivery", () => {

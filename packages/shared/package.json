@@ -11,6 +11,12 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./domains": {
+      "types": "./dist/domains/index.d.ts",
+      "import": "./dist/domains/index.js",
+      "require": "./dist/domains/index.js",
+      "default": "./dist/domains/index.js"
     }
   },
   "scripts": {

@@ -1,6 +1,6 @@
 import { defineConfig } from "cypress";
 import { allureCypress } from "allure-cypress/reporter";
-import { buildEnvironmentInfo } from "@allure-tests/shared";
+import { buildEnvironmentInfo, runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -18,6 +18,15 @@ export default defineConfig({
         resultsDir: path.resolve(__dirname, resultsDir),
         environmentInfo: buildEnvironmentInfo("cypress"),
       });
+
+      on("before:run", async () => {
+        await runGlobalSetup({ framework: "cypress", runner: "node" });
+      });
+
+      on("after:run", async () => {
+        await runGlobalTeardown({ framework: "cypress", runner: "node" });
+      });
+
       return config;
     },
   },

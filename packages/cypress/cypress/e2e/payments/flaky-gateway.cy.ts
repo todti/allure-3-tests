@@ -1,4 +1,4 @@
-import { testFlakyPayment } from "@allure-tests/shared";
+import { testFlakyPayment } from "@allure-tests/shared/domains";
 
 describe("Payments", () => {
   it("Payment gateway may timeout before authorization", () => {

@@ -1,4 +1,3 @@
-import * as os from "node:os";
 import * as allure from "allure-js-commons";
 import { frameworkReportName } from "./framework-reports.js";
 import { resolveHostName } from "./host.js";
@@ -176,13 +175,15 @@ function hashSeed(input: string): number {
 
 export function buildEnvironmentInfo(framework: string, extra: EnvironmentInfo = {}): EnvironmentInfo {
   const host = resolveHostName();
+  const platform = typeof process !== "undefined" ? process.platform : "browser";
+  const arch = typeof process !== "undefined" ? process.arch : "unknown";
 
   return {
     Framework: framework,
     Report: frameworkReportName(framework),
     Host: host,
-    Node: process.version,
-    OS: `${os.platform()}/${os.arch()}`,
+    Node: typeof process !== "undefined" ? process.version : "browser",
+    OS: `${platform}/${arch}`,
     CI: process.env.CI ? "true" : "false",
     Run: process.env.GITHUB_RUN_ID ?? "local",
     Runner_OS: process.env.GITHUB_RUNNER_OS ?? host,

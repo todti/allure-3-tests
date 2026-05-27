@@ -180,7 +180,7 @@ def cypress_suite() -> None:
     base = ROOT / "packages" / "cypress" / "cypress" / "e2e"
     for folder, slug, fn, suite, flaky, browser in DOMAINS:
         title = TITLES[fn]
-        body = f"""import {{ {fn} }} from "@allure-tests/shared";
+        body = f"""import {{ {fn} }} from "@allure-tests/shared/domains";
 
 describe("{suite}", () => {{
   it("{title}", () => {{

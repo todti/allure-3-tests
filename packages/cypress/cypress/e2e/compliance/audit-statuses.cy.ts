@@ -1,4 +1,4 @@
-import { testAuditStatuses } from "@allure-tests/shared";
+import { testAuditStatuses } from "@allure-tests/shared/domains";
 
 describe("Compliance", () => {
   it("Audit pipeline records passed, skipped, and broken steps", () => {

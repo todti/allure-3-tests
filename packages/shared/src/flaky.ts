@@ -1,27 +1,11 @@
-import * as fs from "node:fs";
-import * as path from "node:path";
-
 const attemptCache = new Map<string, number>();
 
-/** Combines in-process retry counter with persisted attempts across reruns. */
+/** Tracks flaky attempts in-process (works in Node runners and Cypress browser bundles). */
 export function resolveAttempt(testId: string, runtimeAttempt = 0): number {
   const fromRuntime = runtimeAttempt + 1;
-  const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
-  const marker = path.join(resultsDir, `.flaky-${testId}.attempt`);
-
-  let persisted = 0;
-  try {
-    persisted = Number.parseInt(fs.readFileSync(marker, "utf8"), 10) || 0;
-  } catch {
-    persisted = 0;
-  }
-
-  const attempt = Math.max(fromRuntime, persisted + 1);
+  const cached = attemptCache.get(testId) ?? 0;
+  const attempt = Math.max(fromRuntime, cached + 1);
   attemptCache.set(testId, attempt);
-
-  fs.mkdirSync(resultsDir, { recursive: true });
-  fs.writeFileSync(marker, String(attempt));
-
   return attempt;
 }
 

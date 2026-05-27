@@ -1,4 +1,4 @@
-import { testCheckoutTax } from "@allure-tests/shared";
+import { testCheckoutTax } from "@allure-tests/shared/domains";
 
 describe("Checkout", () => {
   it("Checkout tax engine calculates VAT in nested steps", () => {

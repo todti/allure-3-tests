@@ -1,4 +1,4 @@
-import { testEmailWebhook } from "@allure-tests/shared";
+import { testEmailWebhook } from "@allure-tests/shared/domains";
 
 describe("Notifications", () => {
   it("Email provider webhook fan-out completes asynchronously", () => {

@@ -1,4 +1,4 @@
-import { testAuthLogin } from "@allure-tests/shared";
+import { testAuthLogin } from "@allure-tests/shared/domains";
 
 describe("Authentication", () => {
   it("OAuth login grants access token", () => {

@@ -1,4 +1,4 @@
-import { testApiHealth } from "@allure-tests/shared";
+import { testApiHealth } from "@allure-tests/shared/domains";
 
 describe("API", () => {
   it("Public API health endpoint responds with 200", () => {

@@ -1,4 +1,4 @@
-import { testCatalogSearch } from "@allure-tests/shared";
+import { testCatalogSearch } from "@allure-tests/shared/domains";
 
 describe("Catalog", () => {
   it("Product search applies filters and pagination", () => {
