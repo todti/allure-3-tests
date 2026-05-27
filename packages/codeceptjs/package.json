@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "npx codeceptjs run --steps"
+    "test": "codeceptjs run"
   },
   "dependencies": {
     "@allure-tests/shared": "workspace:*",

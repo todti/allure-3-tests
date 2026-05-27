@@ -75,10 +75,18 @@ jobs:
         if: matrix.framework == 'playwright' || matrix.framework == 'codeceptjs'
         shell: bash
         run: |
-          if [ "${{ runner.os }}" = "Linux" ]; then
-            pnpm --filter @allure-tests/playwright exec playwright install --with-deps chromium
-          else
-            pnpm --filter @allure-tests/playwright exec playwright install chromium
+          install_playwright() {
+            local filter="$1"
+            if [ "${{ runner.os }}" = "Linux" ]; then
+              pnpm --filter "$filter" exec playwright install --with-deps chromium
+            else
+              pnpm --filter "$filter" exec playwright install chromium
+            fi
+          }
+
+          install_playwright @allure-tests/playwright
+          if [ "${{ matrix.framework }}" = "codeceptjs" ]; then
+            install_playwright @allure-tests/codeceptjs
           fi
 
       - name: Install Cypress binary
@@ -86,9 +94,11 @@ jobs:
         run: pnpm --filter @allure-tests/cypress exec cypress install
 
       - name: Run tests
-        timeout-minutes: 15
+        timeout-minutes: 20
+        shell: bash
         env:
           ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
+          CI: true
         run: pnpm exec allure run --config=./allurerc.mjs --environment=${{ env.OS_SLUG }} -- pnpm --filter @allure-tests/${{ matrix.framework }} test
 
       - name: Resolve Allure results directory

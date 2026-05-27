@@ -9,12 +9,19 @@ setCommonPlugins();
 exports.config = {
   tests: "./suites/**/*_test.ts",
   output: "./output",
+  timeout: 60,
   helpers: {
     Playwright: {
       url: "https://playwright.dev",
       show: false,
       browser: "chromium",
       headless: true,
+      waitForTimeout: 10_000,
+      restart: true,
+      timeout: 30_000,
+      chromium: {
+        args: ["--disable-gpu"],
+      },
     },
   },
   include: {
