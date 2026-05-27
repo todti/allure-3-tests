@@ -72,24 +72,40 @@ jobs:
           ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}
         run: pnpm --filter @allure-tests/${{ matrix.framework }} test
 
-      - name: Archive Allure results
+      - name: Resolve Allure results directory
+        id: results
         if: always()
+        shell: bash
         run: |
-          RESULTS_DIR="allure-results-${{ matrix.framework }}"
-          if [ -d "packages/${{ matrix.framework }}/$RESULTS_DIR" ]; then
-            cd "packages/${{ matrix.framework }}"
-            zip -r "../../$RESULTS_DIR.zip" "$RESULTS_DIR"
-          elif [ -d "packages/${{ matrix.framework }}/allure-results" ]; then
-            cd "packages/${{ matrix.framework }}"
-            zip -r "../../$RESULTS_DIR.zip" "allure-results"
-          fi
+          fw="${{ matrix.framework }}"
+          candidates=(
+            "packages/${fw}/${ALLURE_RESULTS_DIR}"
+            "packages/${fw}/allure-results"
+            "${ALLURE_RESULTS_DIR}"
+            "allure-results"
+          )
+
+          for dir in "${candidates[@]}"; do
+            if [ -d "$dir" ] && compgen -G "${dir}/*-result.json" > /dev/null; then
+              echo "path=${dir}" >> "$GITHUB_OUTPUT"
+              echo "Using Allure results directory: ${dir}"
+              echo "Result files: $(find "$dir" -name '*-result.json' | wc -l)"
+              exit 0
+            fi
+          done
+
+          echo "No Allure result files found for ${fw}"
+          exit 1
+        env:
+          ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}
 
       - name: Upload Allure results
-        if: always()
+        if: always() && steps.results.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-${{ matrix.framework }}
-          path: allure-results-${{ matrix.framework }}.zip
+          path: ${{ steps.results.outputs.path }}
+          if-no-files-found: error
           retention-days: 7
 
   report:
@@ -114,19 +130,21 @@ jobs:
       - name: Download all framework results
         uses: actions/download-artifact@v4
         with:
-          path: ./artifacts
+          path: ./allure-results
           pattern: allure-results-*
           merge-multiple: true
 
-      - name: Merge Allure results
+      - name: Verify merged Allure results
+        shell: bash
         run: |
-          mkdir -p allure-results
           shopt -s nullglob
-          for zip in artifacts/allure-results-*.zip; do
-            echo "Merging ${zip}"
-            unzip -j -o "$zip" -d allure-results/
-          done
-          echo "Merged result files: $(ls allure-results/*-result.json 2>/dev/null | wc -l)"
+          files=(allure-results/*-result.json)
+          echo "Merged *-result.json files: ${#files[@]}"
+          ls -la allure-results/*-result.json || true
+          if [ "${#files[@]}" -lt 11 ]; then
+            echo "Expected at least 11 merged test results (one per framework)."
+            exit 1
+          fi
 
       - name: Generate Allure 3 report
         run: pnpm exec allure generate ./allure-results --output=./allure-report

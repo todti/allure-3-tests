@@ -14,7 +14,7 @@ export async function applyFrameworkLabels(ctx: ShowcaseContext): Promise<void> 
   }
 }
 
-export async function applyMetadata(): Promise<void> {
+export async function applyMetadata(ctx: ShowcaseContext): Promise<void> {
   await allure.description(
     "Demonstrates Allure 3 metadata API: owner, severity, tags, links, TMS, issue, and behavior hierarchy.",
   );
@@ -24,7 +24,7 @@ export async function applyMetadata(): Promise<void> {
   await allure.issue("https://github.com/allure-framework/allure-js/issues/1", "ALLURE-JS-1");
   await allure.tms("https://github.com/allure-framework/allure-js", "TMS-1");
   await allure.link("https://allurereport.org/docs/v3/", "Allure 3 docs");
-  await allure.testCaseId("allure-features-showcase");
+  await allure.testCaseId(`allure-features-showcase-${ctx.framework}`);
   await allure.epic("Allure demo");
   await allure.feature("Runtime API");
   await allure.story("Metadata and labels");
@@ -110,7 +110,7 @@ export async function runHookStyleAttachments(
 /** Full showcase invoked from each framework's main test. */
 export async function runAllureFeatureShowcase(ctx: ShowcaseContext): Promise<void> {
   await applyFrameworkLabels(ctx);
-  await applyMetadata();
+  await applyMetadata(ctx);
   await runStepsAndParameters();
   await runAttachments(ctx);
   await runAsyncPatterns();

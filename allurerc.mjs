@@ -50,7 +50,10 @@ const config = {
             open: false,
             publish: true,
             filter: ({ labels }) =>
-              labels.some(({ name, value }) => name === "framework" && value === framework),
+              labels.some(
+                ({ name, value }) =>
+                  name === "framework" && (value === framework || value === `${framework}js`),
+              ),
           },
         },
       ]),

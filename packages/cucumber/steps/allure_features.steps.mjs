@@ -16,7 +16,7 @@ Given("framework labels are applied for cucumber", async () => {
 });
 
 When("the shared Allure feature showcase runs", async () => {
-  await applyMetadata();
+  await applyMetadata({ framework: "cucumber", runner: "node" });
   await runStepsAndParameters();
   await runAttachments({ framework: "cucumber", runner: "node" });
   await runAsyncPatterns();
