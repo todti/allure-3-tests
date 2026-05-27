@@ -1,5 +1,3 @@
-import { buildEnvironmentInfo } from "@allure-tests/shared";
-
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
 export default {
@@ -8,6 +6,5 @@ export default {
   format: ["progress", "allure-cucumberjs/reporter"],
   formatOptions: {
     resultsDir,
-    environmentInfo: buildEnvironmentInfo("cucumber"),
   },
 };

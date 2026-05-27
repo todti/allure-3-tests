@@ -1,5 +1,3 @@
-import { buildEnvironmentInfo } from "@allure-tests/shared";
-
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
 /** @type {import('jest').Config} */
@@ -10,6 +8,5 @@ export default {
   globalTeardown: "<rootDir>/global-teardown.mjs",
   testEnvironmentOptions: {
     resultsDir,
-    environmentInfo: buildEnvironmentInfo("jest"),
   },
 };

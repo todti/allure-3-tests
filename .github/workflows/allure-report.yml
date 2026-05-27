@@ -89,7 +89,7 @@ jobs:
         timeout-minutes: 15
         env:
           ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
-        run: pnpm --filter @allure-tests/${{ matrix.framework }} test
+        run: pnpm exec allure run --config=./allurerc.mjs --environment=${{ env.OS_SLUG }} -- pnpm --filter @allure-tests/${{ matrix.framework }} test
 
       - name: Resolve Allure results directory
         id: results

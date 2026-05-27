@@ -7,17 +7,17 @@
     {
       "name": "Auth — OAuth token endpoint",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('auth smoke', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('auth smoke', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
       "name": "Catalog — search API",
       "request": { "method": "GET", "url": "https://playwright.dev/docs/intro" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('catalog docs available', () => pm.expect(pm.response.text()).to.include('Playwright'));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('catalog docs available', () => pm.expect(pm.response.text()).to.include('Playwright'));"], "type": "text/javascript" } }]
     },
     {
       "name": "Checkout — pricing quote",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('quote payload', () => pm.response.responseTime < 5000);"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('quote payload', () => pm.response.responseTime < 5000);"], "type": "text/javascript" } }]
     },
     {
       "name": "Payments — flaky authorization",
@@ -28,6 +28,8 @@
       }, {
         "listen": "test",
         "script": { "exec": [
+          "// @allure.label.os:{{ALLURE_OS}}",
+          "// @allure.label.framework:newman",
           "const roll = Number(pm.environment.get('pay_roll'));",
           "if (roll < 0.35) { pm.test('gateway timeout', () => { throw new Error('Flaky payment ' + roll); }); }",
           "else { pm.test('authorized', () => pm.response.to.have.status(200)); }"
@@ -37,52 +39,52 @@
     {
       "name": "Inventory — stock sync",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('inventory ok', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('inventory ok', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
       "name": "Notifications — webhook callback",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('webhook delivered', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('webhook delivered', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
       "name": "Reporting — export bundle",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('export headers', () => pm.response.to.have.header('content-type'));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('export headers', () => pm.response.to.have.header('content-type'));"], "type": "text/javascript" } }]
     },
     {
       "name": "Reliability — cache warmup",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('cache hit', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('cache hit', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
       "name": "Compliance — audit feed",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('audit feed', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('audit feed', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
       "name": "Analytics — known regression",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('known regression captured for dashboards', () => { pm.response.to.have.status(200); pm.test('legacy billing rule mismatch (demo)', () => { console.log('Demo regression for Allure dashboards'); }); });"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('known regression captured for dashboards', () => { pm.response.to.have.status(200); pm.test('legacy billing rule mismatch (demo)', () => { console.log('Demo regression for Allure dashboards'); }); });"], "type": "text/javascript" } }]
     },
     {
       "name": "API — health check",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('health 200', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('health 200', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
       "name": "Users — profile service",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('profile ok', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('profile ok', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
       "name": "Journeys — password reset",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('reset journey', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('reset journey', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
       "name": "Baseline — metadata smoke",
       "request": { "method": "GET", "url": "https://playwright.dev/" },
-      "event": [{ "listen": "test", "script": { "exec": ["pm.test('baseline smoke', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+      "event": [{ "listen": "test", "script": { "exec": ["// @allure.label.os:{{ALLURE_OS}}", "// @allure.label.framework:newman", "pm.test('baseline smoke', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     }
   ]
 }

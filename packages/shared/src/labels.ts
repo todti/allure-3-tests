@@ -1,6 +1,4 @@
 import * as allure from "allure-js-commons";
-import { frameworkReportName } from "./framework-reports.js";
-import { resolveHostName } from "./host.js";
 import { applyFrameworkLabels } from "./showcase.js";
 import type { ShowcaseContext } from "./types.js";
 
@@ -17,8 +15,6 @@ export type DomainMeta = {
   suite?: string;
   subSuite?: string;
 };
-
-export type EnvironmentInfo = Record<string, string>;
 
 const DOMAIN_META: Record<string, DomainMeta> = {
   "auth-login": {
@@ -171,25 +167,6 @@ function hashSeed(input: string): number {
     hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
   }
   return hash;
-}
-
-export function buildEnvironmentInfo(framework: string, extra: EnvironmentInfo = {}): EnvironmentInfo {
-  const host = resolveHostName();
-  const platform = typeof process !== "undefined" ? process.platform : "browser";
-  const arch = typeof process !== "undefined" ? process.arch : "unknown";
-
-  return {
-    Framework: framework,
-    Report: frameworkReportName(framework),
-    Host: host,
-    Node: typeof process !== "undefined" ? process.version : "browser",
-    OS: `${platform}/${arch}`,
-    CI: process.env.CI ? "true" : "false",
-    Run: process.env.GITHUB_RUN_ID ?? "local",
-    Runner_OS: process.env.GITHUB_RUNNER_OS ?? host,
-    Coverage_tool: "c8 (demo)",
-    ...extra,
-  };
 }
 
 export function resolveCoverage(domainId: string, framework: string): {

@@ -1,5 +1,4 @@
 import { defineConfig } from "vitest/config";
-import { buildEnvironmentInfo } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
@@ -14,7 +13,6 @@ export default defineConfig({
         "allure-vitest/reporter",
         {
           resultsDir,
-          environmentInfo: buildEnvironmentInfo("vitest"),
         },
       ],
     ],

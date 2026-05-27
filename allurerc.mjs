@@ -14,7 +14,34 @@ const FRAMEWORK_REPORT_NAMES = {
   bun: "Bun · Mocha-compatible runner",
 };
 
-const HOST_NAMES = ["Linux", "macOS", "Windows"];
+const OS_NAMES = ["Linux", "macOS", "Windows"];
+
+const OS_ENVIRONMENTS = {
+  linux: {
+    name: "Linux",
+    matcher: ({ labels }) => labels.some(({ name, value }) => name === "os" && value === "Linux"),
+    variables: {
+      OS: "Linux",
+      Runner: "GitHub Actions / local Linux",
+    },
+  },
+  macos: {
+    name: "macOS",
+    matcher: ({ labels }) => labels.some(({ name, value }) => name === "os" && value === "macOS"),
+    variables: {
+      OS: "macOS",
+      Runner: "GitHub Actions / local macOS",
+    },
+  },
+  windows: {
+    name: "Windows",
+    matcher: ({ labels }) => labels.some(({ name, value }) => name === "os" && value === "Windows"),
+    variables: {
+      OS: "Windows",
+      Runner: "GitHub Actions / local Windows",
+    },
+  },
+};
 
 const FRAMEWORKS = Object.keys(FRAMEWORK_REPORT_NAMES);
 
@@ -23,14 +50,20 @@ const frameworkLabel = (framework) => (tr) =>
     ({ name, value }) => name === "framework" && (value === framework || value === `${framework}js`),
   );
 
-const hostLabel = (host) => (tr) =>
-  tr.labels.some(({ name, value }) => name === "host" && value === host);
+const osLabel = (os) => (tr) => tr.labels.some(({ name, value }) => name === "os" && value === os);
 
 /** @type {import("allure").AllureConfig} */
 const config = {
   name: "Allure 3 · All Frameworks",
   output: "./allure-report",
   historyPath: "./history.jsonl",
+  allowedEnvironments: ["linux", "macos", "windows"],
+  variables: {
+    Project: "Allure 3 multi-framework demo",
+    Repository: "https://github.com/todti/allure-3-tests",
+    "CI run": process.env.GITHUB_RUN_ID ?? "local",
+  },
+  environments: OS_ENVIRONMENTS,
   globalAttachments: ["./allure-global/**", "./packages/*/allure-global/**"],
   qualityGate: {
     rules: [
@@ -47,14 +80,14 @@ const config = {
         successRate: 0.75,
         filter: frameworkLabel(framework),
       })),
-      ...HOST_NAMES.map((host) => {
-        const hostSlug = host === "macOS" ? "macos" : host.toLowerCase();
+      ...OS_NAMES.map((os) => {
+        const osSlug = os === "macOS" ? "macos" : os.toLowerCase();
         return {
-          id: `gate-host-${hostSlug}`,
+          id: `gate-os-${osSlug}`,
           maxFailures: 20,
           minTestsCount: 100,
           successRate: 0.75,
-          filter: hostLabel(host),
+          filter: osLabel(os),
         };
       }),
     ],
@@ -99,22 +132,6 @@ const config = {
                 ({ name, value }) =>
                   name === "framework" && (value === framework || value === `${framework}js`),
               ),
-          },
-        },
-      ]),
-    ),
-    ...Object.fromEntries(
-      HOST_NAMES.map((host) => [
-        `awesome-host-${host === "macOS" ? "macos" : host.toLowerCase()}`,
-        {
-          import: "@allurereport/plugin-awesome",
-          options: {
-            reportName: `Allure 3 · ${host}`,
-            singleFile: false,
-            reportLanguage: "en",
-            open: false,
-            publish: true,
-            filter: ({ labels }) => labels.some(({ name, value }) => name === "host" && value === host),
           },
         },
       ]),

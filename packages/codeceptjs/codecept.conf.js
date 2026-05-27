@@ -1,9 +1,5 @@
 const path = require("node:path");
-const { createRequire } = require("node:module");
 const { setCommonPlugins } = require("@codeceptjs/configure");
-
-const requireShared = createRequire(__filename);
-const { buildEnvironmentInfo } = requireShared("@allure-tests/shared");
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
@@ -29,7 +25,6 @@ exports.config = {
       enabled: true,
       require: "allure-codeceptjs",
       resultsDir: path.resolve(resultsDir),
-      environmentInfo: buildEnvironmentInfo("codeceptjs"),
     },
   },
   name: "allure-codeceptjs-demo",

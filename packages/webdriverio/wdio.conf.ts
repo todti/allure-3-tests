@@ -1,4 +1,4 @@
-import { buildEnvironmentInfo, runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
+import { runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
@@ -30,7 +30,6 @@ export const config: WebdriverIO.Config = {
         outputDir: resultsDir,
         disableWebdriverStepsReporting: false,
         disableWebdriverScreenshotsReporting: false,
-        reportedEnvironmentVars: buildEnvironmentInfo("webdriverio"),
       },
     ],
   ],

@@ -9,7 +9,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export async function applyFrameworkLabels(ctx: ShowcaseContext): Promise<void> {
   await allure.label("framework", ctx.framework);
   await allure.label("report", frameworkReportName(ctx.framework));
-  await allure.label("host", resolveHostName());
+  await allure.label("os", resolveHostName());
   await allure.label("language", "typescript");
   if (ctx.runner) {
     await allure.label("runner", ctx.runner);

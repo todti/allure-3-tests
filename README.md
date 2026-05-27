@@ -82,7 +82,19 @@ CI runs `allure quality-gate ./allure-results` after report generation.
 ## Allure features demonstrated
 - HTTP smoke via `fetch` (no browser)
 - Optional browser smoke (Playwright, WebdriverIO, CodeceptJS)
-- Labels: `framework`, `host`, `language`, `runner`
+- Labels: `framework`, `os`, `language`, `runner`
+
+## Environments (Allure 3)
+
+[`allurerc.mjs`](allurerc.mjs) defines native Allure 3 **environments** ([docs](https://allurereport.org/docs/environments/)):
+
+- **`linux` / `macos` / `windows`** — matchers on the `os` label (`Linux`, `macOS`, `Windows`)
+- **`variables`** — global report metadata + per-environment overrides
+- **`allowedEnvironments`** — validates environment IDs at report generation
+
+Each test sets `os` via shared `applyFrameworkLabels()`. Newman uses Postman annotations (`// @allure.label.os:{{ALLURE_OS}}`) with `--env-var ALLURE_OS=…`.
+
+CI wraps test runs with `allure run --environment=<os_slug>` so results are assigned even when label matching is skipped.
 
 ## Quick start
 
@@ -110,7 +122,7 @@ Set a custom results directory (used in CI):
 ALLURE_RESULTS_DIR=allure-results-playwright-linux pnpm test:playwright
 ```
 
-Environment info includes `Host` (`Linux` / `macOS` / `Windows` locally), `OS` (`darwin/arm64`, `win32/x64`, `linux/x64`), and `Runner_OS` in CI.
+Environment info is **not** written via legacy `environmentInfo` / `environment.properties` — use Allure 3 `environments` + `variables` in [`allurerc.mjs`](allurerc.mjs) instead.
 
 ## Allure 3 configuration
 
@@ -119,6 +131,7 @@ Environment info includes `Host` (`Linux` / `macOS` / `Windows` locally), `OS` (
 - `awesomeAll` — combined report for all frameworks
 - `awesome-<framework>` — per-framework filtered reports
 - `dashboard` — dashboard plugin
+- `environments` — Linux / macOS / Windows switcher on the combined report
 - `publish: true` on Awesome plugins — generates the **summary** landing page (`@allurereport/web-summary`) linking to each published report
 
 ## Latest reports
@@ -133,15 +146,14 @@ Per-framework reports: open **Summary** — it links to each generated view.
 
 [`.github/workflows/allure-report.yml`](.github/workflows/allure-report.yml):
 
-1. Matrix job runs each framework on **Linux, macOS, and Windows** via native CLI (`playwright test`, `mocha`, `jest`, …)
-2. Each run tags tests with `host` label and `Host` environment field (`Linux` / `macOS` / `Windows`)
-3. CI fails only when tests crash or produce no Allure results — not on demo broken steps in the report
+1. Matrix job runs each framework on **Linux, macOS, and Windows** via native CLI wrapped in `allure run --environment=<os>`
+2. Each run tags tests with the `os` label (`Linux` / `macOS` / `Windows`)
 3. Uploads `allure-results-<framework>-<host>` artifacts and merges them into `./allure-results`
-4. Report job runs `allure generate` — includes per-host Awesome views (`awesome-host-linux`, `awesome-host-macos`, `awesome-host-windows`)
+4. Report job runs `allure generate` — combined report includes the **Environments** dropdown (Linux / macOS / Windows)
 5. [allure-framework/allure-action](https://github.com/allure-framework/allure-action) comments on PRs
 6. Publishes `./allure-report` to `gh-pages` (includes summary index)
 
-Per-host reports: open **Summary** → `awesome-host-linux` / `awesome-host-macos` / `awesome-host-windows`.
+Switch environments on the **All tests** (`awesomeAll`) report home page — no separate per-OS plugin views.
 
 ## Limitations
 

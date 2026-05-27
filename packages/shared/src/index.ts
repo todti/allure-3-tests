@@ -1,5 +1,5 @@
 export type { ShowcaseContext, RuntimeHints } from "./types.js";
-export type { BddLayer, DomainMeta, EnvironmentInfo } from "./labels.js";
+export type { BddLayer, DomainMeta } from "./labels.js";
 export type { FrameworkId } from "./framework-reports.js";
 export type { HostName } from "./host.js";
 export * from "./host.js";

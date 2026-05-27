@@ -1,12 +1,11 @@
 import AllureJasmineReporter from "allure-jasmine";
-import { buildEnvironmentInfo, runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
+import { runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
 import { resolveRegisteredSpecFile } from "./spec-file-registry.mjs";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
 const reporter = new AllureJasmineReporter({
   resultsDir,
-  environmentInfo: buildEnvironmentInfo("jasmine"),
 });
 
 function applySpecFile(spec) {
