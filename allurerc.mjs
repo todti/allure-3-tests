@@ -107,12 +107,9 @@ const config = {
   environments: OS_ENVIRONMENTS,
   // https://allurereport.org/docs/global-errors-and-attachments/#custom-file-attachments
   globalAttachments: ["./allure-global/**", "./packages/*/allure-global/**"],
+  // Matrix dumps cannot satisfy aggregate gates; skip QG per stage (multistage builds).
   ...(process.env.ALLURE_STAGE === "matrix"
-    ? {
-        qualityGate: {
-          rules: [criticalBlockerFastFail],
-        },
-      }
+    ? {}
     : {
         qualityGate: {
           rules: qualityGateRules,

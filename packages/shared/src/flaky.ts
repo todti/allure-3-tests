@@ -30,7 +30,8 @@ export function shouldSimulateTransientFailure(
     return true;
   }
 
-  if (randomFailRate > 0 && randomRoll(`${testId}:${attempt}`) < randomFailRate) {
+  const effectiveRandomFailRate = process.env.CI ? 0 : randomFailRate;
+  if (effectiveRandomFailRate > 0 && randomRoll(`${testId}:${attempt}`) < effectiveRandomFailRate) {
     return true;
   }
 

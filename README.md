@@ -80,14 +80,14 @@ Per [Allure 3 globals docs](https://allurereport.org/docs/global-errors-and-atta
 | `gate-<framework>` | per-framework thresholds + `filter` | One gate per adapter label |
 | `gate-os-<os>` | per-OS thresholds + `filter` | Linux / macOS / Windows slices |
 
-Matrix jobs set `ALLURE_STAGE=matrix` so only the `critical-blocker-fast-fail` rule runs during per-framework dumps ([multistage builds](https://allurereport.org/docs/multistage-builds/)). Aggregate gates apply on a full local run:
+Matrix jobs set `ALLURE_STAGE=matrix` to skip aggregate quality gates during per-framework dumps ([multistage builds](https://allurereport.org/docs/multistage-builds/)); full gate rules apply on a complete local run:
 
 ```bash
 pnpm exec allure run -- pnpm test
 pnpm exec allure quality-gate "./**/allure-results"
 ```
 
-**CI multistage flow** ([docs](https://allurereport.org/docs/multistage-builds/)): each matrix job runs `allure run --dump=…`; the report job runs `allure generate --dump="allure-dumps/*.zip"`. Quality gate results from each stage are stored in dump archives and appear in the merged **Quality Gates** tab.
+**CI multistage flow** ([docs](https://allurereport.org/docs/multistage-builds/)): each matrix job runs `allure run --dump=…`; the report job runs `allure generate --dump="allure-dumps/*.zip"`. Flaky demo scenarios disable random failures in CI so matrix jobs stay deterministic.
 
 Each adapter writes setup/teardown artifacts to `packages/<framework>/allure-global/` and calls the globals API when the reporter is active. File names include the framework prefix so merged **Global Attachments** stay distinguishable.
 
