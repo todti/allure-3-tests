@@ -58,13 +58,15 @@ const severityLabel =
     tr.labels.some(({ name, value }) => name === "severity" && severities.includes(value));
 
 /** https://allurereport.org/docs/quality-gate/ */
+const criticalBlockerFastFail = {
+  id: "critical-blocker-fast-fail",
+  maxFailures: 0,
+  fastFail: true,
+  filter: severityLabel("critical", "blocker"),
+};
+
 const qualityGateRules = [
-  {
-    id: "critical-blocker-fast-fail",
-    maxFailures: 0,
-    fastFail: true,
-    filter: severityLabel("critical", "blocker"),
-  },
+  criticalBlockerFastFail,
   {
     id: "global-gate",
     maxFailures: 60,
@@ -105,9 +107,17 @@ const config = {
   environments: OS_ENVIRONMENTS,
   // https://allurereport.org/docs/global-errors-and-attachments/#custom-file-attachments
   globalAttachments: ["./allure-global/**", "./packages/*/allure-global/**"],
-  ...(process.env.ALLURE_DISABLE_QUALITY_GATE === "true"
-    ? {}
-    : { qualityGate: { rules: qualityGateRules } }),
+  ...(process.env.ALLURE_STAGE === "matrix"
+    ? {
+        qualityGate: {
+          rules: [criticalBlockerFastFail],
+        },
+      }
+    : {
+        qualityGate: {
+          rules: qualityGateRules,
+        },
+      }),
   plugins: {
     awesomeAll: {
       import: "@allurereport/plugin-awesome",

@@ -38,10 +38,14 @@ export function writeGlobalArtifacts(framework: string, phase: GlobalPhase): {
     runId: process.env.GITHUB_RUN_ID ?? "local",
   };
 
-  const jsonPath = writeGlobalFile(framework, `${phase}-context.json`, JSON.stringify(payload, null, 2));
+  const jsonPath = writeGlobalFile(
+    framework,
+    `${framework}-${phase}-context.json`,
+    JSON.stringify(payload, null, 2),
+  );
   const logPath = writeGlobalFile(
     framework,
-    `${phase}-runner.log`,
+    `${framework}-${phase}-runner.log`,
     [
       `[${framework}] ${phase} started`,
       `node=${process.version}`,
@@ -57,13 +61,8 @@ async function emitGlobalRuntimeMessages(framework: string, phase: GlobalPhase):
   const artifacts = writeGlobalArtifacts(framework, phase);
 
   try {
-    await allure.globalAttachment(
-      `${framework}-${phase}-context`,
-      fs.readFileSync(artifacts.jsonPath, "utf8"),
-      ContentType.JSON,
-    );
     await allure.globalAttachmentPath(`${framework}-${phase}-log`, artifacts.logPath, ContentType.TEXT);
-    await allure.globalAttachmentPath(`${framework}-${phase}-context-file`, artifacts.jsonPath, ContentType.JSON);
+    await allure.globalAttachmentPath(`${framework}-${phase}-context`, artifacts.jsonPath, ContentType.JSON);
 
     if (phase === "setup") {
       await allure.globalError({

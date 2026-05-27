@@ -80,18 +80,16 @@ Per [Allure 3 globals docs](https://allurereport.org/docs/global-errors-and-atta
 | `gate-<framework>` | per-framework thresholds + `filter` | One gate per adapter label |
 | `gate-os-<os>` | per-OS thresholds + `filter` | Linux / macOS / Windows slices |
 
-Matrix jobs set `ALLURE_DISABLE_QUALITY_GATE=true` because a single-framework run cannot satisfy merged thresholds (`minTestsCount: 300`, `environmentsTested`). The **report job** runs [`scripts/generate-with-quality-gate.mjs`](scripts/generate-with-quality-gate.mjs): restores all `--dump` archives, validates gates via `allure validate`, writes failures to **Global Errors**, generates the HTML report, and exits non-zero if any gate fails.
-
-Local commands:
+Matrix jobs set `ALLURE_STAGE=matrix` so only the `critical-blocker-fast-fail` rule runs during per-framework dumps ([multistage builds](https://allurereport.org/docs/multistage-builds/)). Aggregate gates apply on a full local run:
 
 ```bash
-pnpm exec allure quality-gate "./**/allure-results"   # validate existing results
-node scripts/generate-with-quality-gate.mjs --dump="allure-dumps/*.zip"  # merge dumps + gate + report
+pnpm exec allure run -- pnpm test
+pnpm exec allure quality-gate "./**/allure-results"
 ```
 
-Each adapter writes setup/teardown artifacts to `packages/<framework>/allure-global/` and calls the globals API when the reporter is active.
+**CI multistage flow** ([docs](https://allurereport.org/docs/multistage-builds/)): each matrix job runs `allure run --dump=…`; the report job runs `allure generate --dump="allure-dumps/*.zip"`. Quality gate results from each stage are stored in dump archives and appear in the merged **Quality Gates** tab.
 
-**CI multistage flow:** each matrix job runs `allure run --dump=…`, uploads `.zip` dumps; the report job merges dumps, validates quality gates, and generates the combined dashboard so stdout/stderr and custom globals from all stages appear in **Global Attachments** / **Global Errors** / **Quality Gates**.
+Each adapter writes setup/teardown artifacts to `packages/<framework>/allure-global/` and calls the globals API when the reporter is active. File names include the framework prefix so merged **Global Attachments** stay distinguishable.
 
 ## Allure features demonstrated
 - HTTP smoke via `fetch` (no browser)
@@ -145,7 +143,7 @@ Environment info is **not** written via legacy `environmentInfo` / `environment.
 [`allurerc.mjs`](allurerc.mjs) defines:
 
 - `awesomeAll` — combined report for all frameworks
-- `awesome-<framework>` — per-framework filtered reports
+- `awesome-<framework>` — per-framework filtered reports with `options.reportName` per [plugin config](https://allurereport.org/docs/getting-started-configuration/) (see `pnpm.patchedDependencies` — upstream `plugin-awesome` ignored `options.reportName` until patched)
 - `dashboard` — dashboard plugin
 - `environments` — Linux / macOS / Windows switcher on the combined report
 - `publish: true` on Awesome plugins — generates the **summary** landing page (`@allurereport/web-summary`) linking to each published report

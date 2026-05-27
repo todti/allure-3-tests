@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@allurereport/plugin-awesome@3.8.2':
+    hash: 8239912da660aaf0678ab0ac38afe2d8fae8307d180a4b11574102222cd1f2f8
+    path: patches/@allurereport__plugin-awesome@3.8.2.patch
+
 importers:
 
   .:
@@ -6564,7 +6569,7 @@ snapshots:
       '@allurereport/plugin-agent': 3.8.2
       '@allurereport/plugin-allure2': 3.8.2
       '@allurereport/plugin-api': 3.8.2
-      '@allurereport/plugin-awesome': 3.8.2(preact@10.29.2)(typescript@5.9.3)
+      '@allurereport/plugin-awesome': 3.8.2(patch_hash=8239912da660aaf0678ab0ac38afe2d8fae8307d180a4b11574102222cd1f2f8)(preact@10.29.2)(typescript@5.9.3)
       '@allurereport/plugin-classic': 3.8.2(preact@10.29.2)(typescript@5.9.3)
       '@allurereport/plugin-csv': 3.8.2
       '@allurereport/plugin-dashboard': 3.8.2(preact@10.29.2)(typescript@5.9.3)
@@ -6613,7 +6618,7 @@ snapshots:
     dependencies:
       '@allurereport/core-api': 3.8.2
 
-  '@allurereport/plugin-awesome@3.8.2(preact@10.29.2)(typescript@5.9.3)':
+  '@allurereport/plugin-awesome@3.8.2(patch_hash=8239912da660aaf0678ab0ac38afe2d8fae8307d180a4b11574102222cd1f2f8)(preact@10.29.2)(typescript@5.9.3)':
     dependencies:
       '@allurereport/charts-api': 3.8.2
       '@allurereport/core-api': 3.8.2
@@ -8852,7 +8857,7 @@ snapshots:
       '@allurereport/plugin-agent': 3.8.2
       '@allurereport/plugin-allure2': 3.8.2
       '@allurereport/plugin-api': 3.8.2
-      '@allurereport/plugin-awesome': 3.8.2(preact@10.29.2)(typescript@5.9.3)
+      '@allurereport/plugin-awesome': 3.8.2(patch_hash=8239912da660aaf0678ab0ac38afe2d8fae8307d180a4b11574102222cd1f2f8)(preact@10.29.2)(typescript@5.9.3)
       '@allurereport/plugin-classic': 3.8.2(preact@10.29.2)(typescript@5.9.3)
       '@allurereport/plugin-csv': 3.8.2
       '@allurereport/plugin-dashboard': 3.8.2(preact@10.29.2)(typescript@5.9.3)

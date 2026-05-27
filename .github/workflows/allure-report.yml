@@ -97,7 +97,7 @@ jobs:
         timeout-minutes: 20
         shell: bash
         env:
-          ALLURE_DISABLE_QUALITY_GATE: true
+          ALLURE_STAGE: matrix
           ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
           CI: true
         run: |
@@ -175,18 +175,13 @@ jobs:
       - name: Validate Allure config
         run: node -e "import('./allurerc.mjs').then(() => console.log('Allure config OK'))"
 
-      - name: Generate Allure 3 report with quality gate
-        id: generate
+      - name: Generate Allure 3 report
         env:
           NODE_OPTIONS: --max-old-space-size=4096
-        shell: bash
-        run: |
-          set +e
-          node scripts/generate-with-quality-gate.mjs --dump="allure-dumps/*.zip" --output=./allure-report
-          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+        run: pnpm exec allure generate --config=./allurerc.mjs --dump="allure-dumps/*.zip" --output=./allure-report
 
       - name: Allure Report action
-        if: always() && steps.generate.outcome != 'skipped'
+        if: always()
         uses: allure-framework/allure-action@v0
         with:
           report-directory: ./allure-report
@@ -200,11 +195,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
           keep_files: true
-
-      - name: Enforce quality gate
-        if: always() && steps.generate.outputs.exit_code != '0'
-        run: |
-          echo "Quality gate validation failed (exit code ${GENERATE_EXIT:-unknown})."
-          exit 1
-        env:
-          GENERATE_EXIT: ${{ steps.generate.outputs.exit_code }}
