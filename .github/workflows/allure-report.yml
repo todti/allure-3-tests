@@ -93,57 +93,41 @@ jobs:
         if: matrix.framework == 'cypress'
         run: pnpm --filter @allure-tests/cypress exec cypress install
 
-      - name: Run tests
+      - name: Run tests with Allure run
         timeout-minutes: 20
         shell: bash
         env:
+          ALLURE_DISABLE_QUALITY_GATE: true
           ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
           CI: true
-        run: pnpm exec allure run --config=./allurerc.mjs --environment=${{ env.OS_SLUG }} -- pnpm --filter @allure-tests/${{ matrix.framework }} test
+        run: |
+          mkdir -p allure-dumps
+          pnpm exec allure run \
+            --config=./allurerc.mjs \
+            --environment=${{ env.OS_SLUG }} \
+            --dump=allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }} \
+            -- pnpm --filter @allure-tests/${{ matrix.framework }} test
 
-      - name: Resolve Allure results directory
-        id: results
+      - name: Verify Allure dump archive
+        id: dump
         if: always()
         shell: bash
         run: |
-          fw="${{ matrix.framework }}"
-          candidates=(
-            "packages/${fw}/${ALLURE_RESULTS_DIR}"
-            "packages/${fw}/allure-results"
-            "${ALLURE_RESULTS_DIR}"
-            "allure-results"
-          )
+          dump="allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }}.zip"
+          if [ ! -f "$dump" ]; then
+            echo "Missing Allure dump archive: ${dump}"
+            exit 1
+          fi
+          echo "path=${dump}" >> "$GITHUB_OUTPUT"
+          ls -la "$dump"
 
-          for dir in "${candidates[@]}"; do
-            if [ -d "$dir" ] && compgen -G "${dir}/*-result.json" > /dev/null; then
-              echo "path=${dir}" >> "$GITHUB_OUTPUT"
-              echo "Using Allure results directory: ${dir}"
-              echo "Result files: $(find "$dir" -name '*-result.json' | wc -l)"
-              exit 0
-            fi
-          done
-
-          echo "No Allure result files found for ${fw} on ${{ runner.os }}"
-          exit 1
-        env:
-          ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
-
-      - name: Upload Allure results
-        if: always() && steps.results.outcome == 'success'
+      - name: Upload Allure dump
+        if: always() && steps.dump.outcome == 'success'
         uses: actions/upload-artifact@v6
         with:
-          name: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
-          path: ${{ steps.results.outputs.path }}
+          name: allure-dump-${{ matrix.framework }}-${{ env.OS_SLUG }}
+          path: ${{ steps.dump.outputs.path }}
           if-no-files-found: error
-          retention-days: 7
-
-      - name: Upload global attachments
-        if: always() && steps.results.outcome == 'success'
-        uses: actions/upload-artifact@v6
-        with:
-          name: allure-global-${{ matrix.framework }}-${{ env.OS_SLUG }}
-          path: packages/${{ matrix.framework }}/allure-global
-          if-no-files-found: ignore
           retention-days: 7
 
   report:
@@ -169,43 +153,22 @@ jobs:
       - name: Build shared package
         run: pnpm --filter @allure-tests/shared build
 
-      - name: Download all framework results
+      - name: Download Allure dumps
         uses: actions/download-artifact@v6
         with:
-          path: ./allure-results
-          pattern: allure-results-*
+          path: ./allure-dumps
+          pattern: allure-dump-*
           merge-multiple: true
 
-      - name: Download global attachments
-        uses: actions/download-artifact@v6
-        with:
-          path: ./global-artifacts
-          pattern: allure-global-*
-
-      - name: Restore global attachment paths
+      - name: Verify Allure dump archives
         shell: bash
         run: |
           shopt -s nullglob
-          for dir in global-artifacts/allure-global-*; do
-            artifact="${dir##*/allure-global-}"
-            fw="${artifact%-linux}"
-            fw="${fw%-macos}"
-            fw="${fw%-windows}"
-            mkdir -p "packages/${fw}/allure-global"
-            cp -R "${dir}/." "packages/${fw}/allure-global/"
-          done
-          echo "Global attachment files:"
-          find packages -path '*/allure-global/*' -type f | wc -l
-
-      - name: Verify merged Allure results
-        shell: bash
-        run: |
-          shopt -s nullglob
-          files=(allure-results/*-result.json)
-          echo "Merged *-result.json files: ${#files[@]}"
-          ls -la allure-results/*-result.json || true
-          if [ "${#files[@]}" -lt 300 ]; then
-            echo "Expected at least 300 merged test results (14 specs × 11 frameworks × 3 hosts, with headroom)."
+          dumps=(allure-dumps/*.zip)
+          echo "Dump archives: ${#dumps[@]}"
+          ls -la allure-dumps/*.zip || true
+          if [ "${#dumps[@]}" -lt 30 ]; then
+            echo "Expected at least 30 dump archives (11 frameworks × 3 hosts, with headroom)."
             exit 1
           fi
 
@@ -215,10 +178,7 @@ jobs:
       - name: Generate Allure 3 report
         env:
           NODE_OPTIONS: --max-old-space-size=4096
-        run: pnpm exec allure generate ./allure-results --output=./allure-report
-
-      - name: Evaluate quality gates
-        run: pnpm exec allure quality-gate ./allure-results || true
+        run: pnpm exec allure generate --dump="allure-dumps/*.zip" --output=./allure-report
 
       - name: Allure Report action
         uses: allure-framework/allure-action@v0

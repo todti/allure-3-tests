@@ -52,6 +52,32 @@ const frameworkLabel = (framework) => (tr) =>
 
 const osLabel = (os) => (tr) => tr.labels.some(({ name, value }) => name === "os" && value === os);
 
+const qualityGateRules = [
+  {
+    id: "global-gate",
+    maxFailures: 60,
+    minTestsCount: 300,
+    successRate: 0.7,
+  },
+  ...FRAMEWORKS.map((framework) => ({
+    id: `gate-${framework}`,
+    maxFailures: 6,
+    minTestsCount: 30,
+    successRate: 0.75,
+    filter: frameworkLabel(framework),
+  })),
+  ...OS_NAMES.map((os) => {
+    const osSlug = os === "macOS" ? "macos" : os.toLowerCase();
+    return {
+      id: `gate-os-${osSlug}`,
+      maxFailures: 20,
+      minTestsCount: 100,
+      successRate: 0.75,
+      filter: osLabel(os),
+    };
+  }),
+];
+
 /** @type {import("allure").AllureConfig} */
 const config = {
   name: "Allure 3 · All Frameworks",
@@ -64,34 +90,11 @@ const config = {
     "CI run": process.env.GITHUB_RUN_ID ?? "local",
   },
   environments: OS_ENVIRONMENTS,
+  // https://allurereport.org/docs/global-errors-and-attachments/#custom-file-attachments
   globalAttachments: ["./allure-global/**", "./packages/*/allure-global/**"],
-  qualityGate: {
-    rules: [
-      {
-        id: "global-gate",
-        maxFailures: 60,
-        minTestsCount: 300,
-        successRate: 0.7,
-      },
-      ...FRAMEWORKS.map((framework) => ({
-        id: `gate-${framework}`,
-        maxFailures: 6,
-        minTestsCount: 30,
-        successRate: 0.75,
-        filter: frameworkLabel(framework),
-      })),
-      ...OS_NAMES.map((os) => {
-        const osSlug = os === "macOS" ? "macos" : os.toLowerCase();
-        return {
-          id: `gate-os-${osSlug}`,
-          maxFailures: 20,
-          minTestsCount: 100,
-          successRate: 0.75,
-          filter: osLabel(os),
-        };
-      }),
-    ],
-  },
+  ...(process.env.ALLURE_DISABLE_QUALITY_GATE === "true"
+    ? {}
+    : { qualityGate: { rules: qualityGateRules } }),
   plugins: {
     awesomeAll: {
       import: "@allurereport/plugin-awesome",

@@ -65,19 +65,17 @@ Regenerate adapter specs: `python3 scripts/generate-domain-specs.py`
 
 ## Quality gates, global errors & global attachments
 
-[`allurerc.mjs`](allurerc.mjs) defines:
+Per [Allure 3 globals docs](https://allurereport.org/docs/global-errors-and-attachments/):
 
-- **Global quality gate** — `maxFailures: 20`, `minTestsCount: 100`, `successRate: 0.7`
-- **Per-framework gates** (`gate-playwright`, `gate-mocha`, …) — filtered by `framework` label
-- **`globalAttachments`** — globs `./allure-global/**` and `./packages/*/allure-global/**`
+1. **`allure run -- <test>`** — captures process-level **stdout/stderr**, exit codes, and global errors (on by default; disable with `--ignore-logs`).
+2. **`globalAttachments` in [`allurerc.mjs`](allurerc.mjs)** — globs for custom files on disk (`./packages/*/allure-global/**`), picked up at report generation.
+3. **Runtime API** — `allure.globalAttachment`, `allure.globalAttachmentPath`, `allure.globalError` in [`packages/shared/src/globals.ts`](packages/shared/src/globals.ts), wired through native framework hooks.
 
-Each adapter wires [`runGlobalSetup` / `runGlobalTeardown`](packages/shared/src/globals.ts) through **native framework lifecycle hooks** (Playwright `globalSetup`, Jest `globalSetup`, Cucumber `BeforeAll`, Mocha root `before`, Cypress support hooks, etc.):
+[`allurerc.mjs`](allurerc.mjs) also defines **quality gates** (global + per-framework + per-OS). Matrix jobs set `ALLURE_DISABLE_QUALITY_GATE=true` so gates run only on the merged report, not on single-framework runs.
 
-- `allure.globalAttachment` / `globalAttachmentPath` — JSON context + runner logs
-- `allure.globalError` — demo global warnings (visible in **Global Errors** tab)
-- Files on disk for report-level **Global Attachments** tab via `allurerc.mjs` globs
+Each adapter writes setup/teardown artifacts to `packages/<framework>/allure-global/` and calls the globals API when the reporter is active.
 
-CI runs `allure quality-gate ./allure-results` after report generation.
+**CI multistage flow:** each matrix job runs `allure run --dump=…`, uploads `.zip` dumps; the report job runs `allure generate --dump="allure-dumps/*.zip"` so stdout/stderr and custom globals from all stages appear in **Global Attachments** / **Global Errors**.
 
 ## Allure features demonstrated
 - HTTP smoke via `fetch` (no browser)
@@ -111,7 +109,8 @@ pnpm --filter @allure-tests/playwright exec playwright install chromium
 # All frameworks (continues on failures)
 pnpm test
 
-# Allure 3 report (Awesome plugins + summary index)
+# Allure 3 report (requires prior test run; use allure run for globals)
+pnpm exec allure run -- pnpm test:mocha
 pnpm report:generate
 pnpm report:open
 ```
@@ -146,12 +145,10 @@ Per-framework reports: open **Summary** — it links to each generated view.
 
 [`.github/workflows/allure-report.yml`](.github/workflows/allure-report.yml):
 
-1. Matrix job runs each framework on **Linux, macOS, and Windows** via native CLI wrapped in `allure run --environment=<os>`
-2. Each run tags tests with the `os` label (`Linux` / `macOS` / `Windows`)
-3. Uploads `allure-results-<framework>-<host>` artifacts and merges them into `./allure-results`
-4. Report job runs `allure generate` — combined report includes the **Environments** dropdown (Linux / macOS / Windows)
-5. [allure-framework/allure-action](https://github.com/allure-framework/allure-action) comments on PRs
-6. Publishes `./allure-report` to `gh-pages` (includes summary index)
+1. Matrix job runs `allure run --dump=…` per framework × OS (globals + stdout/stderr included)
+2. Report job merges dump archives with `allure generate --dump="allure-dumps/*.zip"`
+3. [allure-framework/allure-action](https://github.com/allure-framework/allure-action) comments on PRs
+4. Publishes `./allure-report` to GitHub Pages (includes summary index)
 
 Switch environments on the **All tests** (`awesomeAll`) report home page — no separate per-OS plugin views.
 
