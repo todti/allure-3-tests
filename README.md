@@ -98,7 +98,7 @@ CI wraps test runs with `allure run --environment=<os_slug>` so results are assi
 
 ## Quick start
 
-Requirements: Node.js 22+, pnpm 10+.
+Requirements: Node.js 24+, pnpm 10+.
 
 ```bash
 corepack enable

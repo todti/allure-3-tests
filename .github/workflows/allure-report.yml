@@ -41,13 +41,13 @@ jobs:
           - bun
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: pnpm/action-setup@v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - uses: oven-sh/setup-bun@v2
@@ -120,7 +120,7 @@ jobs:
 
       - name: Upload Allure results
         if: always() && steps.results.outcome == 'success'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
           path: ${{ steps.results.outputs.path }}
@@ -129,7 +129,7 @@ jobs:
 
       - name: Upload global attachments
         if: always() && steps.results.outcome == 'success'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: allure-global-${{ matrix.framework }}-${{ env.OS_SLUG }}
           path: packages/${{ matrix.framework }}/allure-global
@@ -144,13 +144,13 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: pnpm/action-setup@v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
@@ -160,14 +160,14 @@ jobs:
         run: pnpm --filter @allure-tests/shared build
 
       - name: Download all framework results
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           path: ./allure-results
           pattern: allure-results-*
           merge-multiple: true
 
       - name: Download global attachments
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           path: ./global-artifacts
           pattern: allure-global-*
