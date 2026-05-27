@@ -1,4 +1,5 @@
 import { test } from "@playwright/test";
+import { playwrightShowcaseExtras } from "../../support/playwright-browser.js";
 import { testApiHealth } from "@allure-tests/shared";
 
 test.describe("API", () => {
@@ -6,13 +7,7 @@ test.describe("API", () => {
     await testApiHealth({
       framework: "playwright",
       runner: "node",
-      attach: async (name, body, contentType) => {
-        await test.info().attach(name, { body, contentType });
-      },
-      browser: {
-        goto: (url) => page.goto(url),
-        getTitle: () => page.title(),
-      },
+      ...playwrightShowcaseExtras(page),
     });
   });
 });

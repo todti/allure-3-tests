@@ -2,6 +2,7 @@ import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
 import { shouldSimulateTransientFailure } from "../flaky.js";
 import { applyDomainLabels } from "../labels.js";
+import { runBrowserSmoke } from "../showcase.js";
 import type { RuntimeHints, ShowcaseContext } from "../types.js";
 
 export async function testCacheRetry(ctx: ShowcaseContext, hints: RuntimeHints = {}): Promise<void> {
@@ -12,6 +13,8 @@ export async function testCacheRetry(ctx: ShowcaseContext, hints: RuntimeHints =
   await allure.displayName("Distributed cache misses on cold start then recovers after retry");
   await allure.testCaseId(testId);
   await allure.tag("retries");
+
+  await runBrowserSmoke(ctx);
 
   await allure.step("Read feature flag payload", async (step) => {
     await step.parameter("cache_key", "feature-flags:v3");

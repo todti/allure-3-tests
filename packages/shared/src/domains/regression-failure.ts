@@ -1,6 +1,7 @@
 import * as allure from "allure-js-commons";
 import { ContentType, Status } from "allure-js-commons";
 import { applyDomainLabels } from "../labels.js";
+import { runBrowserSmoke } from "../showcase.js";
 import type { ShowcaseContext } from "../types.js";
 
 export async function testKnownRegression(ctx: ShowcaseContext): Promise<void> {
@@ -10,6 +11,8 @@ export async function testKnownRegression(ctx: ShowcaseContext): Promise<void> {
   await allure.tag("known-failure");
   await allure.severity("blocker");
   await allure.issue("https://github.com/allure-framework/allure-js/issues/2", "DEMO-500");
+
+  await runBrowserSmoke(ctx);
 
   try {
     await allure.step("Verify legacy billing rule", async () => {

@@ -1,6 +1,7 @@
 import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
 import { applyDomainLabels } from "../labels.js";
+import { runBrowserSmoke } from "../showcase.js";
 import type { ShowcaseContext } from "../types.js";
 
 /** Legacy baseline kept as a standalone domain test (metadata + attachments + async). */
@@ -15,6 +16,8 @@ export async function testMetadataShowcase(ctx: ShowcaseContext): Promise<void> 
   await allure.issue("https://github.com/allure-framework/allure-js/issues/1", "ALLURE-JS-1");
   await allure.tms("https://github.com/allure-framework/allure-js", "TMS-1");
   await allure.link("https://allurereport.org/docs/v3/", "Allure 3 docs");
+
+  await runBrowserSmoke(ctx);
 
   await allure.step("Record adapter metadata", async (step) => {
     await step.parameter("adapter", ctx.framework);

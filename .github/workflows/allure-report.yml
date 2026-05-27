@@ -175,12 +175,18 @@ jobs:
       - name: Validate Allure config
         run: node -e "import('./allurerc.mjs').then(() => console.log('Allure config OK'))"
 
-      - name: Generate Allure 3 report
+      - name: Generate Allure 3 report with quality gate
+        id: generate
         env:
           NODE_OPTIONS: --max-old-space-size=4096
-        run: pnpm exec allure generate --dump="allure-dumps/*.zip" --output=./allure-report
+        shell: bash
+        run: |
+          set +e
+          node scripts/generate-with-quality-gate.mjs --dump="allure-dumps/*.zip" --output=./allure-report
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
 
       - name: Allure Report action
+        if: always() && steps.generate.outcome != 'skipped'
         uses: allure-framework/allure-action@v0
         with:
           report-directory: ./allure-report
@@ -188,9 +194,17 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        if: always() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
           keep_files: true
+
+      - name: Enforce quality gate
+        if: always() && steps.generate.outputs.exit_code != '0'
+        run: |
+          echo "Quality gate validation failed (exit code ${GENERATE_EXIT:-unknown})."
+          exit 1
+        env:
+          GENERATE_EXIT: ${{ steps.generate.outputs.exit_code }}

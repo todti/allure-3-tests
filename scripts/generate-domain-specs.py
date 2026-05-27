@@ -118,28 +118,33 @@ describe("{suite}", () => {{
 
 def playwright_suite() -> None:
     suites = ROOT / "packages" / "playwright" / "suites"
+    page_tests = {
+        "testApiHealth",
+        "testPasswordReset",
+        "testKnownRegression",
+        "testMetadataShowcase",
+    }
     for folder, slug, fn, suite, flaky, browser in DOMAINS:
         title = TITLES[fn]
         retry_block = "    test.describe.configure({ retries: 2 });\n\n" if flaky else ""
         attempt = ", { attempt: test.info().retry }" if flaky else ""
-        if browser:
+        use_page = browser or flaky or fn in page_tests
+        if use_page:
             ctx = """{
       framework: "playwright",
       runner: "node",
-      attach: async (name, body, contentType) => {
-        await test.info().attach(name, { body, contentType });
-      },
-      browser: {
-        goto: (url) => page.goto(url),
-        getTitle: () => page.title(),
-      },
+      ...playwrightShowcaseExtras(page),
     }"""
             sig = "{ page }"
+            imports = """import { test } from "@playwright/test";
+import { playwrightShowcaseExtras } from "../../support/playwright-browser.js";
+"""
         else:
             ctx = '{ framework: "playwright", runner: "node" }'
             sig = "{}"
-        body = f"""import {{ test }} from "@playwright/test";
-import {{ {fn} }} from "@allure-tests/shared";
+            imports = """import { test } from "@playwright/test";
+"""
+        body = f"""{imports}import {{ {fn} }} from "@allure-tests/shared";
 
 test.describe("{suite}", () => {{
 {retry_block}  test("{title}", async ({sig}) => {{

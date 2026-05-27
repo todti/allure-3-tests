@@ -2,6 +2,7 @@ import * as allure from "allure-js-commons";
 import { Status } from "allure-js-commons";
 import { shouldSimulateTransientFailure } from "../flaky.js";
 import { applyDomainLabels } from "../labels.js";
+import { runBrowserSmoke } from "../showcase.js";
 import type { RuntimeHints, ShowcaseContext } from "../types.js";
 
 export async function testFlakyInventory(
@@ -16,6 +17,8 @@ export async function testFlakyInventory(
   await allure.testCaseId(testId);
   await allure.tag("flaky");
   await allure.tag("inventory");
+
+  await runBrowserSmoke(ctx);
 
   await allure.step("Pull warehouse deltas", async (step) => {
     await step.parameter("warehouse_id", "wh-eu-1");

@@ -52,12 +52,25 @@ const frameworkLabel = (framework) => (tr) =>
 
 const osLabel = (os) => (tr) => tr.labels.some(({ name, value }) => name === "os" && value === os);
 
+const severityLabel =
+  (...severities) =>
+  (tr) =>
+    tr.labels.some(({ name, value }) => name === "severity" && severities.includes(value));
+
+/** https://allurereport.org/docs/quality-gate/ */
 const qualityGateRules = [
+  {
+    id: "critical-blocker-fast-fail",
+    maxFailures: 0,
+    fastFail: true,
+    filter: severityLabel("critical", "blocker"),
+  },
   {
     id: "global-gate",
     maxFailures: 60,
     minTestsCount: 300,
     successRate: 0.7,
+    environmentsTested: ["Linux", "macOS", "Windows"],
   },
   ...FRAMEWORKS.map((framework) => ({
     id: `gate-${framework}`,

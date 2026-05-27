@@ -2,6 +2,7 @@ import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
 import { shouldSimulateTransientFailure } from "../flaky.js";
 import { applyDomainLabels } from "../labels.js";
+import { runBrowserSmoke } from "../showcase.js";
 import type { RuntimeHints, ShowcaseContext } from "../types.js";
 
 export async function testFlakyPayment(
@@ -16,6 +17,8 @@ export async function testFlakyPayment(
   await allure.testCaseId(testId);
   await allure.tag("flaky");
   await allure.severity("critical");
+
+  await runBrowserSmoke(ctx);
 
   await allure.step("Submit card payment", async (step) => {
     await step.parameter("attempt", String(attempt + 1));

@@ -15,9 +15,15 @@ export default defineConfig({
       "allure-playwright",
       {
         resultsDir,
+        detail: true,
       },
     ],
   ],
+  use: {
+    trace: process.env.CI ? "on-first-retry" : "retain-on-failure",
+    screenshot: "only-on-failure",
+    video: "off",
+  },
   projects: [
     {
       name: "chromium",

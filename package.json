@@ -21,6 +21,8 @@
     "test:newman": "pnpm --filter @allure-tests/newman test",
     "test:bun": "pnpm --filter @allure-tests/bun test",
     "report:generate": "allure generate",
+    "report:generate:gated": "node scripts/generate-with-quality-gate.mjs",
+    "report:quality-gate": "allure quality-gate",
     "report:open": "allure open ./allure-report"
   },
   "devDependencies": {

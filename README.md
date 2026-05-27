@@ -65,21 +65,38 @@ Regenerate adapter specs: `python3 scripts/generate-domain-specs.py`
 
 ## Quality gates, global errors & global attachments
 
-Per [Allure 3 globals docs](https://allurereport.org/docs/global-errors-and-attachments/):
+Per [Allure 3 globals docs](https://allurereport.org/docs/global-errors-and-attachments/) and [Quality Gate docs](https://allurereport.org/docs/quality-gate/):
 
-1. **`allure run -- <test>`** — captures process-level **stdout/stderr**, exit codes, and global errors (on by default; disable with `--ignore-logs`).
+1. **`allure run -- <test>`** — captures process-level **stdout/stderr**, exit codes, and global errors (on by default; disable with `--ignore-logs`). Applies `fastFail` quality gate rules while tests run; validates all rules when the run finishes.
 2. **`globalAttachments` in [`allurerc.mjs`](allurerc.mjs)** — globs for custom files on disk (`./packages/*/allure-global/**`), picked up at report generation.
 3. **Runtime API** — `allure.globalAttachment`, `allure.globalAttachmentPath`, `allure.globalError` in [`packages/shared/src/globals.ts`](packages/shared/src/globals.ts), wired through native framework hooks.
 
-[`allurerc.mjs`](allurerc.mjs) also defines **quality gates** (global + per-framework + per-OS). Matrix jobs set `ALLURE_DISABLE_QUALITY_GATE=true` so gates run only on the merged report, not on single-framework runs.
+[`allurerc.mjs`](allurerc.mjs) defines **quality gates** with multiple rule sets:
+
+| Rule set | Rules | Notes |
+|----------|-------|-------|
+| `critical-blocker-fast-fail` | `maxFailures: 0`, `fastFail: true` | Fails the run immediately on any `critical` / `blocker` test failure |
+| `global-gate` | `maxFailures`, `minTestsCount`, `successRate`, `environmentsTested` | Merged report across all frameworks and OS environments |
+| `gate-<framework>` | per-framework thresholds + `filter` | One gate per adapter label |
+| `gate-os-<os>` | per-OS thresholds + `filter` | Linux / macOS / Windows slices |
+
+Matrix jobs set `ALLURE_DISABLE_QUALITY_GATE=true` because a single-framework run cannot satisfy merged thresholds (`minTestsCount: 300`, `environmentsTested`). The **report job** runs [`scripts/generate-with-quality-gate.mjs`](scripts/generate-with-quality-gate.mjs): restores all `--dump` archives, validates gates via `allure validate`, writes failures to **Global Errors**, generates the HTML report, and exits non-zero if any gate fails.
+
+Local commands:
+
+```bash
+pnpm exec allure quality-gate "./**/allure-results"   # validate existing results
+node scripts/generate-with-quality-gate.mjs --dump="allure-dumps/*.zip"  # merge dumps + gate + report
+```
 
 Each adapter writes setup/teardown artifacts to `packages/<framework>/allure-global/` and calls the globals API when the reporter is active.
 
-**CI multistage flow:** each matrix job runs `allure run --dump=…`, uploads `.zip` dumps; the report job runs `allure generate --dump="allure-dumps/*.zip"` so stdout/stderr and custom globals from all stages appear in **Global Attachments** / **Global Errors**.
+**CI multistage flow:** each matrix job runs `allure run --dump=…`, uploads `.zip` dumps; the report job merges dumps, validates quality gates, and generates the combined dashboard so stdout/stderr and custom globals from all stages appear in **Global Attachments** / **Global Errors** / **Quality Gates**.
 
 ## Allure features demonstrated
 - HTTP smoke via `fetch` (no browser)
 - Optional browser smoke (Playwright, WebdriverIO, CodeceptJS)
+- **Playwright trace** — [`playwright.config.ts`](packages/playwright/playwright.config.ts) enables `trace` (`retain-on-failure` locally, `on-first-retry` in CI); browser scenarios use the `{ page }` fixture and `allure-playwright` maps `trace.zip` to the in-report Playwright trace viewer
 - Labels: `framework`, `os`, `language`, `runner`
 
 ## Environments (Allure 3)
