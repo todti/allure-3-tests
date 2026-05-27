@@ -101,7 +101,7 @@ Per-framework reports: open **Summary** — it links to each generated view.
 [`.github/workflows/allure-report.yml`](.github/workflows/allure-report.yml):
 
 1. Matrix job runs each framework, uploads `allure-results-<framework>.zip`
-2. Report job merges zips with `allure generate --dump=...`
+2. Report job merges artifact zips into `./allure-results` and runs `allure generate`
 3. [allure-framework/allure-action](https://github.com/allure-framework/allure-action) comments on PRs
 4. Publishes `./allure-report` to `gh-pages` (includes summary index)
 

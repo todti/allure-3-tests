@@ -118,8 +118,18 @@ jobs:
           pattern: allure-results-*
           merge-multiple: true
 
+      - name: Merge Allure results
+        run: |
+          mkdir -p allure-results
+          shopt -s nullglob
+          for zip in artifacts/allure-results-*.zip; do
+            echo "Merging ${zip}"
+            unzip -j -o "$zip" -d allure-results/
+          done
+          echo "Merged result files: $(ls allure-results/*-result.json 2>/dev/null | wc -l)"
+
       - name: Generate Allure 3 report
-        run: pnpm exec allure generate --dump="./artifacts/allure-results-*.zip" --output=./allure-report
+        run: pnpm exec allure generate ./allure-results --output=./allure-report
 
       - name: Allure Report action
         uses: allure-framework/allure-action@v0
