@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node run.mjs"
+    "pretest": "node global-setup.mjs",
+    "test": "node run.mjs",
+    "posttest": "node global-teardown.mjs"
   },
   "dependencies": {
     "@allure-tests/shared": "workspace:*",

@@ -22,7 +22,7 @@ jobs:
     name: Tests (${{ matrix.framework }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 25
-    continue-on-error: true
+    continue-on-error: false
     strategy:
       fail-fast: false
       matrix:
@@ -89,27 +89,7 @@ jobs:
         timeout-minutes: 15
         env:
           ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
-        shell: bash
-        run: |
-          set +e
-          pnpm --filter @allure-tests/${{ matrix.framework }} test
-          test_exit=$?
-          fw="${{ matrix.framework }}"
-          candidates=(
-            "packages/${fw}/${ALLURE_RESULTS_DIR}"
-            "packages/${fw}/allure-results"
-            "${ALLURE_RESULTS_DIR}"
-            "allure-results"
-          )
-          for dir in "${candidates[@]}"; do
-            if [ -d "$dir" ] && compgen -G "${dir}/*-result.json" > /dev/null; then
-              count=$(find "$dir" -name '*-result.json' | wc -l)
-              echo "Allure results in ${dir}: ${count} tests on ${{ runner.os }} (runner exit ${test_exit})"
-              exit 0
-            fi
-          done
-          echo "No Allure results found for ${fw} on ${{ runner.os }} (runner exit ${test_exit})"
-          exit 1
+        run: pnpm --filter @allure-tests/${{ matrix.framework }} test
 
       - name: Resolve Allure results directory
         id: results

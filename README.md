@@ -27,17 +27,17 @@ allurerc.mjs       # Allure 3 plugins + web summary (publish: true)
 
 | Framework | Package | Command | `framework` label |
 |-----------|---------|---------|-------------------|
-| Playwright | `@allure-tests/playwright` | `pnpm test:playwright` | `playwright` |
-| Mocha | `@allure-tests/mocha` | `pnpm test:mocha` | `mocha` |
-| Cucumber | `@allure-tests/cucumber` | `pnpm test:cucumber` | `cucumber` |
-| WebdriverIO | `@allure-tests/webdriverio` | `pnpm test:webdriverio` | `webdriverio` |
-| Vitest | `@allure-tests/vitest` | `pnpm test:vitest` | `vitest` |
-| Jest | `@allure-tests/jest` | `pnpm test:jest` | `jest` |
-| Jasmine | `@allure-tests/jasmine` | `pnpm test:jasmine` | `jasmine` |
-| Cypress | `@allure-tests/cypress` | `pnpm test:cypress` | `cypress` |
-| CodeceptJS | `@allure-tests/codeceptjs` | `pnpm test:codeceptjs` | `codeceptjs` |
-| Newman | `@allure-tests/newman` | `pnpm test:newman` | `newman` |
-| Bun | `@allure-tests/bun` | `pnpm test:bun` | `bun` |
+| Playwright | `@allure-tests/playwright` | `pnpm test:playwright` → `playwright test` | `playwright` |
+| Mocha | `@allure-tests/mocha` | `pnpm test:mocha` → `mocha` | `mocha` |
+| Cucumber | `@allure-tests/cucumber` | `pnpm test:cucumber` → `cucumber-js` | `cucumber` |
+| WebdriverIO | `@allure-tests/webdriverio` | `pnpm test:webdriverio` → `wdio run` | `webdriverio` |
+| Vitest | `@allure-tests/vitest` | `pnpm test:vitest` → `vitest run` | `vitest` |
+| Jest | `@allure-tests/jest` | `pnpm test:jest` → `jest` | `jest` |
+| Jasmine | `@allure-tests/jasmine` | `pnpm test:jasmine` → `jasmine` | `jasmine` |
+| Cypress | `@allure-tests/cypress` | `pnpm test:cypress` → `cypress run` | `cypress` |
+| CodeceptJS | `@allure-tests/codeceptjs` | `pnpm test:codeceptjs` → `codeceptjs run` | `codeceptjs` |
+| Newman | `@allure-tests/newman` | `pnpm test:newman` → `newman run` (Postman collection) | `newman` |
+| Bun | `@allure-tests/bun` | `pnpm test:bun` → `bun mocha` | `bun` |
 
 ## Allure features in shared suite
 
@@ -133,8 +133,9 @@ Per-framework reports: open **Summary** — it links to each generated view.
 
 [`.github/workflows/allure-report.yml`](.github/workflows/allure-report.yml):
 
-1. Matrix job runs each framework on **Linux, macOS, and Windows** — job timeout **25 min**, test step **15 min**; new pushes cancel in-progress runs
+1. Matrix job runs each framework on **Linux, macOS, and Windows** via native CLI (`playwright test`, `mocha`, `jest`, …)
 2. Each run tags tests with `host` label and `Host` environment field (`Linux` / `macOS` / `Windows`)
+3. CI fails only when tests crash or produce no Allure results — not on demo broken steps in the report
 3. Uploads `allure-results-<framework>-<host>` artifacts and merges them into `./allure-results`
 4. Report job runs `allure generate` — includes per-host Awesome views (`awesome-host-linux`, `awesome-host-macos`, `awesome-host-windows`)
 5. [allure-framework/allure-action](https://github.com/allure-framework/allure-action) comments on PRs
@@ -144,8 +145,8 @@ Per-host reports: open **Summary** → `awesome-host-linux` / `awesome-host-maco
 
 ## Limitations
 
-- **Bun**: there is no official `bun test` adapter. This repo runs **Mocha + allure-mocha** on the Bun runtime (`bun run runner.mjs`).
-- **Newman**: Postman/Newman does not expose the full `allure-js-commons` runtime API; the collection demonstrates HTTP checks and Newman reporter integration.
+- **Bun**: no official Allure adapter for `bun test`; this package runs **Mocha + allure-mocha** on the Bun runtime (`bun ./node_modules/mocha/bin/mocha.js`).
+- **Newman**: Postman collection with 14 HTTP requests; `pretest`/`posttest` run global Allure hooks, `newman run` executes the collection.
 - **Cypress**: browser navigation uses Cypress commands after the shared API block; nested `allure.step` inside `cy` chains has runner-specific constraints.
 
 ## References
