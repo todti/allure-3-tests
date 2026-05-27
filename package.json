@@ -1,0 +1,42 @@
+{
+  "name": "allure-3-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multi-framework demo for Allure Report 3 and allure-js adapters",
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "postinstall": "pnpm --filter @allure-tests/shared build",
+    "pretest": "node -e \"require('fs').rmSync('allure-results',{recursive:true,force:true})\"",
+    "test": "npm-run-all --continue-on-error -c test:*",
+    "test:playwright": "pnpm --filter @allure-tests/playwright test",
+    "test:mocha": "pnpm --filter @allure-tests/mocha test",
+    "test:cucumber": "pnpm --filter @allure-tests/cucumber test",
+    "test:webdriverio": "pnpm --filter @allure-tests/webdriverio test",
+    "test:vitest": "pnpm --filter @allure-tests/vitest test",
+    "test:jest": "pnpm --filter @allure-tests/jest test",
+    "test:jasmine": "pnpm --filter @allure-tests/jasmine test",
+    "test:cypress": "pnpm --filter @allure-tests/cypress test",
+    "test:codeceptjs": "pnpm --filter @allure-tests/codeceptjs test",
+    "test:newman": "pnpm --filter @allure-tests/newman test",
+    "test:bun": "pnpm --filter @allure-tests/bun test",
+    "report:generate": "allure generate",
+    "report:open": "allure open ./allure-report"
+  },
+  "devDependencies": {
+    "allure": "^3.3.1",
+    "npm-run-all2": "^8.0.4",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "cypress",
+      "esbuild",
+      "edgedriver",
+      "geckodriver"
+    ]
+  }
+}

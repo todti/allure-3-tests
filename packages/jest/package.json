@@ -1,0 +1,22 @@
+{
+  "name": "@allure-tests/jest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "dependencies": {
+    "@allure-tests/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.17.6",
+    "allure-jest": "^3.4.1",
+    "allure-js-commons": "^3.4.1",
+    "jest": "^29.7.0",
+    "jest-circus": "^29.7.0",
+    "typescript": "^5.6.3"
+  }
+}

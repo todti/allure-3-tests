@@ -1,0 +1,19 @@
+{
+  "name": "@allure-tests/codeceptjs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "npx codeceptjs run --steps"
+  },
+  "dependencies": {
+    "@allure-tests/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.6",
+    "allure-codeceptjs": "^3.4.1",
+    "allure-js-commons": "^3.4.1",
+    "codeceptjs": "^3.6.10",
+    "playwright": "^1.55.0",
+    "typescript": "^5.6.3"
+  }
+}

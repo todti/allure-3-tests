@@ -1,0 +1,41 @@
+{
+  "info": {
+    "name": "Allure Newman demo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Allure 3 feature showcase (Newman)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.environment.set('framework', 'newman');"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('HTTP smoke to playwright.dev', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('response contains Playwright', function () {",
+              "    pm.expect(pm.response.text()).to.include('Playwright');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "https://playwright.dev/"
+      }
+    }
+  ]
+}

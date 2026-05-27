@@ -1,0 +1,7 @@
+{
+  "spec_dir": ".",
+  "spec_files": ["suites/**/*.spec.mjs"],
+  "helpers": ["helpers/setup.mjs"],
+  "random": false,
+  "stopSpecOnExpectationFailure": false
+}

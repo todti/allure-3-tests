@@ -1,0 +1,20 @@
+{
+  "name": "@allure-tests/vitest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@allure-tests/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.6",
+    "@vitest/runner": "^3.0.0",
+    "allure-js-commons": "^3.4.1",
+    "allure-vitest": "^3.4.1",
+    "typescript": "^5.6.3",
+    "vitest": "^3.0.0"
+  }
+}

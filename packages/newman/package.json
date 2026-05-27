@@ -1,0 +1,14 @@
+{
+  "name": "@allure-tests/newman",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node run.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.6",
+    "newman": "^6.2.1",
+    "newman-reporter-allure": "^3.4.1"
+  }
+}

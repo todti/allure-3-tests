@@ -1,0 +1,20 @@
+{
+  "name": "@allure-tests/cucumber",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "cucumber-js --config cucumber.mjs"
+  },
+  "dependencies": {
+    "@allure-tests/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.0.0",
+    "@cucumber/messages": "^27.0.0",
+    "@types/node": "^20.17.6",
+    "allure-cucumberjs": "^3.4.1",
+    "allure-js-commons": "^3.4.1",
+    "typescript": "^5.6.3"
+  }
+}

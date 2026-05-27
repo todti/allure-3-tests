@@ -1,0 +1,19 @@
+{
+  "name": "@allure-tests/cypress",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "dependencies": {
+    "@allure-tests/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.6",
+    "allure-cypress": "^3.4.1",
+    "allure-js-commons": "^3.4.1",
+    "cypress": "^14.0.0",
+    "typescript": "^5.6.3"
+  }
+}
