@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "node runner.mjs"
   },
   "dependencies": {
     "@allure-tests/shared": "workspace:*",
