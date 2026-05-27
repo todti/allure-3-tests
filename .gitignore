@@ -18,3 +18,5 @@ packages/*/cypress/screenshots/
 dist/
 *.log
 .DS_Store
+test-results/
+packages/*/test-results/
