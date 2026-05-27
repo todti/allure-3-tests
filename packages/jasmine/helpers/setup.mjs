@@ -1,5 +1,5 @@
 import AllureJasmineReporter from "allure-jasmine";
-import { buildEnvironmentInfo } from "@allure-tests/shared";
+import { buildEnvironmentInfo, runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
 import { resolveRegisteredSpecFile } from "./spec-file-registry.mjs";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
@@ -29,4 +29,14 @@ reporter.specDone = (spec) => {
 };
 
 jasmine.getEnv().addReporter(reporter);
+
+jasmine.getEnv().addReporter({
+  jasmineStarted() {
+    void runGlobalSetup({ framework: "jasmine", runner: "node" });
+  },
+  jasmineDone() {
+    void runGlobalTeardown({ framework: "jasmine", runner: "node" });
+  },
+});
+
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 30_000;

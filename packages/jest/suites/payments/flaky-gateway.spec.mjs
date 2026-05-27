@@ -1,4 +1,4 @@
-import { describe, it } from "@jest/globals";
+import { describe, it, jest } from "@jest/globals";
 import { testFlakyPayment } from "@allure-tests/shared";
 
 jest.retryTimes(2, { logErrorsBeforeRetry: true });

@@ -71,11 +71,11 @@ Regenerate adapter specs: `python3 scripts/generate-domain-specs.py`
 - **Per-framework gates** (`gate-playwright`, `gate-mocha`, …) — filtered by `framework` label
 - **`globalAttachments`** — globs `./allure-global/**` and `./packages/*/allure-global/**`
 
-Each adapter calls [`runGlobalSetup` / `runGlobalTeardown`](packages/shared/src/globals.ts) before/after tests:
+Each adapter wires [`runGlobalSetup` / `runGlobalTeardown`](packages/shared/src/globals.ts) through **native framework lifecycle hooks** (Playwright `globalSetup`, Jest `globalSetup`, Cucumber `BeforeAll`, Mocha root `before`, Cypress support hooks, etc.):
 
 - `allure.globalAttachment` / `globalAttachmentPath` — JSON context + runner logs
 - `allure.globalError` — demo global warnings (visible in **Global Errors** tab)
-- Files on disk for report-level **Global Attachments** tab
+- Files on disk for report-level **Global Attachments** tab via `allurerc.mjs` globs
 
 CI runs `allure quality-gate ./allure-results` after report generation.
 

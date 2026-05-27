@@ -1,11 +1,9 @@
 import { glob } from "glob";
 import Mocha from "mocha";
-import { buildEnvironmentInfo, runGlobalSetupFiles, runGlobalTeardownFiles } from "@allure-tests/shared";
+import { buildEnvironmentInfo, runGlobalTeardown } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 const framework = process.env.ALLURE_FRAMEWORK ?? "mocha";
-
-runGlobalSetupFiles({ framework });
 
 const mocha = new Mocha({
   reporter: "allure-mocha",
@@ -23,7 +21,7 @@ for (const file of glob.sync("suites/**/*.spec.{js,mjs,ts}")) {
 }
 
 await mocha.loadFilesAsync();
-mocha.run((failures) => {
-  runGlobalTeardownFiles({ framework });
+mocha.run(async (failures) => {
+  await runGlobalTeardown({ framework, runner: "node" });
   process.exit(failures ? 1 : 0);
 });

@@ -1,5 +1,5 @@
-import { runGlobalSetupFiles, runGlobalTeardownFiles } from "@allure-tests/shared";
+import { runGlobalSetup } from "@allure-tests/shared";
 
 export default async function globalSetup() {
-  runGlobalSetupFiles({ framework: "playwright" });
+  await runGlobalSetup({ framework: "playwright", runner: "node" });
 }

@@ -1,8 +1,9 @@
-import { runGlobalSetupFiles, runGlobalTeardownFiles } from "@allure-tests/shared";
+import { runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
 
-export default async function globalSetup() {
-  runGlobalSetupFiles({ framework: "vitest" });
+export default async function setup() {
+  await runGlobalSetup({ framework: "vitest", runner: "node" });
+
   return async () => {
-    runGlobalTeardownFiles({ framework: "vitest" });
+    await runGlobalTeardown({ framework: "vitest", runner: "node" });
   };
 }

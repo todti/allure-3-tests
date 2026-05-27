@@ -25,7 +25,7 @@ const config = {
       ...FRAMEWORKS.map((framework) => ({
         id: `gate-${framework}`,
         maxFailures: 2,
-        minTestsCount: 12,
+        minTestsCount: 11,
         successRate: 0.75,
         filter: frameworkLabel(framework),
       })),

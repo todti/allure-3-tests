@@ -1,5 +1,5 @@
-import { runGlobalTeardownFiles } from "@allure-tests/shared";
+import { runGlobalTeardown } from "@allure-tests/shared";
 
 export default async function globalTeardown() {
-  runGlobalTeardownFiles({ framework: "jest" });
+  await runGlobalTeardown({ framework: "jest", runner: "node" });
 }

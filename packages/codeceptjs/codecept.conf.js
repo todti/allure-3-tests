@@ -34,11 +34,11 @@ exports.config = {
   },
   name: "allure-codeceptjs-demo",
   async bootstrap() {
-    const { runGlobalSetupFiles } = await import("@allure-tests/shared");
-    runGlobalSetupFiles({ framework: "codeceptjs" });
+    const { runGlobalSetup } = await import("@allure-tests/shared");
+    await runGlobalSetup({ framework: "codeceptjs", runner: "node" });
   },
   async teardown() {
-    const { runGlobalTeardownFiles } = await import("@allure-tests/shared");
-    runGlobalTeardownFiles({ framework: "codeceptjs" });
+    const { runGlobalTeardown } = await import("@allure-tests/shared");
+    await runGlobalTeardown({ framework: "codeceptjs", runner: "node" });
   },
 };

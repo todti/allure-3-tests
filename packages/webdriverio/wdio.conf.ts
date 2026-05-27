@@ -1,4 +1,4 @@
-import { buildEnvironmentInfo, runGlobalSetupFiles, runGlobalTeardownFiles } from "@allure-tests/shared";
+import { buildEnvironmentInfo, runGlobalSetup, runGlobalTeardown } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
@@ -7,10 +7,10 @@ export const config: WebdriverIO.Config = {
   specs: ["./suites/**/*.spec.ts"],
   maxInstances: 1,
   onPrepare: async () => {
-    runGlobalSetupFiles({ framework: "webdriverio" });
+    await runGlobalSetup({ framework: "webdriverio", runner: "node" });
   },
   onComplete: async () => {
-    runGlobalTeardownFiles({ framework: "webdriverio" });
+    await runGlobalTeardown({ framework: "webdriverio", runner: "node" });
   },
   capabilities: [
     {

@@ -23,7 +23,6 @@ function writeGlobalFile(framework: string, name: string, body: string): string 
 export function writeGlobalArtifacts(framework: string, phase: GlobalPhase): {
   jsonPath: string;
   logPath: string;
-  gatePath: string;
 } {
   const payload = {
     framework,
@@ -48,66 +47,46 @@ export function writeGlobalArtifacts(framework: string, phase: GlobalPhase): {
       `memory=${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
     ].join("\n"),
   );
-  const gatePath = writeGlobalFile(
-    framework,
-    "quality-gate-profile.json",
-    JSON.stringify(
-      {
-        framework,
-        profile: `gate-${framework}`,
-        maxFailures: 2,
-        minTestsCount: 12,
-        successRate: 0.75,
-      },
-      null,
-      2,
-    ),
-  );
 
-  return { jsonPath, logPath, gatePath };
+  return { jsonPath, logPath };
 }
 
 async function emitGlobalRuntimeMessages(framework: string, phase: GlobalPhase): Promise<void> {
   const artifacts = writeGlobalArtifacts(framework, phase);
 
-  await allure.globalAttachment(
-    `${framework}-${phase}-context`,
-    fs.readFileSync(artifacts.jsonPath, "utf8"),
-    ContentType.JSON,
-  );
-  await allure.globalAttachmentPath(`${framework}-${phase}-log`, artifacts.logPath, ContentType.TEXT);
-  await allure.globalAttachmentPath(`${framework}-${phase}-context-file`, artifacts.jsonPath, ContentType.JSON);
+  try {
+    await allure.globalAttachment(
+      `${framework}-${phase}-context`,
+      fs.readFileSync(artifacts.jsonPath, "utf8"),
+      ContentType.JSON,
+    );
+    await allure.globalAttachmentPath(`${framework}-${phase}-log`, artifacts.logPath, ContentType.TEXT);
+    await allure.globalAttachmentPath(`${framework}-${phase}-context-file`, artifacts.jsonPath, ContentType.JSON);
 
-  if (phase === "setup") {
-    await allure.globalError({
-      message: `[${framework}] Demo global warning: shared config cache is stale`,
-      trace: [
-        "GlobalSetupWarning: simulated infrastructure notice (non-fatal demo)",
-        `    at runGlobalSetup (${framework})`,
-      ].join("\n"),
-    });
-    await allure.globalError({
-      message: `[${framework}] Demo global notice: quality gate telemetry enabled`,
-      trace: "QualityGateBootstrap: collecting framework-scoped metrics before tests start",
-    });
-  } else {
-    await allure.globalError({
-      message: `[${framework}] Demo global info: teardown completed with pending dashboard sync`,
-      trace: "GlobalTeardownInfo: background upload queue drained",
-    });
+    if (phase === "setup") {
+      await allure.globalError({
+        message: `[${framework}] Demo global warning: shared config cache is stale`,
+        trace: [
+          "GlobalSetupWarning: simulated infrastructure notice (non-fatal demo)",
+          `    at runGlobalSetup (${framework})`,
+        ].join("\n"),
+      });
+      await allure.globalError({
+        message: `[${framework}] Demo global notice: quality gate telemetry enabled`,
+        trace: "QualityGateBootstrap: collecting framework-scoped metrics before tests start",
+      });
+    } else {
+      await allure.globalError({
+        message: `[${framework}] Demo global info: teardown completed with pending dashboard sync`,
+        trace: "GlobalTeardownInfo: background upload queue drained",
+      });
+    }
+  } catch {
+    // Reporter may not be active yet in framework global hooks — disk artifacts still apply.
   }
 }
 
-/** Writes files for allurerc `globalAttachments` (works without Allure runtime). */
-export function runGlobalSetupFiles(ctx: Pick<ShowcaseContext, "framework">): void {
-  writeGlobalArtifacts(ctx.framework, "setup");
-}
-
-export function runGlobalTeardownFiles(ctx: Pick<ShowcaseContext, "framework">): void {
-  writeGlobalArtifacts(ctx.framework, "teardown");
-}
-
-/** Uses globals runtime API — call from framework hooks after Allure reporter is active. */
+/** Framework lifecycle hook: global attachments on disk + runtime API when reporter is active. */
 export async function runGlobalSetup(ctx: Pick<ShowcaseContext, "framework" | "runner">): Promise<void> {
   await emitGlobalRuntimeMessages(ctx.framework, "setup");
 }

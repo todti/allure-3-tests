@@ -8,7 +8,6 @@ export default {
   testMatch: ["<rootDir>/suites/**/*.spec.mjs"],
   globalSetup: "<rootDir>/global-setup.mjs",
   globalTeardown: "<rootDir>/global-teardown.mjs",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.mjs"],
   testEnvironmentOptions: {
     resultsDir,
     environmentInfo: buildEnvironmentInfo("jest"),

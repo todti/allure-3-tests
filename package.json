@@ -21,7 +21,6 @@
     "test:newman": "pnpm --filter @allure-tests/newman test",
     "test:bun": "pnpm --filter @allure-tests/bun test",
     "report:generate": "allure generate",
-    "report:patch-names": "node scripts/patch-framework-report-names.mjs ./allure-report",
     "report:open": "allure open ./allure-report"
   },
   "devDependencies": {
