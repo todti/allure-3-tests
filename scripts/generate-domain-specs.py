@@ -121,8 +121,7 @@ def playwright_suite() -> None:
     for folder, slug, fn, suite, flaky, browser in DOMAINS:
         title = TITLES[fn]
         retry_block = "    test.describe.configure({ retries: 2 });\n\n" if flaky else ""
-        attempt = ", { attempt: testInfo.retry }" if flaky else ""
-        test_info = ", testInfo" if flaky else ""
+        attempt = ", { attempt: test.info().retry }" if flaky else ""
         if browser:
             ctx = """{
       framework: "playwright",
@@ -135,14 +134,10 @@ def playwright_suite() -> None:
         getTitle: () => page.title(),
       },
     }"""
-            sig = "{ page }" + (", testInfo" if flaky else "")
+            sig = "{ page }"
         else:
             ctx = '{ framework: "playwright", runner: "node" }'
-            sig = "{" + (" testInfo " if flaky else "") + "}"
-            if not flaky:
-                sig = "{}"
-            elif flaky:
-                sig = "{ testInfo }"
+            sig = "{}"
         body = f"""import {{ test }} from "@playwright/test";
 import {{ {fn} }} from "@allure-tests/shared";
 
