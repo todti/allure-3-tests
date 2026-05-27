@@ -89,14 +89,11 @@ ALLURE_RESULTS_DIR=allure-results-playwright pnpm test:playwright
 
 ## Latest reports
 
-<!-- ALLURE_REPORTS:BEGIN -->
-
 - [Summary](https://todti.github.io/allure-3-tests/)
 - [All tests](https://todti.github.io/allure-3-tests/awesomeAll/)
 - [Dashboard](https://todti.github.io/allure-3-tests/dashboard/)
 
 Per-framework reports: open **Summary** — it links to each generated view.
-<!-- ALLURE_REPORTS:END -->
 
 ## CI and GitHub Pages
 
