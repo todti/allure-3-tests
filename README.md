@@ -1,5 +1,7 @@
 # Allure 3 multi-framework demo
 
+**Live report:** [https://todti.github.io/allure-3-tests/](https://todti.github.io/allure-3-tests/)
+
 Demonstration repository for [Allure Report 3](https://allurereport.org/docs/v3/) and official [allure-js](https://github.com/allure-framework/allure-js) adapters. Each framework runs the same shared Allure feature showcase (metadata, steps, attachments, async patterns, labels).
 
 ## Repository layout
