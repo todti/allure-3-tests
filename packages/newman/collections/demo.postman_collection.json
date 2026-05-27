@@ -1,111 +1,88 @@
 {
   "info": {
-    "name": "Allure Newman extended demo",
+    "name": "Allure Newman domain demo",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Metadata baseline — playwright.dev",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "exec": ["pm.environment.set('framework', 'newman');"],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
-              "pm.test('body mentions Playwright', () => pm.expect(pm.response.text()).to.include('Playwright'));"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": { "method": "GET", "url": "https://playwright.dev/" }
+      "name": "Auth — OAuth token endpoint",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('auth smoke', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     },
     {
-      "name": "Nested API — status check",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test('response time under 5s', () => pm.expect(pm.response.responseTime).to.be.below(5000));"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": { "method": "GET", "url": "https://playwright.dev/docs/intro" }
+      "name": "Catalog — search API",
+      "request": { "method": "GET", "url": "https://playwright.dev/docs/intro" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('catalog docs available', () => pm.expect(pm.response.text()).to.include('Playwright'));"], "type": "text/javascript" } }]
     },
     {
-      "name": "Flaky — random pass on retry",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "exec": [
-              "let attempt = Number(pm.environment.get('flaky_attempt') || 0) + 1;",
-              "pm.environment.set('flaky_attempt', String(attempt));",
-              "const roll = Math.random();",
-              "pm.environment.set('flaky_roll', String(roll));"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "const roll = Number(pm.environment.get('flaky_roll') || Math.random());",
-              "pm.environment.set('flaky_roll', String(roll));",
-              "if (roll < 0.35) {",
-              "  pm.test('simulated transient failure', () => { throw new Error('Random flaky upstream (' + roll.toFixed(3) + ')'); });",
-              "} else {",
-              "  pm.test('recovered on lucky roll', () => pm.response.to.have.status(200));",
-              "}"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": { "method": "GET", "url": "https://playwright.dev/" }
+      "name": "Checkout — pricing quote",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('quote payload', () => pm.response.responseTime < 5000);"], "type": "text/javascript" } }]
     },
     {
-      "name": "Attachment-style headers capture",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test('content-type present', () => pm.response.to.have.header('content-type'));"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": { "method": "GET", "url": "https://playwright.dev/" }
+      "name": "Payments — flaky authorization",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{
+        "listen": "prerequest",
+        "script": { "exec": ["pm.environment.set('pay_roll', String(Math.random()));"], "type": "text/javascript" }
+      }, {
+        "listen": "test",
+        "script": { "exec": [
+          "const roll = Number(pm.environment.get('pay_roll'));",
+          "if (roll < 0.35) { pm.test('gateway timeout', () => { throw new Error('Flaky payment ' + roll); }); }",
+          "else { pm.test('authorized', () => pm.response.to.have.status(200)); }"
+        ], "type": "text/javascript" }
+      }]
     },
     {
-      "name": "Known failure — demo red test",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test('intentional failure for Allure dashboard', () => {",
-              "  pm.expect.fail('Demo failure in Newman collection');",
-              "});"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": { "method": "GET", "url": "https://playwright.dev/" }
+      "name": "Inventory — stock sync",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('inventory ok', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "Notifications — webhook callback",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('webhook delivered', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "Reporting — export bundle",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('export headers', () => pm.response.to.have.header('content-type'));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "Reliability — cache warmup",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('cache hit', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "Compliance — audit feed",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('audit feed', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "Analytics — known regression",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('known regression', () => pm.expect.fail('Intentional Newman failure'));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "API — health check",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('health 200', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "Users — profile service",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('profile ok', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "Journeys — password reset",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('reset journey', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "Baseline — metadata smoke",
+      "request": { "method": "GET", "url": "https://playwright.dev/" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('baseline smoke', () => pm.response.to.have.status(200));"], "type": "text/javascript" } }]
     }
   ]
 }

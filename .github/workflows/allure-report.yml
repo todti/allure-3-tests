@@ -141,8 +141,8 @@ jobs:
           files=(allure-results/*-result.json)
           echo "Merged *-result.json files: ${#files[@]}"
           ls -la allure-results/*-result.json || true
-          if [ "${#files[@]}" -lt 70 ]; then
-            echo "Expected at least 70 merged test results (extended multi-scenario suite)."
+          if [ "${#files[@]}" -lt 120 ]; then
+            echo "Expected at least 120 merged test results (14 independent domain tests × frameworks)."
             exit 1
           fi
 

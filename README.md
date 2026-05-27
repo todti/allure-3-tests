@@ -41,18 +41,29 @@ allurerc.mjs       # Allure 3 plugins + web summary (publish: true)
 
 ## Allure features in shared suite
 
-Each framework runs **11 shared scenarios** (~11 tests per adapter) covering:
+Each framework runs **14 independent domain tests** — each in its own spec/feature file with a unique business scenario:
 
-- Metadata: `description`, `displayName`, `owner`, `tags`, `severity`, `issue`, `tms`, `link`, `testCaseId`, `historyId`
-- Behavior hierarchy: `epic`, `feature`, `story`
-- Suite hierarchy: `parentSuite`, `suite`, `subSuite`
-- Steps: **5-level nested** `allure.step`, `logStep` (passed / skipped / broken), step parameters
-- Attachments: text, JSON, HTML, XML, CSV, PNG
-- Parameters: visible, **masked**, **hidden/excluded**
-- Async: parallel workers inside nested steps
-- **Flaky tests** with runner retries (Playwright, Mocha, Vitest, Jest, WebdriverIO, Cypress, Bun)
-- **Retry-then-pass** scenarios (fail on early attempts, pass after retry)
-- **Known failure** scenario (stable red test for dashboard analytics)
+| Domain | Spec file | What it covers |
+|--------|-----------|----------------|
+| Authentication | `auth/oauth-login` | OAuth token flow, masked credentials |
+| Catalog | `catalog/product-search` | Filters, pagination, JSON results |
+| Checkout | `checkout/tax-calculation` | 5-level nested steps, VAT |
+| Payments | `payments/flaky-gateway` | Flaky gateway + retries |
+| Inventory | `inventory/flaky-sync` | Random flaky stock sync |
+| Notifications | `notifications/email-webhook` | Async webhook fan-out |
+| Reporting | `reporting/export-attachments` | HTML/JSON/CSV/PNG bundle |
+| Reliability | `reliability/cache-retry` | Fail once, pass after retry |
+| Compliance | `compliance/audit-statuses` | passed / skipped / broken steps |
+| Analytics | `analytics/known-regression` | Stable red test |
+| API | `api/health-check` | HTTP smoke (+ browser where supported) |
+| Users | `users/profile-params` | Masked & hidden parameters |
+| Journeys | `journeys/password-reset` | Behavior-tree journey |
+| Baseline | `baseline/metadata` | Adapter metadata parity |
+
+Shared code lives in `packages/shared/src/domains/*` — **one module per domain**, not one mega-scenario.
+Regenerate adapter specs: `python3 scripts/generate-domain-specs.py`
+
+## Allure features demonstrated
 - HTTP smoke via `fetch` (no browser)
 - Optional browser smoke (Playwright, WebdriverIO, CodeceptJS)
 - Labels: `framework`, `language`, `runner`
