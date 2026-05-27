@@ -133,7 +133,7 @@ Per-framework reports: open **Summary** — it links to each generated view.
 
 [`.github/workflows/allure-report.yml`](.github/workflows/allure-report.yml):
 
-1. Matrix job runs each framework on **Linux, macOS, and Windows** (`ubuntu-latest`, `macos-latest`, `windows-latest`)
+1. Matrix job runs each framework on **Linux, macOS, and Windows** — job timeout **25 min**, test step **15 min**; new pushes cancel in-progress runs
 2. Each run tags tests with `host` label and `Host` environment field (`Linux` / `macOS` / `Windows`)
 3. Uploads `allure-results-<framework>-<host>` artifacts and merges them into `./allure-results`
 4. Report job runs `allure generate` — includes per-host Awesome views (`awesome-host-linux`, `awesome-host-macos`, `awesome-host-windows`)

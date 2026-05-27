@@ -13,6 +13,11 @@ export default defineConfig({
     specPattern: "cypress/e2e/**/*.cy.ts",
     supportFile: "cypress/support/e2e.ts",
     retries: { runMode: 2, openMode: 0 },
+    defaultCommandTimeout: 10_000,
+    pageLoadTimeout: 30_000,
+    requestTimeout: 15_000,
+    responseTimeout: 30_000,
+    execTimeout: 60_000,
     setupNodeEvents(on, config) {
       allureCypress(on, config, {
         resultsDir: path.resolve(__dirname, resultsDir),
