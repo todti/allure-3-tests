@@ -1,6 +1,7 @@
 import * as allure from "allure-js-commons";
 import { ContentType, Status } from "allure-js-commons";
 import { frameworkReportName } from "./framework-reports.js";
+import { resolveHostName } from "./host.js";
 import type { ShowcaseContext } from "./types.js";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -8,6 +9,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export async function applyFrameworkLabels(ctx: ShowcaseContext): Promise<void> {
   await allure.label("framework", ctx.framework);
   await allure.label("report", frameworkReportName(ctx.framework));
+  await allure.label("host", resolveHostName());
   await allure.label("language", "typescript");
   if (ctx.runner) {
     await allure.label("runner", ctx.runner);

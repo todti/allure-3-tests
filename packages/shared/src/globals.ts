@@ -3,6 +3,7 @@ import * as os from "node:os";
 import * as path from "node:path";
 import * as allure from "allure-js-commons";
 import { ContentType } from "allure-js-commons";
+import { resolveHostName } from "./host.js";
 import type { ShowcaseContext } from "./types.js";
 
 export type GlobalPhase = "setup" | "teardown";
@@ -27,6 +28,7 @@ export function writeGlobalArtifacts(framework: string, phase: GlobalPhase): {
   const payload = {
     framework,
     phase,
+    host: resolveHostName(),
     node: process.version,
     platform: os.platform(),
     arch: os.arch(),

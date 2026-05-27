@@ -1,5 +1,5 @@
 import { defineConfig } from "allure";
-import { FRAMEWORK_REPORT_NAMES } from "@allure-tests/shared";
+import { FRAMEWORK_REPORT_NAMES, HOST_NAMES } from "@allure-tests/shared";
 
 const FRAMEWORKS = Object.keys(FRAMEWORK_REPORT_NAMES);
 
@@ -7,6 +7,9 @@ const frameworkLabel = (framework) => (tr) =>
   tr.labels.some(
     ({ name, value }) => name === "framework" && (value === framework || value === `${framework}js`),
   );
+
+const hostLabel = (host) => (tr) =>
+  tr.labels.some(({ name, value }) => name === "host" && value === host);
 
 /** @type {import("allure").AllureConfig} */
 const config = {
@@ -18,17 +21,27 @@ const config = {
     rules: [
       {
         id: "global-gate",
-        maxFailures: 20,
-        minTestsCount: 100,
+        maxFailures: 60,
+        minTestsCount: 360,
         successRate: 0.7,
       },
       ...FRAMEWORKS.map((framework) => ({
         id: `gate-${framework}`,
-        maxFailures: 2,
-        minTestsCount: 11,
+        maxFailures: 6,
+        minTestsCount: 33,
         successRate: 0.75,
         filter: frameworkLabel(framework),
       })),
+      ...HOST_NAMES.map((host) => {
+        const hostSlug = host === "macOS" ? "macos" : host.toLowerCase();
+        return {
+          id: `gate-host-${hostSlug}`,
+          maxFailures: 20,
+          minTestsCount: 120,
+          successRate: 0.75,
+          filter: hostLabel(host),
+        };
+      }),
     ],
   },
   plugins: {
@@ -71,6 +84,22 @@ const config = {
                 ({ name, value }) =>
                   name === "framework" && (value === framework || value === `${framework}js`),
               ),
+          },
+        },
+      ]),
+    ),
+    ...Object.fromEntries(
+      HOST_NAMES.map((host) => [
+        `awesome-host-${host === "macOS" ? "macos" : host.toLowerCase()}`,
+        {
+          import: "@allurereport/plugin-awesome",
+          options: {
+            reportName: `Allure 3 · ${host}`,
+            singleFile: false,
+            reportLanguage: "en",
+            open: false,
+            publish: true,
+            filter: ({ labels }) => labels.some(({ name, value }) => name === "host" && value === host),
           },
         },
       ]),

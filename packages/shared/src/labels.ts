@@ -1,6 +1,7 @@
 import * as os from "node:os";
 import * as allure from "allure-js-commons";
 import { frameworkReportName } from "./framework-reports.js";
+import { resolveHostName } from "./host.js";
 import { applyFrameworkLabels } from "./showcase.js";
 import type { ShowcaseContext } from "./types.js";
 
@@ -174,13 +175,17 @@ function hashSeed(input: string): number {
 }
 
 export function buildEnvironmentInfo(framework: string, extra: EnvironmentInfo = {}): EnvironmentInfo {
+  const host = resolveHostName();
+
   return {
     Framework: framework,
     Report: frameworkReportName(framework),
+    Host: host,
     Node: process.version,
     OS: `${os.platform()}/${os.arch()}`,
     CI: process.env.CI ? "true" : "false",
     Run: process.env.GITHUB_RUN_ID ?? "local",
+    Runner_OS: process.env.GITHUB_RUNNER_OS ?? host,
     Coverage_tool: "c8 (demo)",
     ...extra,
   };

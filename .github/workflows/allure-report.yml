@@ -19,12 +19,13 @@ concurrency:
 
 jobs:
   test:
-    name: Tests (${{ matrix.framework }})
-    runs-on: ubuntu-latest
+    name: Tests (${{ matrix.framework }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
     continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
         framework:
           - playwright
           - mocha
@@ -53,6 +54,16 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Resolve host slug
+        shell: bash
+        run: |
+          case "${{ runner.os }}" in
+            Linux) echo "OS_SLUG=linux" >> "$GITHUB_ENV" ;;
+            macOS) echo "OS_SLUG=macos" >> "$GITHUB_ENV" ;;
+            Windows) echo "OS_SLUG=windows" >> "$GITHUB_ENV" ;;
+            *) echo "OS_SLUG=unknown" >> "$GITHUB_ENV" ;;
+          esac
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -61,7 +72,13 @@ jobs:
 
       - name: Install Playwright browsers
         if: matrix.framework == 'playwright' || matrix.framework == 'codeceptjs'
-        run: pnpm --filter @allure-tests/playwright exec playwright install --with-deps chromium
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            pnpm --filter @allure-tests/playwright exec playwright install --with-deps chromium
+          else
+            pnpm --filter @allure-tests/playwright exec playwright install chromium
+          fi
 
       - name: Install Cypress binary
         if: matrix.framework == 'cypress'
@@ -69,7 +86,7 @@ jobs:
 
       - name: Run tests
         env:
-          ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}
+          ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
         shell: bash
         run: |
           set +e
@@ -85,11 +102,11 @@ jobs:
           for dir in "${candidates[@]}"; do
             if [ -d "$dir" ] && compgen -G "${dir}/*-result.json" > /dev/null; then
               count=$(find "$dir" -name '*-result.json' | wc -l)
-              echo "Allure results in ${dir}: ${count} tests (runner exit ${test_exit})"
+              echo "Allure results in ${dir}: ${count} tests on ${{ runner.os }} (runner exit ${test_exit})"
               exit 0
             fi
           done
-          echo "No Allure results found for ${fw} (runner exit ${test_exit})"
+          echo "No Allure results found for ${fw} on ${{ runner.os }} (runner exit ${test_exit})"
           exit 1
 
       - name: Resolve Allure results directory
@@ -114,16 +131,16 @@ jobs:
             fi
           done
 
-          echo "No Allure result files found for ${fw}"
+          echo "No Allure result files found for ${fw} on ${{ runner.os }}"
           exit 1
         env:
-          ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}
+          ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
 
       - name: Upload Allure results
         if: always() && steps.results.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results-${{ matrix.framework }}
+          name: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
           path: ${{ steps.results.outputs.path }}
           if-no-files-found: error
           retention-days: 7
@@ -132,7 +149,7 @@ jobs:
         if: always() && steps.results.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: allure-global-${{ matrix.framework }}
+          name: allure-global-${{ matrix.framework }}-${{ env.OS_SLUG }}
           path: packages/${{ matrix.framework }}/allure-global
           if-no-files-found: ignore
           retention-days: 7
@@ -177,7 +194,10 @@ jobs:
         run: |
           shopt -s nullglob
           for dir in global-artifacts/allure-global-*; do
-            fw="${dir##*/allure-global-}"
+            artifact="${dir##*/allure-global-}"
+            fw="${artifact%-linux}"
+            fw="${fw%-macos}"
+            fw="${fw%-windows}"
             mkdir -p "packages/${fw}/allure-global"
             cp -R "${dir}/." "packages/${fw}/allure-global/"
           done
@@ -191,8 +211,8 @@ jobs:
           files=(allure-results/*-result.json)
           echo "Merged *-result.json files: ${#files[@]}"
           ls -la allure-results/*-result.json || true
-          if [ "${#files[@]}" -lt 120 ]; then
-            echo "Expected at least 120 merged test results (14 specs × 11 frameworks)."
+          if [ "${#files[@]}" -lt 360 ]; then
+            echo "Expected at least 360 merged test results (14 specs × 11 frameworks × 3 hosts)."
             exit 1
           fi
 
