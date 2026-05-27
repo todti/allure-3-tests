@@ -41,13 +41,18 @@ allurerc.mjs       # Allure 3 plugins + web summary (publish: true)
 
 ## Allure features in shared suite
 
-- Metadata: `description`, `owner`, `tags`, `severity`, `issue`, `tms`, `link`, `testCaseId`
+Each framework runs **11 shared scenarios** (~11 tests per adapter) covering:
+
+- Metadata: `description`, `displayName`, `owner`, `tags`, `severity`, `issue`, `tms`, `link`, `testCaseId`, `historyId`
 - Behavior hierarchy: `epic`, `feature`, `story`
 - Suite hierarchy: `parentSuite`, `suite`, `subSuite`
-- Steps: nested `allure.step`, `logStep`, step parameters
-- Attachments: text, JSON, hook attachments (same / unique names)
-- Parameters: visible and `excluded`
-- Async: `Promise.all`, microtasks, `setTimeout` inside steps
+- Steps: **5-level nested** `allure.step`, `logStep` (passed / skipped / broken), step parameters
+- Attachments: text, JSON, HTML, XML, CSV, PNG
+- Parameters: visible, **masked**, **hidden/excluded**
+- Async: parallel workers inside nested steps
+- **Flaky tests** with runner retries (Playwright, Mocha, Vitest, Jest, WebdriverIO, Cypress, Bun)
+- **Retry-then-pass** scenarios (fail on early attempts, pass after retry)
+- **Known failure** scenario (stable red test for dashboard analytics)
 - HTTP smoke via `fetch` (no browser)
 - Optional browser smoke (Playwright, WebdriverIO, CodeceptJS)
 - Labels: `framework`, `language`, `runner`

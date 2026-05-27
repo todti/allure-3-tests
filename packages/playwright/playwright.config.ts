@@ -5,6 +5,7 @@ const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
 export default defineConfig({
   testDir: "./suites",
+  retries: process.env.CI ? 2 : 1,
   reporter: [
     ["list"],
     [

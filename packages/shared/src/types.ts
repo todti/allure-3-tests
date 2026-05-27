@@ -8,3 +8,7 @@ export type ShowcaseContext = {
     getTitle: () => Promise<string>;
   };
 };
+
+export type RuntimeHints = {
+  attempt?: number;
+};

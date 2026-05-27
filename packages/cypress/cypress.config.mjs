@@ -12,6 +12,7 @@ export default defineConfig({
     baseUrl: "https://playwright.dev",
     specPattern: "cypress/e2e/**/*.cy.ts",
     supportFile: "cypress/support/e2e.ts",
+    retries: { runMode: 2, openMode: 0 },
     setupNodeEvents(on, config) {
       allureCypress(on, config, {
         resultsDir: path.resolve(__dirname, resultsDir),

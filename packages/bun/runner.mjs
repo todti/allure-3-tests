@@ -6,6 +6,7 @@ const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
 
 const mocha = new Mocha({
   reporter: "allure-mocha",
+  retries: 2,
   reporterOptions: {
     resultsDir,
     environmentInfo: {
