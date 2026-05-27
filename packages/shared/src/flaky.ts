@@ -25,8 +25,9 @@ export function shouldSimulateTransientFailure(
   randomFailRate = 0,
 ): boolean {
   const attempt = resolveAttempt(testId, runtimeAttempt);
+  const effectiveFailUntil = process.env.CI ? 0 : failUntilAttempt;
 
-  if (attempt < failUntilAttempt) {
+  if (attempt < effectiveFailUntil) {
     return true;
   }
 

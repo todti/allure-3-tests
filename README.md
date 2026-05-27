@@ -87,7 +87,7 @@ pnpm exec allure run -- pnpm test
 pnpm exec allure quality-gate "./**/allure-results"
 ```
 
-**CI multistage flow** ([docs](https://allurereport.org/docs/multistage-builds/)): each matrix job runs `allure run --dump=…`; the report job runs `allure generate --dump="allure-dumps/*.zip"`. Flaky demo scenarios disable random failures in CI so matrix jobs stay deterministic.
+**CI multistage flow** ([docs](https://allurereport.org/docs/multistage-builds/)): each matrix job runs `allure run --dump=…`; the report job runs `allure generate --dump="allure-dumps/*.zip"`. Flaky demo scenarios skip simulated failures in CI so matrix jobs stay deterministic (retries still apply locally).
 
 Each adapter writes setup/teardown artifacts to `packages/<framework>/allure-global/` and calls the globals API when the reporter is active. File names include the framework prefix so merged **Global Attachments** stay distinguishable.
 
