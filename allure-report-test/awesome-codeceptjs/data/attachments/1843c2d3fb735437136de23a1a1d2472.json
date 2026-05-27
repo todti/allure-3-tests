@@ -1,0 +1,11 @@
+{
+  "framework": "mocha",
+  "phase": "setup",
+  "node": "v22.21.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cwd": "/Users/anovikov/VSC/allure-3-tests/packages/mocha",
+  "timestamp": "2026-05-27T17:02:51.866Z",
+  "ci": false,
+  "runId": "local"
+}

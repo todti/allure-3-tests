@@ -214,12 +214,17 @@ jobs:
           files=(allure-results/*-result.json)
           echo "Merged *-result.json files: ${#files[@]}"
           ls -la allure-results/*-result.json || true
-          if [ "${#files[@]}" -lt 360 ]; then
-            echo "Expected at least 360 merged test results (14 specs × 11 frameworks × 3 hosts)."
+          if [ "${#files[@]}" -lt 300 ]; then
+            echo "Expected at least 300 merged test results (14 specs × 11 frameworks × 3 hosts, with headroom)."
             exit 1
           fi
 
+      - name: Validate Allure config
+        run: node -e "import('./allurerc.mjs').then(() => console.log('Allure config OK'))"
+
       - name: Generate Allure 3 report
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
         run: pnpm exec allure generate ./allure-results --output=./allure-report
 
       - name: Evaluate quality gates

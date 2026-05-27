@@ -1,5 +1,6 @@
 import { glob } from "glob";
 import Mocha from "mocha";
+import { fileURLToPath } from "node:url";
 import { buildEnvironmentInfo, runGlobalTeardown } from "@allure-tests/shared";
 
 const resultsDir = process.env.ALLURE_RESULTS_DIR ?? "allure-results";
@@ -16,7 +17,7 @@ const mocha = new Mocha({
   },
 });
 
-mocha.addFile(new URL("./hooks/globals.mjs", import.meta.url).pathname);
+mocha.addFile(fileURLToPath(new URL("./hooks/globals.mjs", import.meta.url)));
 
 for (const file of glob.sync("suites/**/*.spec.{js,mjs,ts}")) {
   mocha.addFile(file);

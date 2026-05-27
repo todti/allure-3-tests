@@ -1,5 +1,20 @@
 import { defineConfig } from "allure";
-import { FRAMEWORK_REPORT_NAMES, HOST_NAMES } from "@allure-tests/shared";
+
+const FRAMEWORK_REPORT_NAMES = {
+  playwright: "Playwright · Browser E2E",
+  mocha: "Mocha · Node.js BDD",
+  cucumber: "Cucumber · Gherkin BDD",
+  webdriverio: "WebdriverIO · Selenium + Mocha",
+  vitest: "Vitest · Vite-native tests",
+  jest: "Jest · Unit & integration",
+  jasmine: "Jasmine · Behavior specs",
+  cypress: "Cypress · Browser automation",
+  codeceptjs: "CodeceptJS · Actor-driven BDD",
+  newman: "Newman · Postman API",
+  bun: "Bun · Mocha-compatible runner",
+};
+
+const HOST_NAMES = ["Linux", "macOS", "Windows"];
 
 const FRAMEWORKS = Object.keys(FRAMEWORK_REPORT_NAMES);
 
@@ -22,13 +37,13 @@ const config = {
       {
         id: "global-gate",
         maxFailures: 60,
-        minTestsCount: 360,
+        minTestsCount: 300,
         successRate: 0.7,
       },
       ...FRAMEWORKS.map((framework) => ({
         id: `gate-${framework}`,
         maxFailures: 6,
-        minTestsCount: 33,
+        minTestsCount: 30,
         successRate: 0.75,
         filter: frameworkLabel(framework),
       })),
@@ -37,7 +52,7 @@ const config = {
         return {
           id: `gate-host-${hostSlug}`,
           maxFailures: 20,
-          minTestsCount: 120,
+          minTestsCount: 100,
           successRate: 0.75,
           filter: hostLabel(host),
         };

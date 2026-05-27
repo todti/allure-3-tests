@@ -1,0 +1,1 @@
+{"id":"cfeedb723f290e830033a2325daf3ff1","fullName":"@allure-tests/mocha:suites/payments/flaky-gateway.spec.mjs: Payments > Payment gateway may timeout before authorization","name":"Payment gateway may timeout before authorization","status":"broken","testResultsByEnv":{"default":"3df15a60429367e576e07dc2c441e9ef"}}
