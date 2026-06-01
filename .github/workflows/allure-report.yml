@@ -148,13 +148,11 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
-
-      - name: Build shared package
-        run: pnpm --filter @allure-tests/shared build
+        run: pnpm install --filter=allure-3-tests --ignore-scripts
 
       - name: Download Allure dumps
         uses: actions/download-artifact@v6
+        continue-on-error: true
         with:
           path: ./allure-dumps
           pattern: allure-dump-*

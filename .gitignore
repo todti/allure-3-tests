@@ -3,6 +3,7 @@ allure-report/
 allure-results/
 allure-results-*/
 allure-results-*.zip
+allure-dumps/
 allure-global/
 packages/*/allure-global/
 .idea/
