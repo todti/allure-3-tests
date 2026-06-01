@@ -148,7 +148,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --filter=allure-3-tests
+        run: pnpm install --filter=allure-3-tests --ignore-scripts
 
       - name: Download Allure dumps
         uses: actions/download-artifact@v6
