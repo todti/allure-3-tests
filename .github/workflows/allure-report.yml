@@ -66,7 +66,7 @@ jobs:
           esac
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Build shared package
         run: pnpm --filter @allure-tests/shared build
@@ -148,7 +148,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Build shared package
         run: pnpm --filter @allure-tests/shared build
