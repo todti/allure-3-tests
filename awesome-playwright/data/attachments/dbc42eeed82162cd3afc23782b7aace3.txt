@@ -1,0 +1,19 @@
+
+> @allure-tests/jasmine@1.0.0 test D:\a\allure-3-tests\allure-3-tests\packages\jasmine
+> jasmine --config=jasmine.json
+
+Started
+..........F...
+
+Failures:
+1) Payments Payment gateway may timeout before authorization
+  Message:
+    Error: Payment gateway timeout (simulated flaky failure)
+  Stack:
+        at file:///D:/a/allure-3-tests/allure-3-tests/packages/shared/dist/domains/payment-flaky.js:21:19
+
+14 specs, 1 failure
+Finished in 0.198 seconds
+D:\a\allure-3-tests\allure-3-tests\packages\jasmine:
+[41m[30m ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL [39m[49m [31m@allure-tests/jasmine@1.0.0 test: `jasmine --config=jasmine.json`[39m
+[31mExit status 3[39m

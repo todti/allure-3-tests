@@ -1,0 +1,41 @@
+
+> @allure-tests/vitest@1.0.0 test D:\a\allure-3-tests\allure-3-tests\packages\vitest
+> vitest run
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90mD:/a/allure-3-tests/allure-3-tests/packages/vitest[39m
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+ [32m✓[39m suites/payments/flaky-gateway.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m suites/reliability/cache-retry.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 13[2mms[22m[39m
+ [31m❯[39m suites/inventory/flaky-sync.spec.ts [2m([22m[2m1 test[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 14[2mms[22m[39m
+[31m   [31m×[31m Inventory[2m > [22mInventory shard lock causes intermittent sync failures[39m[32m 11[2mms[22m[39m[33m (retry x2)[39m
+[31m     → Inventory shard lock contention (simulated)[39m
+[31m     → Inventory shard lock contention (simulated)[39m
+[31m     → Inventory shard lock contention (simulated)[39m
+ [32m✓[39m suites/reporting/export-attachments.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m suites/baseline/metadata.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m suites/journeys/password-reset.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m suites/compliance/audit-statuses.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m suites/notifications/email-webhook.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m suites/analytics/known-regression.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m suites/catalog/product-search.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m suites/checkout/tax-calculation.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m suites/users/profile-params.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m suites/auth/oauth-login.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m suites/api/health-check.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 94[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m13 passed[39m[22m[90m (14)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m13 passed[39m[22m[90m (14)[39m
+[2m   Start at [22m 11:01:46
+[2m   Duration [22m 3.47s[2m (transform 274ms, setup 1.83s, collect 249ms, tests 275ms, environment 4ms, prepare 2.31s)[22m
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+D:\a\allure-3-tests\allure-3-tests\packages\vitest:
+[41m[30m ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL [39m[49m [31m@allure-tests/vitest@1.0.0 test: `vitest run`[39m
+[31mExit status 1[39m

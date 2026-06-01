@@ -1,0 +1,9 @@
+[90mstderr[2m | suites/reliability/cache-retry.spec.ts
+[22m[39mUsing an object as a third argument is deprecated. Vitest 4 will throw an error if the third argument is not a timeout number. Please use the second argument for options. See more at https://vitest.dev/guide/migration
+
+[90mstderr[2m | suites/inventory/flaky-sync.spec.ts
+[22m[39mUsing an object as a third argument is deprecated. Vitest 4 will throw an error if the third argument is not a timeout number. Please use the second argument for options. See more at https://vitest.dev/guide/migration
+
+[90mstderr[2m | suites/payments/flaky-gateway.spec.ts
+[22m[39mUsing an object as a third argument is deprecated. Vitest 4 will throw an error if the third argument is not a timeout number. Please use the second argument for options. See more at https://vitest.dev/guide/migration
+

@@ -1,0 +1,102 @@
+
+> @allure-tests/newman@1.0.0 pretest /home/runner/work/allure-3-tests/allure-3-tests/packages/newman
+> node global-setup.mjs
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+
+> @allure-tests/newman@1.0.0 test /home/runner/work/allure-3-tests/allure-3-tests/packages/newman
+> node run.mjs
+
+newman
+
+Allure Newman domain demo
+
+→ Auth — OAuth token endpoint
+  GET https://playwright.dev/ [200 OK, 7.03kB, 40ms]
+  ✓  auth smoke
+
+→ Catalog — search API
+  GET https://playwright.dev/docs/intro [200 OK, 9.4kB, 7ms]
+  ✓  catalog docs available
+
+→ Checkout — pricing quote
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ✓  quote payload
+
+→ Payments — flaky authorization
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ✓  authorized
+
+→ Inventory — stock sync
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ✓  inventory ok
+
+→ Notifications — webhook callback
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ✓  webhook delivered
+
+→ Reporting — export bundle
+  GET https://playwright.dev/ [200 OK, 7.03kB, 4ms]
+  ✓  export headers
+
+→ Reliability — cache warmup
+  GET https://playwright.dev/ [200 OK, 7.03kB, 4ms]
+  ✓  cache hit
+
+→ Compliance — audit feed
+  GET https://playwright.dev/ [200 OK, 7.03kB, 4ms]
+  ✓  audit feed
+
+→ Analytics — known regression
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ┌
+  │ 'Demo regression for Allure dashboards'
+  └
+  ✓  legacy billing rule mismatch (demo)
+  ✓  known regression captured for dashboards
+
+→ API — health check
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ✓  health 200
+
+→ Users — profile service
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ✓  profile ok
+
+→ Journeys — password reset
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ✓  reset journey
+
+→ Baseline — metadata smoke
+  GET https://playwright.dev/ [200 OK, 7.03kB, 3ms]
+  ✓  baseline smoke
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              14 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              14 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │              15 │               0 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 325ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 90.57kB (approx)                       │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 6ms [min: 3ms, max: 40ms, s.d.: 9ms] │
+└─────────────────────────────────────────────────────────────┘
+
+> @allure-tests/newman@1.0.0 posttest /home/runner/work/allure-3-tests/allure-3-tests/packages/newman
+> node global-teardown.mjs
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
