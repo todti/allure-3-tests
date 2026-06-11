@@ -1,0 +1,105 @@
+
+> @allure-tests/newman@1.0.0 pretest D:\a\allure-3-tests\allure-3-tests\packages\newman
+> node global-setup.mjs
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+
+> @allure-tests/newman@1.0.0 test D:\a\allure-3-tests\allure-3-tests\packages\newman
+> node run.mjs
+
+newman
+
+Allure Newman domain demo
+
+→ Auth — OAuth token endpoint
+  GET https://playwright.dev/ [200 OK, 7.02kB, 77ms]
+  √  auth smoke
+
+→ Catalog — search API
+  GET https://playwright.dev/docs/intro [200 OK, 9.84kB, 8ms]
+  √  catalog docs available
+
+→ Checkout — pricing quote
+  GET https://playwright.dev/ [200 OK, 7.02kB, 6ms]
+  √  quote payload
+
+→ Payments — flaky authorization
+  GET https://playwright.dev/ [200 OK, 7.02kB, 5ms]
+  1. gateway timeout
+
+→ Inventory — stock sync
+  GET https://playwright.dev/ [200 OK, 7.02kB, 4ms]
+  √  inventory ok
+
+→ Notifications — webhook callback
+  GET https://playwright.dev/ [200 OK, 7.02kB, 5ms]
+  √  webhook delivered
+
+→ Reporting — export bundle
+  GET https://playwright.dev/ [200 OK, 7.02kB, 5ms]
+  √  export headers
+
+→ Reliability — cache warmup
+  GET https://playwright.dev/ [200 OK, 7.02kB, 4ms]
+  √  cache hit
+
+→ Compliance — audit feed
+  GET https://playwright.dev/ [200 OK, 7.02kB, 5ms]
+  √  audit feed
+
+→ Analytics — known regression
+  GET https://playwright.dev/ [200 OK, 7.02kB, 4ms]
+  ┌
+  │ 'Demo regression for Allure dashboards'
+  └
+  √  legacy billing rule mismatch (demo)
+  √  known regression captured for dashboards
+
+→ API — health check
+  GET https://playwright.dev/ [200 OK, 7.02kB, 3ms]
+  √  health 200
+
+→ Users — profile service
+  GET https://playwright.dev/ [200 OK, 7.02kB, 6ms]
+  √  profile ok
+
+→ Journeys — password reset
+  GET https://playwright.dev/ [200 OK, 7.02kB, 4ms]
+  √  reset journey
+
+→ Baseline — metadata smoke
+  GET https://playwright.dev/ [200 OK, 7.02kB, 4ms]
+  √  baseline smoke
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│                         │         executed │           failed │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              iterations │                1 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│                requests │               14 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│            test-scripts │               14 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│      prerequest-scripts │                1 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              assertions │               15 │                1 │
+├─────────────────────────┴──────────────────┴──────────────────┤
+│ total run duration: 958ms                                     │
+├───────────────────────────────────────────────────────────────┤
+│ total data received: 90.63kB (approx)                         │
+├───────────────────────────────────────────────────────────────┤
+│ average response time: 10ms [min: 3ms, max: 77ms, s.d.: 18ms] │
+└───────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure [39m[31m detail                                  [39m
+[90m    [39m[90m         [39m[90m                                         [39m
+ 1.  Error    gateway timeout                         
+              Flaky payment 0.08124859257765138       
+              at assertion:0 in test-script           
+              inside "Payments — flaky authorization" 
+D:\a\allure-3-tests\allure-3-tests\packages\newman:
+[41m[30m ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL [39m[49m [31m@allure-tests/newman@1.0.0 test: `node run.mjs`[39m
+[31mExit status 1[39m

@@ -1,0 +1,66 @@
+
+> @allure-tests/codeceptjs@1.0.0 test D:\a\allure-3-tests\allure-3-tests\packages\codeceptjs
+> codeceptjs run
+
+creating output directory: D:\a\allure-3-tests\allure-3-tests\packages\codeceptjs\output
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+CodeceptJS v3.7.9 #[1m[33mStandWith[39m[22m[1m[36mUkraine[39m[22m
+Using test root "D:\a\allure-3-tests\allure-3-tests\packages\codeceptjs"
+
+[1mAnalytics[22m --
+  [32m[1m√[22m[39m [1mKnown regression remains red for dashboard analytics[22m [36min 17ms[39m
+[1mAPI[22m --
+  [31m[1m×[22m[39m [1mPublic API health endpoint responds with 200[22m [33min 53ms[39m
+[1mAuthentication[22m --
+  [32m[1m√[22m[39m [1mOAuth login grants access token[22m [36min 12ms[39m
+[1mAdapter parity[22m --
+  [32m[1m√[22m[39m [1mAllure metadata baseline documents runtime API surface[22m [36min 2ms[39m
+[1mCatalog[22m --
+  [32m[1m√[22m[39m [1mProduct search applies filters and pagination[22m [36min 3ms[39m
+[1mCheckout[22m --
+  [32m[1m√[22m[39m [1mCheckout tax engine calculates VAT in nested steps[22m [36min 9ms[39m
+[1mCompliance[22m --
+  [32m[1m√[22m[39m [1mAudit pipeline records passed, skipped, and broken steps[22m [36min 2ms[39m
+[1mInventory[22m --
+  [32m[1m√[22m[39m [1mInventory shard lock causes intermittent sync failures[22m [36min 3ms[39m
+[1mCustomer journeys[22m --
+  [32m[1m√[22m[39m [1mPassword reset journey sends token and confirms delivery[22m [36min 14ms[39m
+[1mNotifications[22m --
+  [32m[1m√[22m[39m [1mEmail provider webhook fan-out completes asynchronously[22m [36min 15ms[39m
+[1mPayments[22m --
+  [32m[1m√[22m[39m [1mPayment gateway may timeout before authorization[22m [36min 1ms[39m
+[1mReliability[22m --
+  [32m[1m√[22m[39m [1mDistributed cache misses on cold start then recovers after retry[22m [36min 2ms[39m
+[1mReporting[22m --
+  [32m[1m√[22m[39m [1mReporting export bundles multiple attachment formats[22m [36min 5ms[39m
+[1mUsers[22m --
+  [32m[1m√[22m[39m [1mUser profile stores masked and hidden parameters[22m [36min 1ms[39m
+
+[1m-- FAILURES:[22m
+
+[0m  1) API
+       Public API health endpoint responds with 200:
+[0m[31m     
+  I is not defined[0m[90m
+  ReferenceError: 
+      at Test.<anonymous> (suites\api\health-check_test.ts:8:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+  
+  [34m[39m
+  [34m[37m( )[39m[34m [37m[2m[1mFile:[22m[22m[39m[34m file://D:\a\allure-3-tests\allure-3-tests\packages\codeceptjs\suites\api\health-check_test.ts[39m
+  [34m[39m
+  [34m[39m
+  [34m[37m( )[39m[34m [37m[2m[1mMetadata:[22m[22m[39m[34m[39m
+  [34m- browser: chromium[39m
+  [34m- browserVersion: 148.0.7778.96[39m
+  [34m- windowSize: 1280x720[39m
+[0m
+
+[42m[41m[1m  FAIL [22m[49m[49m[42m[41m[90m |[39m[49m[49m[42m[41m 13 passed, 1 failed  [49m[49m[90m // 4s[39m
+[36mRun with --verbose flag to see complete NodeJS stacktrace[39m
+D:\a\allure-3-tests\allure-3-tests\packages\codeceptjs:
+[41m[30m ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL [39m[49m [31m@allure-tests/codeceptjs@1.0.0 test: `codeceptjs run`[39m
+[31mExit status 1[39m

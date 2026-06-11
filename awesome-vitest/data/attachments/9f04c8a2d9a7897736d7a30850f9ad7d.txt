@@ -1,0 +1,14 @@
+
+> @allure-tests/webdriverio@1.0.0 test /Users/runner/work/allure-3-tests/allure-3-tests/packages/webdriverio
+> wdio run wdio.conf.ts
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+[1m[22m
+[1mExecution of [34m14[39m workers started at[22m 2026-06-11T15:30:20.863Z
+
+
+
+Ended WebDriver sessions gracefully after a SIGINT signal was received!

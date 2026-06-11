@@ -1,0 +1,105 @@
+
+> @allure-tests/newman@1.0.0 pretest /home/runner/work/allure-3-tests/allure-3-tests/packages/newman
+> node global-setup.mjs
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+
+> @allure-tests/newman@1.0.0 test /home/runner/work/allure-3-tests/allure-3-tests/packages/newman
+> node run.mjs
+
+newman
+
+Allure Newman domain demo
+
+→ Auth — OAuth token endpoint
+  GET https://playwright.dev/ [200 OK, 7.02kB, 71ms]
+  ✓  auth smoke
+
+→ Catalog — search API
+  GET https://playwright.dev/docs/intro [200 OK, 9.84kB, 230ms]
+  ✓  catalog docs available
+
+→ Checkout — pricing quote
+  GET https://playwright.dev/ [200 OK, 7.02kB, 12ms]
+  ✓  quote payload
+
+→ Payments — flaky authorization
+  GET https://playwright.dev/ [200 OK, 7.02kB, 11ms]
+  1. gateway timeout
+
+→ Inventory — stock sync
+  GET https://playwright.dev/ [200 OK, 7.02kB, 11ms]
+  ✓  inventory ok
+
+→ Notifications — webhook callback
+  GET https://playwright.dev/ [200 OK, 7.02kB, 11ms]
+  ✓  webhook delivered
+
+→ Reporting — export bundle
+  GET https://playwright.dev/ [200 OK, 7.02kB, 11ms]
+  ✓  export headers
+
+→ Reliability — cache warmup
+  GET https://playwright.dev/ [200 OK, 7.02kB, 11ms]
+  ✓  cache hit
+
+→ Compliance — audit feed
+  GET https://playwright.dev/ [200 OK, 7.02kB, 11ms]
+  ✓  audit feed
+
+→ Analytics — known regression
+  GET https://playwright.dev/ [200 OK, 7.02kB, 11ms]
+  ┌
+  │ 'Demo regression for Allure dashboards'
+  └
+  ✓  legacy billing rule mismatch (demo)
+  ✓  known regression captured for dashboards
+
+→ API — health check
+  GET https://playwright.dev/ [200 OK, 7.02kB, 10ms]
+  ✓  health 200
+
+→ Users — profile service
+  GET https://playwright.dev/ [200 OK, 7.02kB, 10ms]
+  ✓  profile ok
+
+→ Journeys — password reset
+  GET https://playwright.dev/ [200 OK, 7.02kB, 10ms]
+  ✓  reset journey
+
+→ Baseline — metadata smoke
+  GET https://playwright.dev/ [200 OK, 7.02kB, 10ms]
+  ✓  baseline smoke
+
+┌─────────────────────────┬───────────────────┬───────────────────┐
+│                         │          executed │            failed │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│              iterations │                 1 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│                requests │                14 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│            test-scripts │                14 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│      prerequest-scripts │                 1 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│              assertions │                15 │                 1 │
+├─────────────────────────┴───────────────────┴───────────────────┤
+│ total run duration: 686ms                                       │
+├─────────────────────────────────────────────────────────────────┤
+│ total data received: 90.63kB (approx)                           │
+├─────────────────────────────────────────────────────────────────┤
+│ average response time: 30ms [min: 10ms, max: 230ms, s.d.: 57ms] │
+└─────────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure [39m[31m detail                                  [39m
+[90m    [39m[90m         [39m[90m                                         [39m
+ 1.  Error    gateway timeout                         
+              Flaky payment 0.022800785354706532      
+              at assertion:0 in test-script           
+              inside "Payments — flaky authorization" 
+/home/runner/work/allure-3-tests/allure-3-tests/packages/newman:
+[41m[30m ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL [39m[49m [31m@allure-tests/newman@1.0.0 test: `node run.mjs`[39m
+[31mExit status 1[39m

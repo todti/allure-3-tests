@@ -1,0 +1,12 @@
+{
+  "framework": "bun",
+  "phase": "setup",
+  "host": "Linux",
+  "node": "v24.3.0",
+  "platform": "linux",
+  "arch": "x64",
+  "cwd": "/home/runner/work/allure-3-tests/allure-3-tests/packages/bun",
+  "timestamp": "2026-06-11T15:31:17.901Z",
+  "ci": true,
+  "runId": "26750817736"
+}
