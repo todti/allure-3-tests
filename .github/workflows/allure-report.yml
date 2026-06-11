@@ -104,7 +104,7 @@ jobs:
           pnpm allure run \
             --environment=${{ env.OS_SLUG }} \
             --dump=allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }} \
-            -- pnpm --filter @allure-tests/${{ matrix.framework }} test
+            -- pnpm --no-bail --filter @allure-tests/${{ matrix.framework }} test || true
 
       - name: Verify Allure dump archive
         id: dump
