@@ -1,13 +1,12 @@
 diff --git a/dist/plugin.js b/dist/plugin.js
-index 1e3ef868fbf450fe926ccacfbcc3dc8c6ad684c4..7a418642da0c0fca2f475b342f13708e1062c87a 100644
 --- a/dist/plugin.js
 +++ b/dist/plugin.js
-@@ -137,7 +137,7 @@ export class AwesomePlugin {
+@@ -142,7 +142,7 @@
                  allureVersion: context.allureVersion,
                  reportFiles: context.reportFiles,
                  reportUuid: context.reportUuid,
 -                reportName: context.reportName,
 +                reportName: this.options.reportName || context.reportName,
                  ci: context.ci,
-                 reportDataFiles,
-             });
+                 executor,
+                 runSummary,
