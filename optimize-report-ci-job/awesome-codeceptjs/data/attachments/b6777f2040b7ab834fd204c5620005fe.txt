@@ -1,0 +1,3 @@
+// @allure.label.os:macOS
+// @allure.label.framework:newman
+pm.test('profile ok', () => pm.response.to.have.status(200));

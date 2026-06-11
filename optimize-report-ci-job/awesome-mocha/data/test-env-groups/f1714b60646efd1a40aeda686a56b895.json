@@ -1,0 +1,1 @@
+{"id":"f1714b60646efd1a40aeda686a56b895","fullName":"payments/payment-refund.spec.ts:5:7","name":"Captured payment is fully refunded to the card","status":"passed","testResultsByEnv":{"linux":"5421da0f5d1626e65568c06d637eddc1","macos":"12741141a430223965141478a8977a56","windows":"0b2929142419e32512580b218ec0c66c"}}

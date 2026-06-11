@@ -1,0 +1,10 @@
+
+> @allure-tests/jasmine@1.0.0 test /Users/runner/work/allure-3-tests/allure-3-tests/packages/jasmine
+> jasmine --config=jasmine.json
+
+Started
+....................
+
+
+20 specs, 0 failures
+Finished in 0.437 seconds

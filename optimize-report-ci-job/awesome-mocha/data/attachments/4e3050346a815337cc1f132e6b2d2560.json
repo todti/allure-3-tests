@@ -1,0 +1,12 @@
+{
+  "framework": "codeceptjs",
+  "phase": "teardown",
+  "host": "Windows",
+  "node": "v24.16.0",
+  "platform": "win32",
+  "arch": "x64",
+  "cwd": "D:\\a\\allure-3-tests\\allure-3-tests\\packages\\codeceptjs",
+  "timestamp": "2026-06-11T18:31:45.056Z",
+  "ci": true,
+  "runId": "27368744397"
+}

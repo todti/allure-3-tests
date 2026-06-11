@@ -1,0 +1,1 @@
+{"id":"06270363c976af4367b6c2eb00fb6f91","fullName":"payments/settlement-report.spec.ts:5:7","name":"Daily settlement report is generated and submitted to acquiring bank","status":"passed","testResultsByEnv":{"linux":"5a4c289d4fba957c5044cb63971006c5","macos":"8a1989812355c6a81c7d55ba1ce742ce","windows":"df7a9bc8f43c92215efd7919f155496f"}}

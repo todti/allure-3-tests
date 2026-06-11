@@ -1,0 +1,1 @@
+{"id":"3d332192268e1c77488d9ca73a8da398","fullName":"@allure-tests/cypress:cypress/e2e/payments/card-tokenization.cy.ts#Payments Card number is tokenized via PCI vault","name":"Card number is tokenized via PCI vault","status":"passed","testResultsByEnv":{"linux":"69b53fa52caa2a5bd2109ba5e3cb3a22","macos":"499c516aa69e01742ec58a7a5c821622"}}

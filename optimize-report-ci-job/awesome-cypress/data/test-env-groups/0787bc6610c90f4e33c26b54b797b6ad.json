@@ -1,0 +1,1 @@
+{"id":"0787bc6610c90f4e33c26b54b797b6ad","fullName":"@allure-tests/bun:suites/auth/oauth-login.spec.mjs: Authentication > OAuth login grants access token","name":"OAuth login grants access token","status":"passed","testResultsByEnv":{"linux":"92a6697a2fa8bbb299234ecc62875ea3","macos":"69c3fc2a06226666571e1c7cffb8c28c","windows":"d42f1fb126bf1f09fac050aa2fdae5c7"}}

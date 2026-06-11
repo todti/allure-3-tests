@@ -1,0 +1,1 @@
+{"id":"63b914f1853218ddcdea4cdb04898395","fullName":"api/health-check.spec.ts:6:7","name":"Public API health endpoint responds with 200","status":"passed","testResultsByEnv":{"linux":"124a3e6667f49db5e34af390f817ae1c","macos":"232b5c131dd972a938833d70fdc3e863","windows":"a936956eb221a49d8a0b3404624f55f0"}}

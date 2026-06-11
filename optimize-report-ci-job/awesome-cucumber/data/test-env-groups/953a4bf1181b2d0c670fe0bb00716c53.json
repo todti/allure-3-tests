@@ -1,0 +1,1 @@
+{"id":"953a4bf1181b2d0c670fe0bb00716c53","fullName":"@allure-tests/mocha:suites/auth/oauth-login.spec.mjs: Authentication > OAuth login grants access token","name":"OAuth login grants access token","status":"passed","testResultsByEnv":{"linux":"1ca158a0d276f4c2f6082a7008a8b493","macos":"40377510377c951559aecce2880bbd5c","windows":"9ae66b26561a47ee994896e1ab277755"}}

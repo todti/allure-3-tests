@@ -1,0 +1,1 @@
+{"id":"099df7f5d075512b5cffe987a13cb5c2","fullName":"@allure-tests/newman:Allure Newman domain demo#Payments — flaky authorization","name":"Payments — flaky authorization","status":"failed","testResultsByEnv":{"linux":"fdc3039f72827246932b631c1bf01fb8","macos":"378a0c674ecac90e81e4565e69996f79","windows":"d3322eaeb60b6ca5c61eddbd64ead70e"}}

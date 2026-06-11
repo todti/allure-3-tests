@@ -1,0 +1,1 @@
+{"id":"f98eb2091e8ef687142c875a25fb7d7f","fullName":"@allure-tests/codeceptjs:suites/auth/oauth-login_test.ts: Authentication > OAuth login grants access token","name":"OAuth login grants access token","status":"passed","testResultsByEnv":{"linux":"7bf56c7cea49eee323b6c780edb1141f","macos":"25feaacccf687da2fad28c63a61ea76e","windows":"5e6189e4d1239db77443d5382aa0b11e"}}

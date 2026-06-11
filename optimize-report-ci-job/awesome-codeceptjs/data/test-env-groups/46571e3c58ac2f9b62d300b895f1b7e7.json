@@ -1,0 +1,1 @@
+{"id":"46571e3c58ac2f9b62d300b895f1b7e7","fullName":"@allure-tests/bun:suites/api/health-check.spec.mjs: API > Public API health endpoint responds with 200","name":"Public API health endpoint responds with 200","status":"passed","testResultsByEnv":{"linux":"7417252a53a51a8ea65a71552717e0a1","macos":"3f5e4b177cba392f1cdd7e8765289f1c","windows":"a6af6d01d94c01e16276098a68914d05"}}

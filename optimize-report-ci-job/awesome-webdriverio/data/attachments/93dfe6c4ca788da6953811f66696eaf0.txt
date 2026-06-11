@@ -1,0 +1,4 @@
+
+> @allure-tests/bun@1.0.0 test D:\a\allure-3-tests\allure-3-tests\packages\bun
+> bun ./node_modules/mocha/bin/mocha.js
+

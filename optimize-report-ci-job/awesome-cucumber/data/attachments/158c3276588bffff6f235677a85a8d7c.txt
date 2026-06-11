@@ -1,0 +1,8 @@
+// @allure.label.os:Linux
+// @allure.label.framework:newman
+// @allure.label.epic:Payments
+// @allure.label.feature:Subscriptions
+// @allure.label.story:Recurring cycle billing
+// @allure.label.severity:critical
+// @allure.label.tag:billing
+pm.test('subscriptions billed', () => pm.response.to.have.status(200));

@@ -1,0 +1,1 @@
+{"id":"a19cca8766ed8dd506c9d2315fea8f8c","fullName":"@allure-tests/cypress:cypress/e2e/compliance/audit-statuses.cy.ts#Compliance Audit pipeline records passed, skipped, and broken steps","name":"Audit pipeline records passed, skipped, and broken steps","status":"passed","testResultsByEnv":{"linux":"6cf79eafe7d5254031f74e83932c91ff","macos":"8c5867f4d463e03d5fba1bfea0b1840a"}}

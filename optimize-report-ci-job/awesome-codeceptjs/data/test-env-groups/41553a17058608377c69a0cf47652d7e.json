@@ -1,0 +1,1 @@
+{"id":"41553a17058608377c69a0cf47652d7e","fullName":"@allure-tests/cucumber:features/api/health-check.feature#Public API health endpoint responds with 200","name":"Public API health endpoint responds with 200","status":"passed","testResultsByEnv":{"linux":"8cd35b8b1ef8f5a0880374b0c38c68eb","macos":"81c86936516689d520ab4cadc422420d","windows":"7420664d4c4dd864dafd4e20a0f82ea6"}}

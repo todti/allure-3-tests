@@ -1,0 +1,1 @@
+{"id":"0c3460ebf7545ba36acf1624458e638f","fullName":"journeys/password-reset.spec.ts:6:7","name":"Password reset journey sends token and confirms delivery","status":"passed","testResultsByEnv":{"linux":"201ba1b1f73b7358dc6dd113e5c5e984","macos":"2ffd7d5deca2dd0eb67de737ea84b98b","windows":"f1bdc96a8ea953d38a138010407a4ec3"}}
