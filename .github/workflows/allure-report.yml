@@ -100,16 +100,18 @@ jobs:
           ALLURE_STAGE: matrix
           CI: true
         run: |
+          mkdir -p allure-dumps
           pnpm allure run \
             --environment=${{ env.OS_SLUG }} \
+            --dump=allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }} \
             -- pnpm --no-bail --filter @allure-tests/${{ matrix.framework }} test || true
 
-      - name: Upload Allure results
+      - name: Upload Allure dump
         if: always()
         uses: actions/upload-artifact@v6
         with:
-          name: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
-          path: allure-results/
+          name: allure-dump-${{ matrix.framework }}-${{ env.OS_SLUG }}
+          path: allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }}.zip
           if-no-files-found: warn
           retention-days: 7
 
@@ -135,28 +137,38 @@ jobs:
       - name: Install dependencies
         run: pnpm install --filter=allure-3-tests --ignore-scripts
 
-      - name: Download Allure results
+      - name: Download Allure dumps
         uses: actions/download-artifact@v6
         continue-on-error: true
         with:
-          path: ./allure-results
-          pattern: allure-results-*
+          path: ./allure-dumps
+          pattern: allure-dump-*
           merge-multiple: true
 
-      - name: Verify Allure results
+      - name: Verify Allure dumps
         shell: bash
         run: |
-          count=$(find allure-results -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
-          echo "Result files: ${count}"
-          if [ "$count" -eq 0 ]; then
-            echo "No result files found — cannot generate a report."
+          shopt -s nullglob
+          dumps=(allure-dumps/*.zip)
+          echo "Dump archives: ${#dumps[@]}"
+          if [ "${#dumps[@]}" -eq 0 ]; then
+            echo "No dump archives found — cannot generate a report."
             exit 1
+          fi
+          if [ "${#dumps[@]}" -lt 30 ]; then
+            echo "Warning: only ${#dumps[@]} dump archives (expected up to 33). Generating partial report."
           fi
 
       - name: Generate Allure 3 report
+        id: generate
         env:
           NODE_OPTIONS: --max-old-space-size=4096
-        run: pnpm allure generate --output=./allure-report
+        run: |
+          dump_args=()
+          for f in allure-dumps/*.zip; do
+            dump_args+=(--dump="$f")
+          done
+          pnpm allure generate "${dump_args[@]}" --output=./allure-report
 
       - name: Allure Report action
         if: always()
@@ -167,7 +179,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages
-        if: always()
+        if: steps.generate.outcome == 'success'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
