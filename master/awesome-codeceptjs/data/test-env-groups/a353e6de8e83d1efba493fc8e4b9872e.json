@@ -1,0 +1,1 @@
+{"id":"a353e6de8e83d1efba493fc8e4b9872e","fullName":"@allure-tests/cypress:cypress/e2e/payments/flaky-gateway.cy.ts#Payments Payment gateway may timeout before authorization","name":"Payment gateway may timeout before authorization","status":"passed","testResultsByEnv":{"linux":"cca08c0c11f7216919174bf933debabc","macos":"37add1420cb492e0efb8bbbed27a3be9"}}

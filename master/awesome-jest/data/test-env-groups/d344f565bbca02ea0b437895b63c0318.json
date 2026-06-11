@@ -1,0 +1,1 @@
+{"id":"d344f565bbca02ea0b437895b63c0318","fullName":"@allure-tests/cucumber:features/auth/oauth-login.feature#OAuth login grants access token","name":"OAuth login grants access token","status":"passed","testResultsByEnv":{"linux":"5598af2c27152491a7d32b7e10214cdf","macos":"e168a64e6469a6bfe3eeb13f1cda9739","windows":"b93c9ac7898698a75ee47be3a0369bf5"}}

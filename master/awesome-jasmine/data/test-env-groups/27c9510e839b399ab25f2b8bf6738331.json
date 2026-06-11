@@ -1,0 +1,1 @@
+{"id":"27c9510e839b399ab25f2b8bf6738331","fullName":"checkout/tax-calculation.spec.ts:5:7","name":"Checkout tax engine calculates VAT in nested steps","status":"passed","testResultsByEnv":{"linux":"15ec23da1e243790c256d1cbcbbbeaea","macos":"dfbcbba5291c9cbfaeb77143dc5a9fa2","windows":"5d85198a9a82e0da25cd2009fb7cf6cc"}}

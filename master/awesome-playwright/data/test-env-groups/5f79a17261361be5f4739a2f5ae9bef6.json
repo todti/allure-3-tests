@@ -1,0 +1,1 @@
+{"id":"5f79a17261361be5f4739a2f5ae9bef6","fullName":"@allure-tests/cucumber:features/payments/card-tokenization.feature#Card number is tokenized via PCI vault","name":"Card number is tokenized via PCI vault","status":"passed","testResultsByEnv":{"linux":"691b03ac83135057384fb27bc79fa7de","macos":"808e0cef0bff3cef745b786c1782fc51","windows":"f44d34943c8305e15a9d5016696684d8"}}

@@ -1,0 +1,1 @@
+{"id":"e1701390092ecb076b3362fc8f4c11cb","fullName":"payments/payment-authorization.spec.ts:5:7","name":"Payment intent is authorized against card token","status":"passed","testResultsByEnv":{"linux":"d60b46c347a3400d7bbd1651b2e6e852","macos":"3ec532ce878d5a4868d71f1c0360b3f0","windows":"0336a22fccbb15ac15d83507c75bf94a"}}

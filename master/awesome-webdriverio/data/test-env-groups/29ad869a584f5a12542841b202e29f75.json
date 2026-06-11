@@ -1,0 +1,1 @@
+{"id":"29ad869a584f5a12542841b202e29f75","fullName":"@allure-tests/cypress:cypress/e2e/analytics/known-regression.cy.ts#Analytics Known regression remains red for dashboard analytics","name":"Known regression remains red for dashboard analytics","status":"broken","testResultsByEnv":{"linux":"6942afd4d42e4c5653d69791d1c67efb","macos":"734ef4d707453822ac5c4f3b9789f502"}}

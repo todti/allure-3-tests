@@ -1,0 +1,1 @@
+{"id":"10eb33de31ee60c29ec4fa428089b402","fullName":"@allure-tests/cypress:cypress/e2e/auth/oauth-login.cy.ts#Authentication OAuth login grants access token","name":"OAuth login grants access token","status":"passed","testResultsByEnv":{"linux":"391753ffe924400bc1e4b66bcb7deee2","macos":"a9abe249ee49f3752f2ef650d9e13b13"}}

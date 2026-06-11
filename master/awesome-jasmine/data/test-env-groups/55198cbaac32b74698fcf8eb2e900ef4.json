@@ -1,0 +1,1 @@
+{"id":"55198cbaac32b74698fcf8eb2e900ef4","fullName":"@allure-tests/jest:suites/payments/card-tokenization.spec.mjs#Payments Card number is tokenized via PCI vault","name":"Card number is tokenized via PCI vault","status":"passed","testResultsByEnv":{"linux":"b0bc929a5a6d2aaa7eba97518935f27d","macos":"74d82e9dd26c63009225933ac143de4d","windows":"1ba85d06bf41b0e64bfbad1ea33bcd47"}}

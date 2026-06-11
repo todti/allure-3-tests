@@ -1,0 +1,1 @@
+{"id":"3b06ccdd4919f0c7a0b2bae69c02f3e8","fullName":"@allure-tests/cypress:cypress/e2e/payments/payment-authorization.cy.ts#Payments Payment intent is authorized against card token","name":"Payment intent is authorized against card token","status":"passed","testResultsByEnv":{"linux":"0ee7101b4a6fa3c9fbc0206905ae4fda","macos":"23cbedb68cde314eb6bf2eb4bd59ac71"}}

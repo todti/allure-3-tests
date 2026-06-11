@@ -1,0 +1,1 @@
+{"id":"c832e869eb76dc824be66fb8159ec860","fullName":"@allure-tests/cypress:cypress/e2e/payments/payment-refund.cy.ts#Payments Captured payment is fully refunded to the card","name":"Captured payment is fully refunded to the card","status":"passed","testResultsByEnv":{"linux":"7881e93513602a281b1219492cff0fdd","macos":"c71fa60e0550c41d3e68241ffeb2ed9d"}}

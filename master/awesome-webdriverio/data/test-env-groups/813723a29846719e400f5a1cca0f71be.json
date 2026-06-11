@@ -1,0 +1,1 @@
+{"id":"813723a29846719e400f5a1cca0f71be","fullName":"@allure-tests/cypress:cypress/e2e/inventory/flaky-sync.cy.ts#Inventory Inventory shard lock causes intermittent sync failures","name":"Inventory shard lock causes intermittent sync failures","status":"passed","testResultsByEnv":{"linux":"5ed1af7760e9888370c863a478b6e660","macos":"b7df208663c733639ceb8edfa5bbde08"}}

@@ -1,0 +1,1 @@
+{"id":"15c96d81b77a3474687ad97c6846cb96","fullName":"inventory/flaky-sync.spec.ts:8:7","name":"Inventory shard lock causes intermittent sync failures","status":"passed","testResultsByEnv":{"linux":"71c1f434985df5081718cef6e285cdd6","macos":"e7e53f51d68f0608686e2af3cb936988","windows":"c3d43bfacfc5ce1b02106269d1a907cc"}}

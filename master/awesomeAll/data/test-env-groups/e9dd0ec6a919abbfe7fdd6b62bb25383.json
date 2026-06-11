@@ -1,0 +1,1 @@
+{"id":"e9dd0ec6a919abbfe7fdd6b62bb25383","fullName":"analytics/known-regression.spec.ts:6:7","name":"Known regression remains red for dashboard analytics","status":"passed","testResultsByEnv":{"linux":"e574272855b397fdd57e5fd25a0f01e6","macos":"f8c01aaeb4411d4f1feeeb218e4d84ce","windows":"6a0c1cf865e9778cc772a0239b13b32c"}}

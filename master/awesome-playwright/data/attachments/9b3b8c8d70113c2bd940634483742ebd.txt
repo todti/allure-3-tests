@@ -1,0 +1,1 @@
+level: log, messages: Demo regression for Allure dashboards

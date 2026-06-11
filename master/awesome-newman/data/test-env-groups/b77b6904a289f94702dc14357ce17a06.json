@@ -1,0 +1,1 @@
+{"id":"b77b6904a289f94702dc14357ce17a06","fullName":"@allure-tests/jest:suites/auth/oauth-login.spec.mjs#Authentication OAuth login grants access token","name":"OAuth login grants access token","status":"passed","testResultsByEnv":{"linux":"2bea11194465b279fdd4ea382c7c0ecd","macos":"de4bee5c74f93cefcd0d5937fece26e4","windows":"0b688b2f4333be7115fa6e4ce6a2cd98"}}

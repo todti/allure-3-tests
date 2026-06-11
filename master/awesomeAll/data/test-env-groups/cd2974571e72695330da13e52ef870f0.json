@@ -1,0 +1,1 @@
+{"id":"cd2974571e72695330da13e52ef870f0","fullName":"@allure-tests/jasmine:suites/auth/oauth-login.spec.mjs#Authentication > OAuth login grants access token","name":"OAuth login grants access token","status":"passed","testResultsByEnv":{"linux":"20cc008c626c3eb39c480d5e9133f6fb","macos":"6c73ce5f42b3a1f6a9a4b7528d94e079","windows":"03fce9a9496833ae08718cad348a9239"}}

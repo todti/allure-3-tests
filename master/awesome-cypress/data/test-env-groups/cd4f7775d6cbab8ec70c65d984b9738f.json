@@ -1,0 +1,1 @@
+{"id":"cd4f7775d6cbab8ec70c65d984b9738f","fullName":"payments/card-tokenization.spec.ts:5:7","name":"Card number is tokenized via PCI vault","status":"passed","testResultsByEnv":{"linux":"14b19650f45d52d0d2832104ed175d04","macos":"ff59713ec428e946a500e6638473ec46","windows":"356ad32cd2a3a2d011e66cafcaed4007"}}

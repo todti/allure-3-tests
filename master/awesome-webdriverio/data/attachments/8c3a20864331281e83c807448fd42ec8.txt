@@ -1,0 +1,8 @@
+// @allure.label.os:Linux
+// @allure.label.framework:newman
+// @allure.label.epic:Payments
+// @allure.label.feature:Refunds
+// @allure.label.story:Full refund
+// @allure.label.severity:critical
+// @allure.label.tag:refund
+pm.test('payment refunded', () => pm.response.to.have.status(200));
