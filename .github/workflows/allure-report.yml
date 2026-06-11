@@ -100,32 +100,17 @@ jobs:
           ALLURE_STAGE: matrix
           CI: true
         run: |
-          mkdir -p allure-dumps
           pnpm allure run \
             --environment=${{ env.OS_SLUG }} \
-            --dump=allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }} \
             -- pnpm --no-bail --filter @allure-tests/${{ matrix.framework }} test || true
 
-      - name: Verify Allure dump archive
-        id: dump
+      - name: Upload Allure results
         if: always()
-        shell: bash
-        run: |
-          dump="allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }}.zip"
-          if [ ! -f "$dump" ]; then
-            echo "Missing Allure dump archive: ${dump}"
-            exit 1
-          fi
-          echo "path=${dump}" >> "$GITHUB_OUTPUT"
-          ls -la "$dump"
-
-      - name: Upload Allure dump
-        if: always() && steps.dump.outcome == 'success'
         uses: actions/upload-artifact@v6
         with:
-          name: allure-dump-${{ matrix.framework }}-${{ env.OS_SLUG }}
-          path: ${{ steps.dump.outputs.path }}
-          if-no-files-found: error
+          name: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
+          path: allure-results/
+          if-no-files-found: warn
           retention-days: 7
 
   report:
@@ -150,38 +135,28 @@ jobs:
       - name: Install dependencies
         run: pnpm install --filter=allure-3-tests --ignore-scripts
 
-      - name: Download Allure dumps
+      - name: Download Allure results
         uses: actions/download-artifact@v6
         continue-on-error: true
         with:
-          path: ./allure-dumps
-          pattern: allure-dump-*
+          path: ./allure-results
+          pattern: allure-results-*
           merge-multiple: true
 
-      - name: Verify Allure dump archives
+      - name: Verify Allure results
         shell: bash
         run: |
-          shopt -s nullglob
-          dumps=(allure-dumps/*.zip)
-          echo "Dump archives: ${#dumps[@]}"
-          ls -la allure-dumps/*.zip || true
-          if [ "${#dumps[@]}" -eq 0 ]; then
-            echo "No dump archives found — cannot generate a report."
+          count=$(find allure-results -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
+          echo "Result files: ${count}"
+          if [ "$count" -eq 0 ]; then
+            echo "No result files found — cannot generate a report."
             exit 1
-          fi
-          if [ "${#dumps[@]}" -lt 30 ]; then
-            echo "Warning: only ${#dumps[@]} dump archives (expected up to 33). Generating a partial merged report."
           fi
 
       - name: Generate Allure 3 report
         env:
           NODE_OPTIONS: --max-old-space-size=4096
-        run: |
-          dump_args=()
-          for f in allure-dumps/*.zip; do
-            dump_args+=(--dump="$f")
-          done
-          pnpm allure generate "${dump_args[@]}" --output=./allure-report
+        run: pnpm allure generate --output=./allure-report
 
       - name: Allure Report action
         if: always()
@@ -192,9 +167,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages
-        if: always() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
+          destination_dir: ${{ github.head_ref || github.ref_name }}
           keep_files: true
