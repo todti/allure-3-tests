@@ -1,0 +1,11 @@
+
+> @allure-tests/jest@1.0.0 test /Users/runner/work/allure-3-tests/allure-3-tests/packages/jest
+> node --experimental-vm-modules ./node_modules/jest/bin/jest.js
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration

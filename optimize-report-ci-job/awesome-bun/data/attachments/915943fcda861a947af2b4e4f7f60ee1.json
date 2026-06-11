@@ -1,0 +1,12 @@
+[
+  {
+    "sku": "BK-1",
+    "title": "Testing with Playwright",
+    "price": 29
+  },
+  {
+    "sku": "BK-2",
+    "title": "Allure Reporting Guide",
+    "price": 39
+  }
+]
