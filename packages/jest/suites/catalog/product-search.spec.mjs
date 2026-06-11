@@ -1,4 +1,4 @@
-import { describe, it, jest } from "@jest/globals";
+import { describe, it } from "@jest/globals";
 import { testCatalogSearch } from "@allure-tests/shared";
 
 describe("Catalog", () => {

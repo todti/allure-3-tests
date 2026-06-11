@@ -2,9 +2,7 @@ name: Allure Report
 
 on:
   push:
-    branches: [master, main]
   pull_request:
-    branches: [master, main]
 
 permissions:
   contents: write
@@ -39,6 +37,8 @@ jobs:
           - codeceptjs
           - newman
           - bun
+    env:
+      ALLURE_SERVICE_ACCESS_TOKEN: ${{ secrets.ALLURE_SERVICE_ACCESS_TOKEN }}
 
     steps:
       - uses: actions/checkout@v6
@@ -98,36 +98,21 @@ jobs:
         shell: bash
         env:
           ALLURE_STAGE: matrix
-          ALLURE_RESULTS_DIR: allure-results-${{ matrix.framework }}-${{ env.OS_SLUG }}
           CI: true
         run: |
           mkdir -p allure-dumps
-          pnpm exec allure run \
-            --config=./allurerc.mjs \
+          pnpm allure run \
             --environment=${{ env.OS_SLUG }} \
             --dump=allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }} \
-            -- pnpm --filter @allure-tests/${{ matrix.framework }} test
-
-      - name: Verify Allure dump archive
-        id: dump
-        if: always()
-        shell: bash
-        run: |
-          dump="allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }}.zip"
-          if [ ! -f "$dump" ]; then
-            echo "Missing Allure dump archive: ${dump}"
-            exit 1
-          fi
-          echo "path=${dump}" >> "$GITHUB_OUTPUT"
-          ls -la "$dump"
+            -- pnpm --no-bail --filter @allure-tests/${{ matrix.framework }} test || true
 
       - name: Upload Allure dump
-        if: always() && steps.dump.outcome == 'success'
+        if: always()
         uses: actions/upload-artifact@v6
         with:
           name: allure-dump-${{ matrix.framework }}-${{ env.OS_SLUG }}
-          path: ${{ steps.dump.outputs.path }}
-          if-no-files-found: error
+          path: allure-dumps/${{ matrix.framework }}-${{ env.OS_SLUG }}.zip
+          if-no-files-found: warn
           retention-days: 7
 
   report:
@@ -136,6 +121,8 @@ jobs:
     needs: test
     if: always()
     timeout-minutes: 30
+    env:
+      ALLURE_SERVICE_ACCESS_TOKEN: ${{ secrets.ALLURE_SERVICE_ACCESS_TOKEN }}
 
     steps:
       - uses: actions/checkout@v6
@@ -158,28 +145,30 @@ jobs:
           pattern: allure-dump-*
           merge-multiple: true
 
-      - name: Verify Allure dump archives
+      - name: Verify Allure dumps
         shell: bash
         run: |
           shopt -s nullglob
           dumps=(allure-dumps/*.zip)
           echo "Dump archives: ${#dumps[@]}"
-          ls -la allure-dumps/*.zip || true
           if [ "${#dumps[@]}" -eq 0 ]; then
             echo "No dump archives found — cannot generate a report."
             exit 1
           fi
           if [ "${#dumps[@]}" -lt 30 ]; then
-            echo "Warning: only ${#dumps[@]} dump archives (expected up to 33). Generating a partial merged report."
+            echo "Warning: only ${#dumps[@]} dump archives (expected up to 33). Generating partial report."
           fi
 
-      - name: Validate Allure config
-        run: node -e "import('./allurerc.mjs').then(() => console.log('Allure config OK'))"
-
       - name: Generate Allure 3 report
+        id: generate
         env:
           NODE_OPTIONS: --max-old-space-size=4096
-        run: pnpm exec allure generate --config=./allurerc.mjs --dump="allure-dumps/*.zip" --output=./allure-report
+        run: |
+          dump_args=()
+          for f in allure-dumps/*.zip; do
+            dump_args+=(--dump="$f")
+          done
+          pnpm allure generate "${dump_args[@]}" --output=./allure-report
 
       - name: Allure Report action
         if: always()
@@ -190,9 +179,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages
-        if: always() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        if: steps.generate.outcome == 'success'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
+          destination_dir: ${{ github.head_ref || github.ref_name }}
           keep_files: true

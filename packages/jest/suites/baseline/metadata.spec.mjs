@@ -1,4 +1,4 @@
-import { describe, it, jest } from "@jest/globals";
+import { describe, it } from "@jest/globals";
 import { testMetadataShowcase } from "@allure-tests/shared";
 
 describe("Adapter parity", () => {

@@ -1,4 +1,5 @@
 import * as allure from "allure-js-commons";
+import { frameworkReportName } from "./framework-reports.js";
 import { applyFrameworkLabels } from "./showcase.js";
 import type { ShowcaseContext } from "./types.js";
 
@@ -57,6 +58,68 @@ const DOMAIN_META: Record<string, DomainMeta> = {
     component: "payment-gateway",
     parentSuite: "Payments",
     suite: "Card processing",
+  },
+  "card-tokenization": {
+    domain: "payments",
+    epic: "Payments",
+    feature: "Card processing",
+    story: "PCI tokenization",
+    layer: "api",
+    component: "pci-vault",
+    parentSuite: "Payments",
+    suite: "Card processing",
+    subSuite: "Tokenization",
+  },
+  "payment-authorization": {
+    domain: "payments",
+    epic: "Payments",
+    feature: "Card processing",
+    story: "Authorization",
+    layer: "integration",
+    component: "payment-gateway",
+    parentSuite: "Payments",
+    suite: "Card processing",
+    subSuite: "Authorization",
+  },
+  "payment-refund": {
+    domain: "payments",
+    epic: "Payments",
+    feature: "Refunds",
+    story: "Full refund",
+    layer: "api",
+    component: "payment-gateway",
+    parentSuite: "Payments",
+    suite: "Refunds",
+  },
+  "fraud-score": {
+    domain: "payments",
+    epic: "Payments",
+    feature: "Fraud prevention",
+    story: "Transaction scoring",
+    layer: "integration",
+    component: "fraud-service",
+    parentSuite: "Payments",
+    suite: "Fraud prevention",
+  },
+  "subscription-billing": {
+    domain: "payments",
+    epic: "Payments",
+    feature: "Subscriptions",
+    story: "Recurring cycle billing",
+    layer: "integration",
+    component: "billing-service",
+    parentSuite: "Payments",
+    suite: "Subscriptions",
+  },
+  "settlement-report": {
+    domain: "payments",
+    epic: "Payments",
+    feature: "Settlement",
+    story: "Daily settlement report",
+    layer: "api",
+    component: "settlement-service",
+    parentSuite: "Payments",
+    suite: "Settlement",
   },
   "inventory-flaky": {
     domain: "inventory",
@@ -222,6 +285,12 @@ export async function applyDomainLabels(
   const meta = DOMAIN_META[domainId];
   await applyFrameworkLabels(ctx);
   await applyBddLabels(meta);
+  // Put framework at top of tree so the combined report organises by framework first,
+  // then business domain, then feature — instead of all frameworks piling up under the
+  // same domain node.
+  await allure.parentSuite(frameworkReportName(ctx.framework));
+  await allure.suite(meta.parentSuite ?? meta.epic);
+  await allure.subSuite(meta.suite ?? meta.feature);
   await applyCoverageLabels(domainId, ctx.framework);
   return meta;
 }
