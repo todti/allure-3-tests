@@ -1,6 +1,6 @@
 import { When, Then } from "@cucumber/cucumber";
 import * as allure from "allure-js-commons";
-import { testApiHealth, testAuditStatuses, testAuthLogin, testCacheRetry, testCatalogSearch, testCheckoutTax, testEmailWebhook, testExportAttachments, testFlakyInventory, testFlakyPayment, testKnownRegression, testMetadataShowcase, testPasswordReset, testUserProfile } from "@allure-tests/shared";
+import { testApiHealth, testAuditStatuses, testAuthLogin, testCacheRetry, testCatalogSearch, testCardTokenization, testCheckoutTax, testEmailWebhook, testExportAttachments, testFlakyInventory, testFlakyPayment, testFraudScore, testKnownRegression, testMetadataShowcase, testPasswordReset, testPaymentAuthorization, testPaymentRefund, testSettlementReport, testSubscriptionBilling, testUserProfile } from "@allure-tests/shared";
 
 When("the oauth login flow runs for cucumber", async () => {
   await testAuthLogin({ framework: "cucumber", runner: "node" });
@@ -16,6 +16,30 @@ When("the tax calculation flow runs for cucumber", async () => {
 
 When("the flaky gateway flow runs for cucumber", async () => {
   await testFlakyPayment({ framework: "cucumber", runner: "node" });
+});
+
+When("the card-tokenization flow runs for cucumber", async () => {
+  await testCardTokenization({ framework: "cucumber", runner: "node" });
+});
+
+When("the payment-authorization flow runs for cucumber", async () => {
+  await testPaymentAuthorization({ framework: "cucumber", runner: "node" });
+});
+
+When("the payment-refund flow runs for cucumber", async () => {
+  await testPaymentRefund({ framework: "cucumber", runner: "node" });
+});
+
+When("the fraud-score flow runs for cucumber", async () => {
+  await testFraudScore({ framework: "cucumber", runner: "node" });
+});
+
+When("the subscription-billing flow runs for cucumber", async () => {
+  await testSubscriptionBilling({ framework: "cucumber", runner: "node" });
+});
+
+When("the settlement-report flow runs for cucumber", async () => {
+  await testSettlementReport({ framework: "cucumber", runner: "node" });
 });
 
 When("the flaky sync flow runs for cucumber", async () => {

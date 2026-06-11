@@ -28,30 +28,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@types/mocha':
         specifier: ^10.0.10
@@ -80,30 +56,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@types/node':
         specifier: ^20.17.6
@@ -129,30 +81,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@cucumber/cucumber':
         specifier: ^11.0.0
@@ -178,30 +106,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@types/node':
         specifier: ^20.17.6
@@ -224,30 +128,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@types/jasmine':
         specifier: ^5.1.5
@@ -276,30 +156,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@jest/globals':
         specifier: ^29.7.0
@@ -331,30 +187,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@types/mocha':
         specifier: ^10.0.10
@@ -383,37 +215,13 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-js-commons:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
     devDependencies:
       '@types/node':
         specifier: ^20.17.6
         version: 20.19.41
+      allure-js-commons:
+        specifier: 3.9.0
+        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))
       newman:
         specifier: ^6.2.1
         version: 6.2.2
@@ -426,30 +234,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@playwright/test':
         specifier: ^1.55.0
@@ -512,30 +296,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@types/node':
         specifier: ^20.17.6
@@ -561,33 +321,6 @@ importers:
       '@allure-tests/shared':
         specifier: workspace:*
         version: link:../shared
-      allure-codeceptjs:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(codeceptjs@3.7.9(@babel/core@7.29.7)(@jest/environment@29.7.0)(@jest/types@30.4.1)(@types/node@20.19.41)(expect@30.4.1)(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))(react@19.2.6))(mocha@11.7.6)
-      allure-cucumberjs:
-        specifier: 3.9.0
-        version: 3.9.0(@cucumber/cucumber@11.3.0)(@cucumber/messages@32.3.1)(allure-playwright@3.9.0(@playwright/test@1.60.0))
-      allure-cypress:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(cypress@14.5.4)
-      allure-jasmine:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jasmine@5.13.0)
-      allure-jest:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(jest-circus@29.7.0)(jest-cli@29.7.0(@types/node@20.19.41))(jest-environment-node@29.7.0)(jest@29.7.0(@types/node@20.19.41))
-      allure-mocha:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(mocha@11.7.6)
-      allure-playwright:
-        specifier: 3.9.0
-        version: 3.9.0(@playwright/test@1.60.0)
-      allure-vitest:
-        specifier: 3.9.0
-        version: 3.9.0(@vitest/runner@3.2.4)(allure-playwright@3.9.0(@playwright/test@1.60.0))(vitest@3.2.4(@types/node@20.19.41)(jiti@2.7.0)(terser@5.48.0)(tsx@4.22.3)(yaml@2.9.0))
-      newman-reporter-allure:
-        specifier: 3.9.0
-        version: 3.9.0(allure-playwright@3.9.0(@playwright/test@1.60.0))(newman@6.2.2)
     devDependencies:
       '@types/node':
         specifier: ^20.17.6

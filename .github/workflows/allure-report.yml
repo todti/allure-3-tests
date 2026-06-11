@@ -2,9 +2,7 @@ name: Allure Report
 
 on:
   push:
-    branches: [master, main]
   pull_request:
-    branches: [master, main]
 
 permissions:
   contents: write
@@ -179,7 +177,12 @@ jobs:
       - name: Generate Allure 3 report
         env:
           NODE_OPTIONS: --max-old-space-size=4096
-        run: pnpm exec allure generate --config=./allurerc.mjs --dump="allure-dumps/*.zip" --output=./allure-report
+        run: |
+          dump_args=()
+          for f in allure-dumps/*.zip; do
+            dump_args+=(--dump="$f")
+          done
+          pnpm exec allure generate --config=./allurerc.mjs "${dump_args[@]}" --output=./allure-report
 
       - name: Allure Report action
         if: always()

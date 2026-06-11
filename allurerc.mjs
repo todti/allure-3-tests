@@ -72,7 +72,7 @@ const qualityGateRules = [
     maxFailures: 60,
     minTestsCount: 300,
     successRate: 0.7,
-    environmentsTested: ["Linux", "macOS", "Windows"],
+    environmentsTested: ["linux", "macos", "windows"],
   },
   ...FRAMEWORKS.map((framework) => ({
     id: `gate-${framework}`,
