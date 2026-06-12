@@ -1,5 +1,5 @@
 import * as allure from "allure-js-commons";
-import { ContentType, Status } from "allure-js-commons";
+import { ContentType } from "allure-js-commons";
 import { applyDomainLabels } from "../labels.js";
 import { runBrowserSmoke } from "../showcase.js";
 import type { ShowcaseContext } from "../types.js";
@@ -14,16 +14,8 @@ export async function testKnownRegression(ctx: ShowcaseContext): Promise<void> {
 
   await runBrowserSmoke(ctx);
 
-  try {
-    await allure.step("Verify legacy billing rule", async () => {
-      await allure.attachment("assertion.log", "Expected refund cap = 100", ContentType.TEXT);
-      throw new Error("Demo regression — intentionally failing for Allure dashboards");
-    });
-  } catch (error) {
-    await allure.logStep(
-      "Demo regression captured for dashboards",
-      Status.BROKEN,
-      error instanceof Error ? error : new Error(String(error)),
-    );
-  }
+  await allure.step("Verify legacy billing rule", async () => {
+    await allure.attachment("assertion.log", "Expected refund cap = 100", ContentType.TEXT);
+    throw new Error("Demo regression — intentionally failing for Allure dashboards");
+  });
 }
