@@ -1,0 +1,29 @@
+
+> @allure-tests/jasmine@1.0.0 test /Users/runner/work/allure-3-tests/allure-3-tests/packages/jasmine
+> jasmine --config=jasmine.json
+
+Started
+........F..............
+
+Failures:
+1) Jasmine · Spies and doubles spyOn tracks calls without replacing implementation
+  Message:
+    Expected 4 to be 3.
+  Stack:
+        at <Jasmine>
+        at Spec.addExpectationResult (file:///Users/runner/work/allure-3-tests/allure-3-tests/node_modules/.pnpm/allure-jasmine@3.9.0_allure-playwright@3.9.0_@playwright+test@1.60.0__jasmine@5.13.0/node_modules/allure-jasmine/dist/esm/index.js:242:34)
+        at <Jasmine>
+        at file:///Users/runner/work/allure-3-tests/allure-3-tests/packages/jasmine/suites/jasmine-features/spies-showcase.spec.mjs:39:37
+        at file:///Users/runner/work/allure-3-tests/allure-3-tests/node_modules/.pnpm/allure-js-commons@3.9.0_allure-playwright@3.9.0_@playwright+test@1.60.0_/node_modules/allure-js-commons/dist/esm/facade.js:106:48
+        at file:///Users/runner/work/allure-3-tests/allure-3-tests/node_modules/.pnpm/allure-js-commons@3.9.0_allure-playwright@3.9.0_@playwright+test@1.60.0_/node_modules/allure-js-commons/dist/esm/sdk/runtime/MessageTestRuntime.js:241:28
+
+23 specs, 1 failure
+Finished in 0.164 seconds
+[41m[30m ERR_PNPM_RECURSIVE_FAIL [39m[49m 
+
+
+Summary: [31m1 fails[39m, 0 passes
+
+/Users/runner/work/allure-3-tests/allure-3-tests/packages/jasmine:
+[41m[30m ERROR [39m[49m [31m@allure-tests/jasmine@1.0.0 test: `jasmine --config=jasmine.json`[39m
+[31mExit status 3[39m

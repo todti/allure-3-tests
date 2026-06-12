@@ -1,0 +1,8 @@
+// @allure.label.os:Windows
+// @allure.label.framework:newman
+// @allure.label.epic:Payments
+// @allure.label.feature:Settlement
+// @allure.label.story:Daily settlement report
+// @allure.label.severity:normal
+// @allure.label.tag:settlement
+pm.test('settlement submitted', () => pm.response.to.have.status(200));
