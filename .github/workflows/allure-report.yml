@@ -93,7 +93,31 @@ jobs:
         if: matrix.framework == 'cypress'
         run: pnpm --filter @allure-tests/cypress exec cypress install
 
+      # WebdriverIO uses @wdio/allure-reporter which writes to disk, not allure IPC.
+      # Running via `allure run` kills wdio workers before tests start (no IPC handshake).
+      # We run it directly and upload the plain allure-results directory.
+      - name: Run WebdriverIO tests (no IPC)
+        if: matrix.framework == 'webdriverio'
+        timeout-minutes: 20
+        shell: bash
+        env:
+          ALLURE_RESULTS_DIR: allure-results-wdio
+          CI: true
+        run: |
+          mkdir -p allure-results-wdio
+          pnpm --no-bail --filter @allure-tests/webdriverio test || true
+
+      - name: Upload WebdriverIO plain results
+        if: matrix.framework == 'webdriverio'
+        uses: actions/upload-artifact@v6
+        with:
+          name: allure-results-wdio-${{ env.OS_SLUG }}
+          path: allure-results-wdio/
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Run tests with Allure run
+        if: matrix.framework != 'webdriverio'
         timeout-minutes: 20
         shell: bash
         env:
@@ -107,7 +131,7 @@ jobs:
             -- pnpm --no-bail --filter @allure-tests/${{ matrix.framework }} test || true
 
       - name: Upload Allure dump
-        if: always()
+        if: matrix.framework != 'webdriverio'
         uses: actions/upload-artifact@v6
         with:
           name: allure-dump-${{ matrix.framework }}-${{ env.OS_SLUG }}
@@ -145,18 +169,25 @@ jobs:
           pattern: allure-dump-*
           merge-multiple: true
 
-      - name: Verify Allure dumps
+      - name: Download WebdriverIO plain results
+        uses: actions/download-artifact@v6
+        continue-on-error: true
+        with:
+          path: ./allure-results-wdio
+          pattern: allure-results-wdio-*
+          merge-multiple: true
+
+      - name: Verify Allure inputs
         shell: bash
         run: |
           shopt -s nullglob
           dumps=(allure-dumps/*.zip)
+          wdio_results=(allure-results-wdio/*.json)
           echo "Dump archives: ${#dumps[@]}"
-          if [ "${#dumps[@]}" -eq 0 ]; then
-            echo "No dump archives found — cannot generate a report."
+          echo "WebdriverIO result files: ${#wdio_results[@]}"
+          if [ "${#dumps[@]}" -eq 0 ] && [ "${#wdio_results[@]}" -eq 0 ]; then
+            echo "No inputs found — cannot generate a report."
             exit 1
-          fi
-          if [ "${#dumps[@]}" -lt 30 ]; then
-            echo "Warning: only ${#dumps[@]} dump archives (expected up to 33). Generating partial report."
           fi
 
       - name: Generate Allure 3 report
@@ -168,14 +199,18 @@ jobs:
           for f in allure-dumps/*.zip; do
             dump_args+=(--dump="$f")
           done
-          pnpm allure generate "${dump_args[@]}" --output=./allure-report
+          extra_dirs=()
+          if [ -d allure-results-wdio ] && ls allure-results-wdio/*.json &>/dev/null 2>&1; then
+            extra_dirs+=(./allure-results-wdio)
+          fi
+          pnpm allure generate "${dump_args[@]}" "${extra_dirs[@]}" --output=./allure-report
 
       - name: Allure Report action
         if: always()
         uses: allure-framework/allure-action@v0
         with:
           report-directory: ./allure-report
-          remote-href: https://todti.github.io/allure-3-tests/
+          remote-href: https://todti.github.io/allure-3-tests/${{ github.head_ref || github.ref_name }}/
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages

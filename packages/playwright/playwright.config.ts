@@ -20,8 +20,8 @@ export default defineConfig({
     ],
   ],
   use: {
-    trace: process.env.CI ? "on-first-retry" : "retain-on-failure",
-    screenshot: "only-on-failure",
+    trace: "on",
+    screenshot: "on",
     video: "off",
   },
   projects: [
