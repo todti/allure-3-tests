@@ -1,0 +1,1 @@
+pm.environment.set('fraud_roll', String(Math.random()));

@@ -1,0 +1,2 @@
+pm.environment.set('sessionToken', 'tok-' + Math.random().toString(36).slice(2));
+pm.environment.set('userId', 'usr-' + Math.floor(Math.random() * 9000 + 1000));

@@ -1,0 +1,14 @@
+{
+  "sent": {
+    "id": "msg-001",
+    "queued": true
+  },
+  "scheduled": {
+    "id": "sched-001",
+    "sendAt": "2026-01-01T10:00:00Z"
+  },
+  "status": {
+    "id": "msg-001",
+    "status": "delivered"
+  }
+}

@@ -1,0 +1,8 @@
+accept-ranges,bytes
+access-control-allow-origin,*
+age,341
+cache-control,max-age=600
+connection,keep-alive
+content-encoding,gzip
+content-length,6273
+content-type,text/html; charset=utf-8

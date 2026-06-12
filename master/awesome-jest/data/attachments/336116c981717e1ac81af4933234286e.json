@@ -1,0 +1,5 @@
+{
+  "status": "authorized",
+  "auth_code": "AUT-12345678",
+  "amount_authorized": 4999
+}

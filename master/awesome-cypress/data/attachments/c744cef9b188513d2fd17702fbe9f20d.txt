@@ -1,0 +1,17 @@
+// @allure.label.os:macOS
+// @allure.label.framework:newman
+// @allure.label.feature:Variable chaining
+// @allure.label.story:Cross-request environment variables
+// @allure.label.epic:Framework Showcase
+// @allure.label.parentSuite:Newman · Postman API
+// @allure.label.suite:Framework Features
+// @allure.label.tag:framework-specific
+pm.test('session token was set', () => {
+  const tok = pm.environment.get('sessionToken');
+  pm.expect(tok).to.match(/^tok-/);
+});
+pm.test('user id was set', () => {
+  const uid = pm.environment.get('userId');
+  pm.expect(uid).to.match(/^usr-/);
+});
+pm.test('response ok', () => pm.response.to.have.status(200));
