@@ -1,0 +1,5 @@
+// @allure.label.os:Windows
+// @allure.label.framework:newman
+const roll = Number(pm.environment.get('pay_roll'));
+if (roll < 0.35) { pm.test('gateway timeout', () => { throw new Error('Flaky payment ' + roll); }); }
+else { pm.test('authorized', () => pm.response.to.have.status(200)); }

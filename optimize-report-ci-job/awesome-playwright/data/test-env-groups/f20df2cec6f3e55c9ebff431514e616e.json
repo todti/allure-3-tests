@@ -1,0 +1,1 @@
+{"id":"f20df2cec6f3e55c9ebff431514e616e","fullName":"playwright-features/browser-interaction.spec.ts:9:7","name":"navigates, asserts title, and attaches screenshot","status":"passed","testResultsByEnv":{"linux":"8f5fd417febd1afcf19098e00cdd33a4","macos":"c1f8a9443b2e6af198e3923a7c98c09f","windows":"f9c36a28ddc81d9294742fdf16a0dcfd"}}

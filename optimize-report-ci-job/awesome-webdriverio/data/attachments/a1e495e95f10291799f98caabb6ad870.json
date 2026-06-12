@@ -1,0 +1,27 @@
+[
+  {
+    "service": "auth",
+    "status": "healthy",
+    "latency_ms": 38
+  },
+  {
+    "service": "catalog",
+    "status": "healthy",
+    "latency_ms": 17
+  },
+  {
+    "service": "payments",
+    "status": "healthy",
+    "latency_ms": 8
+  },
+  {
+    "service": "notifications",
+    "status": "healthy",
+    "latency_ms": 25
+  },
+  {
+    "service": "analytics",
+    "status": "healthy",
+    "latency_ms": 24
+  }
+]

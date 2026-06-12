@@ -1,0 +1,12 @@
+{
+  "framework": "mocha",
+  "phase": "setup",
+  "host": "Windows",
+  "node": "v24.16.0",
+  "platform": "win32",
+  "arch": "x64",
+  "cwd": "D:\\a\\allure-3-tests\\allure-3-tests\\packages\\mocha",
+  "timestamp": "2026-06-12T08:10:49.876Z",
+  "ci": true,
+  "runId": "27403338559"
+}
