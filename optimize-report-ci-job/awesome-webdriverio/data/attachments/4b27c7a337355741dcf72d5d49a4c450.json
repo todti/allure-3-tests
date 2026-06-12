@@ -1,0 +1,12 @@
+{
+  "framework": "bun",
+  "phase": "teardown",
+  "host": "Windows",
+  "node": "v24.3.0",
+  "platform": "win32",
+  "arch": "x64",
+  "cwd": "D:\\a\\allure-3-tests\\allure-3-tests\\packages\\bun",
+  "timestamp": "2026-06-12T09:22:41.977Z",
+  "ci": true,
+  "runId": "27406709250"
+}

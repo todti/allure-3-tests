@@ -1,0 +1,9 @@
+{
+  "event": "checkout.completed",
+  "orderId": "ord-demo-001",
+  "amount": 199.99,
+  "items": [
+    { "sku": "PROD-A", "qty": 2, "price": 49.99 },
+    { "sku": "PROD-B", "qty": 1, "price": 100.01 }
+  ]
+}

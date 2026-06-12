@@ -1,0 +1,5 @@
+card_type,amount,currency,prefix,result
+Visa,100,USD,4,approved
+Mastercard,250,EUR,5,approved
+Amex,500,GBP,37,approved
+Unknown,50,USD,9,declined

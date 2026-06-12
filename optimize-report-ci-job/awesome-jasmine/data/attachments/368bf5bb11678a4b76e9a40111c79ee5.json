@@ -1,0 +1,18 @@
+[
+  {
+    "flag": "darkMode",
+    "enabled": true
+  },
+  {
+    "flag": "betaCheckout",
+    "enabled": true
+  },
+  {
+    "flag": "legacy",
+    "enabled": false
+  },
+  {
+    "flag": "unknown",
+    "enabled": false
+  }
+]

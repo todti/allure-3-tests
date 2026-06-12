@@ -1,0 +1,15 @@
+{
+  "sign": [
+    [
+      {
+        "sub": "user-1",
+        "role": "admin"
+      }
+    ]
+  ],
+  "verify": [
+    [
+      "signed:{\"sub\":\"user-1\",\"role\":\"admin\"}"
+    ]
+  ]
+}

@@ -1,0 +1,1 @@
+Demo regression — intentionally failing for Allure dashboards (attempt 2)

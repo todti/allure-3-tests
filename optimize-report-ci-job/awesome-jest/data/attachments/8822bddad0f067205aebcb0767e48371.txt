@@ -1,0 +1,4 @@
+// Generate request ID and timestamp before the request
+pm.variables.set('requestId', 'req-' + Math.random().toString(36).slice(2, 10));
+pm.variables.set('requestTimestamp', new Date().toISOString());
+pm.variables.set('correlationId', 'corr-' + Date.now());

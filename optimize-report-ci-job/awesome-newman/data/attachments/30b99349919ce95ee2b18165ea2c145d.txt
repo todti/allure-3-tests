@@ -1,0 +1,51 @@
+
+> @allure-tests/vitest@1.0.0 test /Users/runner/work/allure-3-tests/allure-3-tests/packages/vitest
+> vitest run
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/Users/runner/work/allure-3-tests/allure-3-tests/packages/vitest[39m
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+ [32m✓[39m suites/reliability/cache-retry.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m suites/vitest-features/table-driven.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m suites/payments/fraud-score.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m suites/inventory/flaky-sync.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m suites/payments/settlement-report.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m suites/payments/subscription-billing.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m suites/payments/flaky-gateway.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m suites/baseline/metadata.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m suites/journeys/password-reset.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m suites/payments/payment-authorization.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m suites/reporting/export-attachments.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m suites/compliance/audit-statuses.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [31m❯[39m suites/analytics/known-regression.spec.ts [2m([22m[2m1 test[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 11[2mms[22m[39m
+[31m   [31m×[31m Analytics[2m > [22mKnown regression remains red for dashboard analytics[39m[32m 10[2mms[22m[39m
+[31m     → Demo regression — intentionally failing for Allure dashboards (attempt 1)[39m
+ [32m✓[39m suites/notifications/email-webhook.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m suites/checkout/tax-calculation.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m suites/payments/payment-refund.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m suites/catalog/product-search.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m suites/payments/card-tokenization.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m suites/users/profile-params.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m suites/api/health-check.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 68[2mms[22m[39m
+ [32m✓[39m suites/auth/oauth-login.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 11[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m20 passed[39m[22m[90m (21)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m25 passed[39m[22m[90m (26)[39m
+[2m   Start at [22m 09:21:51
+[2m   Duration [22m 4.83s[2m (transform 281ms, setup 1.98s, collect 184ms, tests 275ms, environment 3ms, prepare 1.74s)[22m
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+[41m[30m ERR_PNPM_RECURSIVE_FAIL [39m[49m 
+
+
+Summary: [31m1 fails[39m, 0 passes
+
+/Users/runner/work/allure-3-tests/allure-3-tests/packages/vitest:
+[41m[30m ERROR [39m[49m [31m@allure-tests/vitest@1.0.0 test: `vitest run`[39m
+[31mExit status 1[39m

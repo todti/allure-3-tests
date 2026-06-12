@@ -1,0 +1,12 @@
+{
+  "framework": "bun",
+  "phase": "teardown",
+  "host": "macOS",
+  "node": "v24.3.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cwd": "/Users/runner/work/allure-3-tests/allure-3-tests/packages/bun",
+  "timestamp": "2026-06-12T09:22:43.834Z",
+  "ci": true,
+  "runId": "27406709250"
+}

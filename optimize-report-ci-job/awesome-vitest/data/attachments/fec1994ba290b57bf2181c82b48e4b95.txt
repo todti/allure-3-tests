@@ -1,0 +1,3 @@
+// @allure.label.os:Windows
+// @allure.label.framework:newman
+pm.test('catalog docs available', () => pm.expect(pm.response.text()).to.include('Playwright'));

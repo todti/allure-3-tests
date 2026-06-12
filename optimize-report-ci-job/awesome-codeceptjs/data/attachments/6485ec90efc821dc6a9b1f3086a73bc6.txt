@@ -1,0 +1,11 @@
+
+DevTools listening on ws://127.0.0.1:49182/devtools/browser/565872c1-3a56-42dc-b7cd-c5bcc2da40bd
+(node:3413) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("file%3A///Users/runner/Library/Caches/Cypress/14.5.4/Cypress.app/Contents/Resources/app/node_modules/ts-node/esm/transpile-only.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3413) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Opening `/dev/tty` failed (6): Device not configured
+Opening `/dev/tty` failed (6): Device not configured
+Opening `/dev/tty` failed (6): Device not configured
+Opening `/dev/tty` failed (6): Device not configured
