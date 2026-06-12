@@ -1,0 +1,12 @@
+{
+  "framework": "jasmine",
+  "phase": "setup",
+  "host": "macOS",
+  "node": "v24.16.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cwd": "/Users/runner/work/allure-3-tests/allure-3-tests/packages/jasmine",
+  "timestamp": "2026-06-12T08:33:47.264Z",
+  "ci": true,
+  "runId": "27404266187"
+}

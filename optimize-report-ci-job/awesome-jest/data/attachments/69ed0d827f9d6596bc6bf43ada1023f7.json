@@ -1,0 +1,21 @@
+[
+  [
+    "request.start",
+    {
+      "method": "POST",
+      "path": "/checkout"
+    }
+  ],
+  [
+    "payment.charged",
+    {
+      "amount": 49.99
+    }
+  ],
+  [
+    "request.end",
+    {
+      "status": 200
+    }
+  ]
+]
