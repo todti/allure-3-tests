@@ -1,0 +1,12 @@
+{
+  "framework": "jasmine",
+  "phase": "teardown",
+  "host": "Linux",
+  "node": "v24.16.0",
+  "platform": "linux",
+  "arch": "x64",
+  "cwd": "/home/runner/work/allure-3-tests/allure-3-tests/packages/jasmine",
+  "timestamp": "2026-06-12T08:55:08.414Z",
+  "ci": true,
+  "runId": "27405413138"
+}

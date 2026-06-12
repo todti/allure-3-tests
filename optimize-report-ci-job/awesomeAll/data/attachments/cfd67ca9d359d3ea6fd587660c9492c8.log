@@ -1,0 +1,4 @@
+[bun] setup started
+node=v24.3.0
+platform=darwin/arm64
+memory=7MB

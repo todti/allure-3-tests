@@ -1,0 +1,12 @@
+{
+  "framework": "codeceptjs",
+  "phase": "teardown",
+  "host": "Linux",
+  "node": "v24.16.0",
+  "platform": "linux",
+  "arch": "x64",
+  "cwd": "/home/runner/work/allure-3-tests/allure-3-tests/packages/codeceptjs",
+  "timestamp": "2026-06-12T08:54:53.290Z",
+  "ci": true,
+  "runId": "27405413138"
+}
