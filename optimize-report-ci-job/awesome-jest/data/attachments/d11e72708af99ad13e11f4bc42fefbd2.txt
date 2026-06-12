@@ -1,0 +1,3 @@
+// @allure.label.os:Windows
+// @allure.label.framework:newman
+pm.test('known regression captured for dashboards', () => { pm.response.to.have.status(200); pm.test('legacy billing rule mismatch (demo)', () => { console.log('Demo regression for Allure dashboards'); }); });

@@ -1,0 +1,461 @@
+
+> @allure-tests/playwright@1.0.0 test /home/runner/work/allure-3-tests/allure-3-tests/packages/playwright
+> playwright test
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+
+[2mRunning [22m23[2m tests using [22m2[2m workers[22m
+
+  [31m✘[39m  [2m 1 [22m[31m[chromium] › suites/analytics/known-regression.spec.ts:6:7 › Analytics › Known regression remains red for dashboard analytics[39m[2m (789ms)[22m
+  [32m✓[39m  [2m 2 [22m[chromium] › suites/api/health-check.spec.ts:6:7 › API › Public API health endpoint responds with 200[2m (1.1s)[22m
+  [32m✓[39m  [2m 3 [22m[chromium] › suites/auth/oauth-login.spec.ts:5:7 › Authentication › OAuth login grants access token[2m (39ms)[22m
+  [32m✓[39m  [2m 4 [22m[chromium] › suites/baseline/metadata.spec.ts:6:7 › Adapter parity › Allure metadata baseline documents runtime API surface[2m (705ms)[22m
+  [32m✓[39m  [2m 6 [22m[chromium] › suites/catalog/product-search.spec.ts:5:7 › Catalog › Product search applies filters and pagination[2m (23ms)[22m
+  [32m✓[39m  [2m 7 [22m[chromium] › suites/checkout/tax-calculation.spec.ts:5:7 › Checkout › Checkout tax engine calculates VAT in nested steps[2m (23ms)[22m
+  [32m✓[39m  [2m 8 [22m[chromium] › suites/compliance/audit-statuses.spec.ts:5:7 › Compliance › Audit pipeline records passed, skipped, and broken steps[2m (35ms)[22m
+  [31m✘[39m  [2m 5 [22m[31m[chromium] › suites/analytics/known-regression.spec.ts:6:7 › Analytics › Known regression remains red for dashboard analytics[39m[33m (retry #1)[39m[2m (755ms)[22m
+  [31m✘[39m  [2m 9 [22m[31m[chromium] › suites/inventory/flaky-sync.spec.ts:8:7 › Inventory › Inventory shard lock causes intermittent sync failures[39m[2m (636ms)[22m
+  [31m✘[39m  [2m10 [22m[31m[chromium] › suites/analytics/known-regression.spec.ts:6:7 › Analytics › Known regression remains red for dashboard analytics[39m[33m (retry #2)[39m[2m (846ms)[22m
+  [31m✘[39m  [2m11 [22m[31m[chromium] › suites/inventory/flaky-sync.spec.ts:8:7 › Inventory › Inventory shard lock causes intermittent sync failures[39m[33m (retry #1)[39m[2m (785ms)[22m
+  [32m✓[39m  [2m12 [22m[chromium] › suites/journeys/password-reset.spec.ts:6:7 › Customer journeys › Password reset journey sends token and confirms delivery[2m (820ms)[22m
+  [32m✓[39m  [2m14 [22m[chromium] › suites/notifications/email-webhook.spec.ts:5:7 › Notifications › Email provider webhook fan-out completes asynchronously[2m (33ms)[22m
+  [32m✓[39m  [2m15 [22m[chromium] › suites/payments/card-tokenization.spec.ts:5:7 › Payments › Card number is tokenized via PCI vault[2m (47ms)[22m
+  [32m✓[39m  [2m13 [22m[chromium] › suites/inventory/flaky-sync.spec.ts:8:7 › Inventory › Inventory shard lock causes intermittent sync failures[33m (retry #2)[39m[2m (726ms)[22m
+  [31m✘[39m  [2m17 [22m[31m[chromium] › suites/payments/fraud-score.spec.ts:7:7 › Payments › Fraud model scores transaction and auto-approves low-risk payment[39m[2m (39ms)[22m
+  [31m✘[39m  [2m16 [22m[31m[chromium] › suites/payments/flaky-gateway.spec.ts:8:7 › Payments › Payment gateway may timeout before authorization[39m[2m (646ms)[22m
+  [31m✘[39m  [2m18 [22m[31m[chromium] › suites/payments/fraud-score.spec.ts:7:7 › Payments › Fraud model scores transaction and auto-approves low-risk payment[39m[33m (retry #1)[39m[2m (61ms)[22m
+  [32m✓[39m  [2m20 [22m[chromium] › suites/payments/fraud-score.spec.ts:7:7 › Payments › Fraud model scores transaction and auto-approves low-risk payment[33m (retry #2)[39m[2m (107ms)[22m
+  [32m✓[39m  [2m21 [22m[chromium] › suites/payments/payment-authorization.spec.ts:5:7 › Payments › Payment intent is authorized against card token[2m (45ms)[22m
+  [32m✓[39m  [2m22 [22m[chromium] › suites/payments/payment-refund.spec.ts:5:7 › Payments › Captured payment is fully refunded to the card[2m (31ms)[22m
+  [32m✓[39m  [2m23 [22m[chromium] › suites/payments/settlement-report.spec.ts:5:7 › Payments › Daily settlement report is generated and submitted to acquiring bank[2m (48ms)[22m
+  [32m✓[39m  [2m24 [22m[chromium] › suites/payments/subscription-billing.spec.ts:5:7 › Payments › Recurring subscription cycle charges stored payment method[2m (62ms)[22m
+  [32m✓[39m  [2m19 [22m[chromium] › suites/payments/flaky-gateway.spec.ts:8:7 › Payments › Payment gateway may timeout before authorization[33m (retry #1)[39m[2m (739ms)[22m
+  [32m✓[39m  [2m26 [22m[chromium] › suites/playwright-features/deep-steps.spec.ts:9:7 › Playwright · Deep step nesting › records 4-level allure.step + test.step hierarchy with parallel branches[2m (28ms)[22m
+  [31m✘[39m  [2m27 [22m[31m[chromium] › suites/reliability/cache-retry.spec.ts:8:7 › Reliability › Distributed cache misses on cold start then recovers after retry[39m[2m (676ms)[22m
+  [32m✓[39m  [2m25 [22m[chromium] › suites/playwright-features/browser-interaction.spec.ts:9:7 › Playwright · Browser interaction › navigates, asserts title, and attaches screenshot[2m (995ms)[22m
+  [31m✘[39m  [2m28 [22m[31m[chromium] › suites/playwright-features/browser-interaction.spec.ts:39:7 › Playwright · Browser interaction › intercepts network request and validates mock response[39m[2m (158ms)[22m
+  [31m✘[39m  [2m30 [22m[31m[chromium] › suites/playwright-features/browser-interaction.spec.ts:39:7 › Playwright · Browser interaction › intercepts network request and validates mock response[39m[33m (retry #1)[39m[2m (270ms)[22m
+  [32m✓[39m  [2m29 [22m[chromium] › suites/reliability/cache-retry.spec.ts:8:7 › Reliability › Distributed cache misses on cold start then recovers after retry[33m (retry #1)[39m[2m (742ms)[22m
+  [32m✓[39m  [2m31 [22m[chromium] › suites/reporting/export-attachments.spec.ts:5:7 › Reporting › Reporting export bundles multiple attachment formats[2m (18ms)[22m
+  [32m✓[39m  [2m32 [22m[chromium] › suites/users/profile-params.spec.ts:5:7 › Users › User profile stores masked and hidden parameters[2m (38ms)[22m
+  [31m✘[39m  [2m33 [22m[31m[chromium] › suites/playwright-features/browser-interaction.spec.ts:39:7 › Playwright · Browser interaction › intercepts network request and validates mock response[39m[33m (retry #2)[39m[2m (204ms)[22m
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+
+
+[31m  1) [chromium] › suites/analytics/known-regression.spec.ts:6:7 › Analytics › Known regression remains red for dashboard analytics › Verify legacy billing rule [39m
+
+    Error: Demo regression — intentionally failing for Allure dashboards
+
+    [90m   at [39m../../shared/dist/domains/regression-failure.js:15
+
+    [0m [90m 13 |[39m     [36mawait[39m allure[33m.[39mstep([32m"Verify legacy billing rule"[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m 14 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"assertion.log"[39m[33m,[39m [32m"Expected refund cap = 100"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 15 |[39m         [36mthrow[39m [36mnew[39m [33mError[39m([32m"Demo regression — intentionally failing for Allure dashboards"[39m)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 16 |[39m     })[33m;[39m
+     [90m 17 |[39m }
+     [90m 18 |[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/regression-failure.js:15:15[22m
+
+[2m    attachment #29: [1mpage-title[2m (text/plain) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    Playwright[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #30: [1massertion.log[2m (text/plain) [2m─────────────────────────────────────────────────────[2m[22m
+[2m    Expected refund cap = 100[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #31: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium/error-context.md[22m
+
+[2m    attachment #33: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[90m    Retry #1 [2m───────────────────────────────────────────────────────────────────────────────────────[22m[39m
+
+    Error: Demo regression — intentionally failing for Allure dashboards
+
+    [90m   at [39m../../shared/dist/domains/regression-failure.js:15
+
+    [0m [90m 13 |[39m     [36mawait[39m allure[33m.[39mstep([32m"Verify legacy billing rule"[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m 14 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"assertion.log"[39m[33m,[39m [32m"Expected refund cap = 100"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 15 |[39m         [36mthrow[39m [36mnew[39m [33mError[39m([32m"Demo regression — intentionally failing for Allure dashboards"[39m)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 16 |[39m     })[33m;[39m
+     [90m 17 |[39m }
+     [90m 18 |[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/regression-failure.js:15:15[22m
+
+[2m    attachment #29: [1mpage-title[2m (text/plain) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    Fast and reliable end-to-end testing for modern web apps | Playwright[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #30: [1massertion.log[2m (text/plain) [2m─────────────────────────────────────────────────────[2m[22m
+[2m    Expected refund cap = 100[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #31: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium-retry1/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium-retry1/error-context.md[22m
+
+[2m    attachment #33: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium-retry1/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium-retry1/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[90m    Retry #2 [2m───────────────────────────────────────────────────────────────────────────────────────[22m[39m
+
+    Error: Demo regression — intentionally failing for Allure dashboards
+
+    [90m   at [39m../../shared/dist/domains/regression-failure.js:15
+
+    [0m [90m 13 |[39m     [36mawait[39m allure[33m.[39mstep([32m"Verify legacy billing rule"[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m 14 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"assertion.log"[39m[33m,[39m [32m"Expected refund cap = 100"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 15 |[39m         [36mthrow[39m [36mnew[39m [33mError[39m([32m"Demo regression — intentionally failing for Allure dashboards"[39m)[33m;[39m
+     [90m    |[39m               [31m[1m^[22m[39m
+     [90m 16 |[39m     })[33m;[39m
+     [90m 17 |[39m }
+     [90m 18 |[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/regression-failure.js:15:15[22m
+
+[2m    attachment #29: [1mpage-title[2m (text/plain) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    Fast and reliable end-to-end testing for modern web apps | Playwright[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #30: [1massertion.log[2m (text/plain) [2m─────────────────────────────────────────────────────[2m[22m
+[2m    Expected refund cap = 100[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #31: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium-retry2/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium-retry2/error-context.md[22m
+
+[2m    attachment #33: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium-retry2/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/analytics-known-regression-212f7-red-for-dashboard-analytics-chromium-retry2/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[31m  2) [chromium] › suites/playwright-features/browser-interaction.spec.ts:39:7 › Playwright · Browser interaction › intercepts network request and validates mock response › Trigger request via evaluate [39m
+
+    Error: page.evaluate: TypeError: Failed to execute 'fetch' on 'Window': Failed to parse URL from /api/status
+    [2m    at eval (eval at evaluate (:302:30), <anonymous>:2:27)[22m
+    [2m    at UtilityScript.evaluate (<anonymous>:304:16)[22m
+    [2m    at UtilityScript.<anonymous> (<anonymous>:1:44)[22m
+    [2m    at eval (eval at evaluate (:302:30), <anonymous>:2:27)[22m
+    [2m    at UtilityScript.evaluate (<anonymous>:304:16)[22m
+    [2m    at UtilityScript.<anonymous> (<anonymous>:1:44)[22m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/playwright/suites/playwright-features/browser-interaction.spec.ts:58:33[22m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/playwright/suites/playwright-features/browser-interaction.spec.ts:56:5[22m
+
+[2m    attachment #13: [1mintercept-pattern[2m (text/plain) [2m─────────────────────────────────────────────────[2m[22m
+[2m    **/api/status[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #14: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium/error-context.md[22m
+
+[2m    attachment #16: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[90m    Retry #1 [2m───────────────────────────────────────────────────────────────────────────────────────[22m[39m
+
+    Error: page.evaluate: TypeError: Failed to execute 'fetch' on 'Window': Failed to parse URL from /api/status
+    [2m    at eval (eval at evaluate (:302:30), <anonymous>:2:27)[22m
+    [2m    at UtilityScript.evaluate (<anonymous>:304:16)[22m
+    [2m    at UtilityScript.<anonymous> (<anonymous>:1:44)[22m
+    [2m    at eval (eval at evaluate (:302:30), <anonymous>:2:27)[22m
+    [2m    at UtilityScript.evaluate (<anonymous>:304:16)[22m
+    [2m    at UtilityScript.<anonymous> (<anonymous>:1:44)[22m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/playwright/suites/playwright-features/browser-interaction.spec.ts:58:33[22m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/playwright/suites/playwright-features/browser-interaction.spec.ts:56:5[22m
+
+[2m    attachment #13: [1mintercept-pattern[2m (text/plain) [2m─────────────────────────────────────────────────[2m[22m
+[2m    **/api/status[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #14: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium-retry1/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium-retry1/error-context.md[22m
+
+[2m    attachment #16: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium-retry1/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium-retry1/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[90m    Retry #2 [2m───────────────────────────────────────────────────────────────────────────────────────[22m[39m
+
+    Error: page.evaluate: TypeError: Failed to execute 'fetch' on 'Window': Failed to parse URL from /api/status
+    [2m    at eval (eval at evaluate (:302:30), <anonymous>:2:27)[22m
+    [2m    at UtilityScript.evaluate (<anonymous>:304:16)[22m
+    [2m    at UtilityScript.<anonymous> (<anonymous>:1:44)[22m
+    [2m    at eval (eval at evaluate (:302:30), <anonymous>:2:27)[22m
+    [2m    at UtilityScript.evaluate (<anonymous>:304:16)[22m
+    [2m    at UtilityScript.<anonymous> (<anonymous>:1:44)[22m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/playwright/suites/playwright-features/browser-interaction.spec.ts:58:33[22m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/playwright/suites/playwright-features/browser-interaction.spec.ts:56:5[22m
+
+[2m    attachment #13: [1mintercept-pattern[2m (text/plain) [2m─────────────────────────────────────────────────[2m[22m
+[2m    **/api/status[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #14: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium-retry2/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium-retry2/error-context.md[22m
+
+[2m    attachment #16: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium-retry2/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/playwright-features-browse-c4986-and-validates-mock-response-chromium-retry2/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[31m  3) [chromium] › suites/inventory/flaky-sync.spec.ts:8:7 › Inventory › Inventory shard lock causes intermittent sync failures › Pull warehouse deltas [39m
+
+    Error: Inventory shard lock contention (simulated)
+
+    [90m   at [39m../../shared/dist/domains/inventory-flaky.js:19
+
+    [0m [90m 17 |[39m         [36mawait[39m step[33m.[39mparameter([32m"attempt"[39m[33m,[39m [33mString[39m(attempt [33m+[39m [35m1[39m))[33m;[39m
+     [90m 18 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m1[39m[33m,[39m [35m0.35[39m)) {
+    [31m[1m>[22m[39m[90m 19 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Inventory shard lock contention (simulated)"[39m)[33m;[39m
+     [90m    |[39m                   [31m[1m^[22m[39m
+     [90m 20 |[39m         }
+     [90m 21 |[39m         [36mawait[39m allure[33m.[39mlogStep([32m"Inventory synchronized"[39m[33m,[39m [33mStatus[39m[33m.[39m[33mPASSED[39m)[33m;[39m
+     [90m 22 |[39m     })[33m;[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/inventory-flaky.js:19:19[22m
+
+[2m    attachment #28: [1mpage-title[2m (text/plain) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    Playwright[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #31: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/inventory-flaky-sync-Inven-b4283--intermittent-sync-failures-chromium/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/inventory-flaky-sync-Inven-b4283--intermittent-sync-failures-chromium/error-context.md[22m
+
+[2m    attachment #33: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/inventory-flaky-sync-Inven-b4283--intermittent-sync-failures-chromium/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/inventory-flaky-sync-Inven-b4283--intermittent-sync-failures-chromium/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[90m    Retry #1 [2m───────────────────────────────────────────────────────────────────────────────────────[22m[39m
+
+    Error: Inventory shard lock contention (simulated)
+
+    [90m   at [39m../../shared/dist/domains/inventory-flaky.js:19
+
+    [0m [90m 17 |[39m         [36mawait[39m step[33m.[39mparameter([32m"attempt"[39m[33m,[39m [33mString[39m(attempt [33m+[39m [35m1[39m))[33m;[39m
+     [90m 18 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m1[39m[33m,[39m [35m0.35[39m)) {
+    [31m[1m>[22m[39m[90m 19 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Inventory shard lock contention (simulated)"[39m)[33m;[39m
+     [90m    |[39m                   [31m[1m^[22m[39m
+     [90m 20 |[39m         }
+     [90m 21 |[39m         [36mawait[39m allure[33m.[39mlogStep([32m"Inventory synchronized"[39m[33m,[39m [33mStatus[39m[33m.[39m[33mPASSED[39m)[33m;[39m
+     [90m 22 |[39m     })[33m;[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/inventory-flaky.js:19:19[22m
+
+[2m    attachment #28: [1mpage-title[2m (text/plain) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    Fast and reliable end-to-end testing for modern web apps | Playwright[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #31: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/inventory-flaky-sync-Inven-b4283--intermittent-sync-failures-chromium-retry1/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/inventory-flaky-sync-Inven-b4283--intermittent-sync-failures-chromium-retry1/error-context.md[22m
+
+[2m    attachment #33: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/inventory-flaky-sync-Inven-b4283--intermittent-sync-failures-chromium-retry1/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/inventory-flaky-sync-Inven-b4283--intermittent-sync-failures-chromium-retry1/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[31m  4) [chromium] › suites/payments/flaky-gateway.spec.ts:8:7 › Payments › Payment gateway may timeout before authorization › Submit card payment [39m
+
+    Error: Payment gateway timeout (simulated flaky failure)
+
+    [90m   at [39m../../shared/dist/domains/payment-flaky.js:21
+
+    [0m [90m 19 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m2[39m[33m,[39m [35m0.25[39m)) {
+     [90m 20 |[39m             [36mawait[39m allure[33m.[39mattachment([32m"gateway.log"[39m[33m,[39m [32m"HTTP 503 upstream timeout"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 21 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Payment gateway timeout (simulated flaky failure)"[39m)[33m;[39m
+     [90m    |[39m                   [31m[1m^[22m[39m
+     [90m 22 |[39m         }
+     [90m 23 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"receipt"[39m[33m,[39m [33mJSON[39m[33m.[39mstringify({ authorization[33m:[39m [32m"AUTH-OK"[39m })[33m,[39m [33mContentType[39m[33m.[39m[33mJSON[39m)[33m;[39m
+     [90m 24 |[39m     })[33m;[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/payment-flaky.js:21:19[22m
+
+[2m    attachment #28: [1mpage-title[2m (text/plain) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    Playwright[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #32: [1mgateway.log[2m (text/plain) [2m───────────────────────────────────────────────────────[2m[22m
+[2m    HTTP 503 upstream timeout[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #33: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/payments-flaky-gateway-Pay-74f20-imeout-before-authorization-chromium/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/payments-flaky-gateway-Pay-74f20-imeout-before-authorization-chromium/error-context.md[22m
+
+[2m    attachment #35: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/payments-flaky-gateway-Pay-74f20-imeout-before-authorization-chromium/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/payments-flaky-gateway-Pay-74f20-imeout-before-authorization-chromium/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[31m  5) [chromium] › suites/payments/fraud-score.spec.ts:7:7 › Payments › Fraud model scores transaction and auto-approves low-risk payment › Run fraud scoring model [39m
+
+    Error: Fraud score above threshold: manual review required (simulated)
+
+    [90m   at [39m../../shared/dist/domains/fraud-score.js:26
+
+    [0m [90m 24 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m1[39m[33m,[39m [35m0.3[39m)) {
+     [90m 25 |[39m             [36mawait[39m allure[33m.[39mattachment([32m"fraud-signal"[39m[33m,[39m [32m"elevated risk score — manual review triggered"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 26 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Fraud score above threshold: manual review required (simulated)"[39m)[33m;[39m
+     [90m    |[39m                   [31m[1m^[22m[39m
+     [90m 27 |[39m         }
+     [90m 28 |[39m         [36mawait[39m step[33m.[39mparameter([32m"risk_score"[39m[33m,[39m [32m"0.12"[39m)[33m;[39m
+     [90m 29 |[39m         [36mawait[39m step[33m.[39mparameter([32m"decision"[39m[33m,[39m [32m"approve"[39m)[33m;[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/fraud-score.js:26:19[22m
+
+[2m    attachment #35: [1mfraud-signal[2m (text/plain) [2m──────────────────────────────────────────────────────[2m[22m
+[2m    elevated risk score — manual review triggered[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/payments-fraud-score-Payme-1e481-o-approves-low-risk-payment-chromium/error-context.md[22m
+
+[2m    attachment #37: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/payments-fraud-score-Payme-1e481-o-approves-low-risk-payment-chromium/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/payments-fraud-score-Payme-1e481-o-approves-low-risk-payment-chromium/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[90m    Retry #1 [2m───────────────────────────────────────────────────────────────────────────────────────[22m[39m
+
+    Error: Fraud score above threshold: manual review required (simulated)
+
+    [90m   at [39m../../shared/dist/domains/fraud-score.js:26
+
+    [0m [90m 24 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m1[39m[33m,[39m [35m0.3[39m)) {
+     [90m 25 |[39m             [36mawait[39m allure[33m.[39mattachment([32m"fraud-signal"[39m[33m,[39m [32m"elevated risk score — manual review triggered"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 26 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Fraud score above threshold: manual review required (simulated)"[39m)[33m;[39m
+     [90m    |[39m                   [31m[1m^[22m[39m
+     [90m 27 |[39m         }
+     [90m 28 |[39m         [36mawait[39m step[33m.[39mparameter([32m"risk_score"[39m[33m,[39m [32m"0.12"[39m)[33m;[39m
+     [90m 29 |[39m         [36mawait[39m step[33m.[39mparameter([32m"decision"[39m[33m,[39m [32m"approve"[39m)[33m;[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/fraud-score.js:26:19[22m
+
+[2m    attachment #35: [1mfraud-signal[2m (text/plain) [2m──────────────────────────────────────────────────────[2m[22m
+[2m    elevated risk score — manual review triggered[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/payments-fraud-score-Payme-1e481-o-approves-low-risk-payment-chromium-retry1/error-context.md[22m
+
+[2m    attachment #37: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/payments-fraud-score-Payme-1e481-o-approves-low-risk-payment-chromium-retry1/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/payments-fraud-score-Payme-1e481-o-approves-low-risk-payment-chromium-retry1/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[31m  6) [chromium] › suites/reliability/cache-retry.spec.ts:8:7 › Reliability › Distributed cache misses on cold start then recovers after retry › Read feature flag payload [39m
+
+    Error: Cache miss on cold start (expected on first attempt)
+
+    [90m   at [39m../../shared/dist/domains/cache-retry.js:18
+
+    [0m [90m 16 |[39m         [36mawait[39m step[33m.[39mparameter([32m"attempt"[39m[33m,[39m [33mString[39m(attempt [33m+[39m [35m1[39m))[33m;[39m
+     [90m 17 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m2[39m[33m,[39m [35m0[39m)) {
+    [31m[1m>[22m[39m[90m 18 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Cache miss on cold start (expected on first attempt)"[39m)[33m;[39m
+     [90m    |[39m                   [31m[1m^[22m[39m
+     [90m 19 |[39m         }
+     [90m 20 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"cache.state"[39m[33m,[39m [32m"HIT"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m
+     [90m 21 |[39m     })[33m;[39m[0m
+    [2m    at /home/runner/work/allure-3-tests/allure-3-tests/packages/shared/dist/domains/cache-retry.js:18:19[22m
+
+[2m    attachment #27: [1mpage-title[2m (text/plain) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    Fast and reliable end-to-end testing for modern web apps | Playwright[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    attachment #30: [1mscreenshot[2m (image/png) [2m─────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/reliability-cache-retry-Re-84def-t-then-recovers-after-retry-chromium/test-failed-1.png[22m
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[2m    Error Context: test-results/reliability-cache-retry-Re-84def-t-then-recovers-after-retry-chromium/error-context.md[22m
+
+[2m    attachment #32: [1mtrace[2m (application/zip) [2m────────────────────────────────────────────────────────[2m[22m
+[2m    test-results/reliability-cache-retry-Re-84def-t-then-recovers-after-retry-chromium/trace.zip[22m
+[2m    Usage:[22m
+
+[2m        pnpm exec playwright show-trace test-results/reliability-cache-retry-Re-84def-t-then-recovers-after-retry-chromium/trace.zip[22m
+
+[2m    [2m────────────────────────────────────────────────────────────────────────────────────────────────[2m[22m
+
+[31m  2 failed[39m
+[31m    [chromium] › suites/analytics/known-regression.spec.ts:6:7 › Analytics › Known regression remains red for dashboard analytics [39m
+[31m    [chromium] › suites/playwright-features/browser-interaction.spec.ts:39:7 › Playwright · Browser interaction › intercepts network request and validates mock response [39m
+[33m  4 flaky[39m
+[33m    [chromium] › suites/inventory/flaky-sync.spec.ts:8:7 › Inventory › Inventory shard lock causes intermittent sync failures [39m
+[33m    [chromium] › suites/payments/flaky-gateway.spec.ts:8:7 › Payments › Payment gateway may timeout before authorization [39m
+[33m    [chromium] › suites/payments/fraud-score.spec.ts:7:7 › Payments › Fraud model scores transaction and auto-approves low-risk payment [39m
+[33m    [chromium] › suites/reliability/cache-retry.spec.ts:8:7 › Reliability › Distributed cache misses on cold start then recovers after retry [39m
+[32m  17 passed[39m[2m (15.9s)[22m
+[41m[30m ERR_PNPM_RECURSIVE_FAIL [39m[49m 
+
+
+Summary: [31m1 fails[39m, 0 passes
+
+/home/runner/work/allure-3-tests/allure-3-tests/packages/playwright:
+[41m[30m ERROR [39m[49m [31m@allure-tests/playwright@1.0.0 test: `playwright test`[39m
+[31mExit status 1[39m

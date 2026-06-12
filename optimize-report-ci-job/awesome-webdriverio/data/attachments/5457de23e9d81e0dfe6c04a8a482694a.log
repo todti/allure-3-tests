@@ -1,0 +1,4 @@
+[bun] teardown started
+node=v24.3.0
+platform=win32/x64
+memory=9MB

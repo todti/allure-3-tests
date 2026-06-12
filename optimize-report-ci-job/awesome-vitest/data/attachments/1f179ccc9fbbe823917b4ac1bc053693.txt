@@ -1,0 +1,1 @@
+real impl returns false for all flags

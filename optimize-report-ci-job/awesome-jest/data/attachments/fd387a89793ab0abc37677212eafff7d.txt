@@ -1,0 +1,137 @@
+(node:2539) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2533) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2532) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/jest-features/[22m[1mmocks-and-spies.spec.mjs[22m
+[0m[7m[1m[33m LOGGING RETRY ERRORS [39m[22m[27m[0m [1mPayments Fraud model scores transaction and auto-approves low-risk payment[22m
+[0m[7m[1m[94m RETRY 1 [39m[22m[27m[0m
+
+    Fraud score above threshold: manual review required (simulated)
+[2m[22m
+[2m    [0m [90m 24 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m1[39m[33m,[39m [35m0.3[39m)) {[22m
+[2m     [90m 25 |[39m             [36mawait[39m allure[33m.[39mattachment([32m"fraud-signal"[39m[33m,[39m [32m"elevated risk score — manual review triggered"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 26 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Fraud score above threshold: manual review required (simulated)"[39m)[33m;[39m[22m
+[2m     [90m    |[39m                   [31m[1m^[22m[2m[39m[22m
+[2m     [90m 27 |[39m         }[22m
+[2m     [90m 28 |[39m         [36mawait[39m step[33m.[39mparameter([32m"risk_score"[39m[33m,[39m [32m"0.12"[39m)[33m;[39m[22m
+[2m     [90m 29 |[39m         [36mawait[39m step[33m.[39mparameter([32m"decision"[39m[33m,[39m [32m"approve"[39m)[33m;[39m[0m[22m
+[2m[22m
+[2m      [2mat [22m[2m../shared/dist/domains/fraud-score.js[2m:26:19[22m[2m[22m
+
+[0m[7m[1m[94m RETRY 2 [39m[22m[27m[0m
+
+    Fraud score above threshold: manual review required (simulated)
+[2m[22m
+[2m    [0m [90m 24 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m1[39m[33m,[39m [35m0.3[39m)) {[22m
+[2m     [90m 25 |[39m             [36mawait[39m allure[33m.[39mattachment([32m"fraud-signal"[39m[33m,[39m [32m"elevated risk score — manual review triggered"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 26 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Fraud score above threshold: manual review required (simulated)"[39m)[33m;[39m[22m
+[2m     [90m    |[39m                   [31m[1m^[22m[2m[39m[22m
+[2m     [90m 27 |[39m         }[22m
+[2m     [90m 28 |[39m         [36mawait[39m step[33m.[39mparameter([32m"risk_score"[39m[33m,[39m [32m"0.12"[39m)[33m;[39m[22m
+[2m     [90m 29 |[39m         [36mawait[39m step[33m.[39mparameter([32m"decision"[39m[33m,[39m [32m"approve"[39m)[33m;[39m[0m[22m
+[2m[22m
+[2m      [2mat [22m[2m../shared/dist/domains/fraud-score.js[2m:26:19[22m[2m[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/payments/[22m[1mfraud-score.spec.mjs[22m
+[0m[7m[1m[33m LOGGING RETRY ERRORS [39m[22m[27m[0m [1mReliability Distributed cache misses on cold start then recovers after retry[22m
+[0m[7m[1m[94m RETRY 1 [39m[22m[27m[0m
+
+    Cache miss on cold start (expected on first attempt)
+[2m[22m
+[2m    [0m [90m 16 |[39m         [36mawait[39m step[33m.[39mparameter([32m"attempt"[39m[33m,[39m [33mString[39m(attempt [33m+[39m [35m1[39m))[33m;[39m[22m
+[2m     [90m 17 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m2[39m[33m,[39m [35m0[39m)) {[22m
+[2m    [31m[1m>[22m[2m[39m[90m 18 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Cache miss on cold start (expected on first attempt)"[39m)[33m;[39m[22m
+[2m     [90m    |[39m                   [31m[1m^[22m[2m[39m[22m
+[2m     [90m 19 |[39m         }[22m
+[2m     [90m 20 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"cache.state"[39m[33m,[39m [32m"HIT"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m[22m
+[2m     [90m 21 |[39m     })[33m;[39m[0m[22m
+[2m[22m
+[2m      [2mat [22m[2m../shared/dist/domains/cache-retry.js[2m:18:19[22m[2m[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/reliability/[22m[1mcache-retry.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/inventory/[22m[1mflaky-sync.spec.mjs[22m
+[0m[7m[1m[33m LOGGING RETRY ERRORS [39m[22m[27m[0m [1mPayments Payment gateway may timeout before authorization[22m
+[0m[7m[1m[94m RETRY 1 [39m[22m[27m[0m
+
+    Payment gateway timeout (simulated flaky failure)
+[2m[22m
+[2m    [0m [90m 19 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m2[39m[33m,[39m [35m0.25[39m)) {[22m
+[2m     [90m 20 |[39m             [36mawait[39m allure[33m.[39mattachment([32m"gateway.log"[39m[33m,[39m [32m"HTTP 503 upstream timeout"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 21 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Payment gateway timeout (simulated flaky failure)"[39m)[33m;[39m[22m
+[2m     [90m    |[39m                   [31m[1m^[22m[2m[39m[22m
+[2m     [90m 22 |[39m         }[22m
+[2m     [90m 23 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"receipt"[39m[33m,[39m [33mJSON[39m[33m.[39mstringify({ authorization[33m:[39m [32m"AUTH-OK"[39m })[33m,[39m [33mContentType[39m[33m.[39m[33mJSON[39m)[33m;[39m[22m
+[2m     [90m 24 |[39m     })[33m;[39m[0m[22m
+[2m[22m
+[2m      [2mat [22m[2m../shared/dist/domains/payment-flaky.js[2m:21:19[22m[2m[22m
+
+[0m[7m[1m[94m RETRY 2 [39m[22m[27m[0m
+
+    Payment gateway timeout (simulated flaky failure)
+[2m[22m
+[2m    [0m [90m 19 |[39m         [36mif[39m (shouldSimulateTransientFailure(testId[33m,[39m attempt[33m,[39m [35m2[39m[33m,[39m [35m0.25[39m)) {[22m
+[2m     [90m 20 |[39m             [36mawait[39m allure[33m.[39mattachment([32m"gateway.log"[39m[33m,[39m [32m"HTTP 503 upstream timeout"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 21 |[39m             [36mthrow[39m [36mnew[39m [33mError[39m([32m"Payment gateway timeout (simulated flaky failure)"[39m)[33m;[39m[22m
+[2m     [90m    |[39m                   [31m[1m^[22m[2m[39m[22m
+[2m     [90m 22 |[39m         }[22m
+[2m     [90m 23 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"receipt"[39m[33m,[39m [33mJSON[39m[33m.[39mstringify({ authorization[33m:[39m [32m"AUTH-OK"[39m })[33m,[39m [33mContentType[39m[33m.[39m[33mJSON[39m)[33m;[39m[22m
+[2m     [90m 24 |[39m     })[33m;[39m[0m[22m
+[2m[22m
+[2m      [2mat [22m[2m../shared/dist/domains/payment-flaky.js[2m:21:19[22m[2m[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/payments/[22m[1mflaky-gateway.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/payments/[22m[1msettlement-report.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/payments/[22m[1msubscription-billing.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/baseline/[22m[1mmetadata.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/journeys/[22m[1mpassword-reset.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/payments/[22m[1mpayment-authorization.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/reporting/[22m[1mexport-attachments.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/notifications/[22m[1memail-webhook.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/compliance/[22m[1maudit-statuses.spec.mjs[22m
+[0m[7m[1m[31m FAIL [39m[22m[27m[0m [2msuites/analytics/[22m[1mknown-regression.spec.mjs[22m
+[1m[31m  [1m● [22m[1mAnalytics › Known regression remains red for dashboard analytics[39m[22m
+
+    Demo regression — intentionally failing for Allure dashboards
+[2m[22m
+[2m    [0m [90m 13 |[39m     [36mawait[39m allure[33m.[39mstep([32m"Verify legacy billing rule"[39m[33m,[39m [36masync[39m () [33m=>[39m {[22m
+[2m     [90m 14 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"assertion.log"[39m[33m,[39m [32m"Expected refund cap = 100"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 15 |[39m         [36mthrow[39m [36mnew[39m [33mError[39m([32m"Demo regression — intentionally failing for Allure dashboards"[39m)[33m;[39m[22m
+[2m     [90m    |[39m               [31m[1m^[22m[2m[39m[22m
+[2m     [90m 16 |[39m     })[33m;[39m[22m
+[2m     [90m 17 |[39m }[22m
+[2m     [90m 18 |[39m[0m[22m
+[2m[22m
+[2m      [2mat [22m[2m../shared/dist/domains/regression-failure.js[2m:15:15[22m[2m[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/payments/[22m[1mpayment-refund.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/checkout/[22m[1mtax-calculation.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/payments/[22m[1mcard-tokenization.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/catalog/[22m[1mproduct-search.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/users/[22m[1mprofile-params.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/api/[22m[1mhealth-check.spec.mjs[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2msuites/auth/[22m[1moauth-login.spec.mjs[22m
+
+[1mSummary of all failing tests[22m
+[0m[7m[1m[31m FAIL [39m[22m[27m[0m [2msuites/analytics/[22m[1mknown-regression.spec.mjs[22m
+[1m[31m  [1m● [22m[1mAnalytics › Known regression remains red for dashboard analytics[39m[22m
+
+    Demo regression — intentionally failing for Allure dashboards
+[2m[22m
+[2m    [0m [90m 13 |[39m     [36mawait[39m allure[33m.[39mstep([32m"Verify legacy billing rule"[39m[33m,[39m [36masync[39m () [33m=>[39m {[22m
+[2m     [90m 14 |[39m         [36mawait[39m allure[33m.[39mattachment([32m"assertion.log"[39m[33m,[39m [32m"Expected refund cap = 100"[39m[33m,[39m [33mContentType[39m[33m.[39m[33mTEXT[39m)[33m;[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 15 |[39m         [36mthrow[39m [36mnew[39m [33mError[39m([32m"Demo regression — intentionally failing for Allure dashboards"[39m)[33m;[39m[22m
+[2m     [90m    |[39m               [31m[1m^[22m[2m[39m[22m
+[2m     [90m 16 |[39m     })[33m;[39m[22m
+[2m     [90m 17 |[39m }[22m
+[2m     [90m 18 |[39m[0m[22m
+[2m[22m
+[2m      [2mat [22m[2m../shared/dist/domains/regression-failure.js[2m:15:15[22m[2m[22m
+
+
+[1mTest Suites: [22m[1m[31m1 failed[39m[22m, [1m[32m20 passed[39m[22m, 21 total
+[1mTests:       [22m[1m[31m1 failed[39m[22m, [1m[32m22 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2.117 s
+[2mRan all test suites[22m[2m.[22m
