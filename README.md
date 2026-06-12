@@ -1,6 +1,6 @@
 # Allure 3 multi-framework demo
 
-**Live report:** [https://todti.github.io/allure-3-tests/](https://todti.github.io/allure-3-tests/)
+**Live report:** [https://todti.github.io/allure-3-tests/master/](https://todti.github.io/allure-3-tests/master/)
 
 Demonstration repository for [Allure Report 3](https://allurereport.org/docs/v3/) and official [allure-js](https://github.com/allure-framework/allure-js) adapters. Each framework runs the same shared Allure feature showcase (metadata, steps, attachments, async patterns, labels).
 
@@ -160,9 +160,9 @@ Environment info is **not** written via legacy `environmentInfo` / `environment.
 
 ## Latest reports
 
-- [Summary](https://todti.github.io/allure-3-tests/)
-- [All tests](https://todti.github.io/allure-3-tests/awesomeAll/)
-- [Dashboard](https://todti.github.io/allure-3-tests/dashboard/)
+- [Summary](https://todti.github.io/allure-3-tests/master/)
+- [All tests](https://todti.github.io/allure-3-tests/master/awesomeAll/)
+- [Dashboard](https://todti.github.io/allure-3-tests/master/dashboard/)
 
 Per-framework reports: open **Summary** — it links to each generated view.
 
