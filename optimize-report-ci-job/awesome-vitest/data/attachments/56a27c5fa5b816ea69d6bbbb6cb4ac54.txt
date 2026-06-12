@@ -1,0 +1,3 @@
+// @allure.label.os:Linux
+// @allure.label.framework:newman
+pm.test('quote payload', () => pm.response.responseTime < 5000);

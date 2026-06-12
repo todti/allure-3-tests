@@ -1,0 +1,3 @@
+// @allure.label.os:Linux
+// @allure.label.framework:newman
+pm.test('baseline smoke', () => pm.response.to.have.status(200));
