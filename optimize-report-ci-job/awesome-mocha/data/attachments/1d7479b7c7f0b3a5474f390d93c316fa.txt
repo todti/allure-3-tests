@@ -1,0 +1,31 @@
+
+> @allure-tests/cypress@1.0.0 test D:\a\allure-3-tests\allure-3-tests\packages\cypress
+> cypress run
+
+[31mThe cypress npm package is installed, but the Cypress binary is missing.[39m
+[31m[39m
+[31mWe expected the binary to be installed here: [36mC:\Users\runneradmin\AppData\Local\Cypress\Cache\14.5.4\Cypress\Cypress.exe[39m[31m[39m
+[31m[39m
+[31mReasons it may be missing:[39m
+[31m[39m
+[31m- You're caching 'node_modules' but are not caching this path: C:\Users\runneradmin\AppData\Local\Cypress\Cache[39m
+[31m- You ran 'npm install' at an earlier build step but did not persist: C:\Users\runneradmin\AppData\Local\Cypress\Cache[39m
+[31m[39m
+[31mProperly caching the binary will fix this error and avoid downloading and unzipping Cypress.[39m
+[31m[39m
+[31mAlternatively, you can run 'cypress install' to download the binary again.[39m
+[31m[39m
+[31m[34mhttps://on.cypress.io/not-installed-ci-error[39m[31m[39m
+[31m[39m
+[31m----------[39m
+[31m[39m
+[31mPlatform: win32-x64 (10.0.26100)[39m
+[31mCypress Version: 14.5.4[39m
+[41m[30m ERR_PNPM_RECURSIVE_FAIL [39m[49m 
+
+
+Summary: [31m1 fails[39m, 0 passes
+
+D:\a\allure-3-tests\allure-3-tests\packages\cypress:
+[41m[30m ERROR [39m[49m [31m@allure-tests/cypress@1.0.0 test: `cypress run`[39m
+[31mExit status 1[39m

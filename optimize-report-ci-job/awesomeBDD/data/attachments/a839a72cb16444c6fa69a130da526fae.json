@@ -1,0 +1,12 @@
+{
+  "framework": "mocha",
+  "phase": "teardown",
+  "host": "macOS",
+  "node": "v24.16.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cwd": "/Users/runner/work/allure-3-tests/allure-3-tests/packages/mocha",
+  "timestamp": "2026-06-12T08:45:48.337Z",
+  "ci": true,
+  "runId": "27404905759"
+}

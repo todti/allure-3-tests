@@ -1,0 +1,8 @@
+// @allure.label.os:Windows
+// @allure.label.framework:newman
+// @allure.label.epic:Payments
+// @allure.label.feature:Card processing
+// @allure.label.story:PCI tokenization
+// @allure.label.severity:blocker
+// @allure.label.tag:pci
+pm.test('card tokenized', () => pm.response.to.have.status(200));

@@ -1,0 +1,8 @@
+// @allure.label.os:macOS
+// @allure.label.framework:newman
+// @allure.label.epic:Payments
+// @allure.label.feature:Card processing
+// @allure.label.story:Authorization
+// @allure.label.severity:blocker
+// @allure.label.tag:authorization
+pm.test('payment authorized', () => pm.response.to.have.status(200));

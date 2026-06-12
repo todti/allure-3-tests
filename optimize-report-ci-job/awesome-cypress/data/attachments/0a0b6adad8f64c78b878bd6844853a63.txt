@@ -1,0 +1,15 @@
+// @allure.label.os:macOS
+// @allure.label.framework:newman
+// @allure.label.feature:Pre-request scripts
+// @allure.label.story:Variable injection
+// @allure.label.epic:Framework Showcase
+// @allure.label.parentSuite:Newman · Postman API
+// @allure.label.suite:Framework Features
+// @allure.label.tag:framework-specific
+pm.test('response ok', () => pm.response.to.have.status(200));
+pm.test('request-id was injected', () => {
+  pm.expect(pm.variables.get('requestId')).to.match(/^req-/);
+});
+pm.test('correlation-id was injected', () => {
+  pm.expect(pm.variables.get('correlationId')).to.match(/^corr-/);
+});
