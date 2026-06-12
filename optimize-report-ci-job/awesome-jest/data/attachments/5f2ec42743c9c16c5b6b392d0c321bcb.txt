@@ -1,0 +1,3 @@
+// @allure.label.os:Linux
+// @allure.label.framework:newman
+pm.test('export headers', () => pm.response.to.have.header('content-type'));

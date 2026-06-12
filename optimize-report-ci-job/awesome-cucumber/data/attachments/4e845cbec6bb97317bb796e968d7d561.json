@@ -1,0 +1,12 @@
+{
+  "framework": "codeceptjs",
+  "phase": "teardown",
+  "host": "macOS",
+  "node": "v24.16.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cwd": "/Users/runner/work/allure-3-tests/allure-3-tests/packages/codeceptjs",
+  "timestamp": "2026-06-12T08:45:04.828Z",
+  "ci": true,
+  "runId": "27404904040"
+}

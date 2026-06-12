@@ -1,0 +1,145 @@
+
+> @allure-tests/newman@1.0.0 pretest /home/runner/work/allure-3-tests/allure-3-tests/packages/newman
+> node global-setup.mjs
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+
+> @allure-tests/newman@1.0.0 test /home/runner/work/allure-3-tests/allure-3-tests/packages/newman
+> node run.mjs
+
+newman
+
+Allure Newman domain demo
+
+→ Auth — OAuth token endpoint
+  GET https://playwright.dev/ [200 OK, 7.02kB, 94ms]
+  ✓  auth smoke
+
+→ Catalog — search API
+  GET https://playwright.dev/docs/intro [200 OK, 9.84kB, 23ms]
+  ✓  catalog docs available
+
+→ Checkout — pricing quote
+  GET https://playwright.dev/ [200 OK, 7.02kB, 20ms]
+  ✓  quote payload
+
+→ Payments — flaky authorization
+  GET https://playwright.dev/ [200 OK, 7.02kB, 20ms]
+  ✓  authorized
+
+→ Payments — card tokenization
+  GET https://playwright.dev/ [200 OK, 7.02kB, 20ms]
+  ✓  card tokenized
+
+→ Payments — payment authorization
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  payment authorized
+
+→ Payments — payment refund
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  payment refunded
+
+→ Payments — fraud score
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  fraud score approved
+
+→ Payments — subscription billing
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  subscriptions billed
+
+→ Payments — settlement report
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  settlement submitted
+
+→ Inventory — stock sync
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  inventory ok
+
+→ Notifications — webhook callback
+  GET https://playwright.dev/ [200 OK, 7.02kB, 20ms]
+  ✓  webhook delivered
+
+→ Reporting — export bundle
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  export headers
+
+→ Reliability — cache warmup
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  cache hit
+
+→ Compliance — audit feed
+  GET https://playwright.dev/ [200 OK, 7.02kB, 20ms]
+  ✓  audit feed
+
+→ Analytics — known regression
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ┌
+  │ 'Demo regression for Allure dashboards'
+  └
+  ✓  legacy billing rule mismatch (demo)
+  ✓  known regression captured for dashboards
+
+→ API — health check
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  health 200
+
+→ Users — profile service
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  profile ok
+
+→ Journeys — password reset
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  reset journey
+
+→ Baseline — metadata smoke
+  GET https://playwright.dev/ [200 OK, 7.02kB, 20ms]
+  ✓  baseline smoke
+
+→ Newman · Pre-request script showcase
+  GET https://playwright.dev/ [200 OK, 7.02kB, 20ms]
+  ✓  response ok
+  ✓  request-id was injected
+  ✓  correlation-id was injected
+
+→ Newman · Response schema validation
+  GET https://playwright.dev/ [200 OK, 7.02kB, 21ms]
+  ✓  status is 2xx
+  ✓  response time under 5s
+  ✓  content-type header present
+  ✓  response body is not empty
+
+→ Newman · Environment variable chaining
+  GET https://playwright.dev/ [200 OK, 7.02kB, 20ms]
+  ✓  session token was set
+  ✓  user id was set
+  ✓  response ok
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │                23 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │                23 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 9 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │                31 │                0 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 957ms                                      │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 147.1kB (approx)                          │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 23ms [min: 20ms, max: 94ms, s.d.: 14ms] │
+└────────────────────────────────────────────────────────────────┘
+
+> @allure-tests/newman@1.0.0 posttest /home/runner/work/allure-3-tests/allure-3-tests/packages/newman
+> node global-teardown.mjs
+
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
+no test runtime is found. Please check test framework configuration
