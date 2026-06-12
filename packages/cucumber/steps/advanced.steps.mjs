@@ -47,6 +47,7 @@ Then("the outcome is recorded in the allure report", async function () {
 
 Given("the following JSON payload is submitted:", async function (docString) {
   this.payload = docString;
+  await this.attach(docString, "application/json");
   await allure.step("Receive DocString payload", async () => {
     await allure.attachment("raw-payload", docString, ContentType.JSON);
   });
