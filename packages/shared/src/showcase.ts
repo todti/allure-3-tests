@@ -109,6 +109,22 @@ export async function runHookStyleAttachments(
   await allure.attachment(name, `Data ${phase} test (${sameName ? "same" : "unique"} name)`, ContentType.TEXT);
 }
 
+/** Labels for framework-specific capability showcase tests. */
+export async function applyFrameworkFeatureLabels(
+  ctx: ShowcaseContext,
+  feature: string,
+  story: string,
+): Promise<void> {
+  await applyFrameworkLabels(ctx);
+  await allure.epic("Framework Showcase");
+  await allure.feature(feature);
+  await allure.story(story);
+  await allure.parentSuite(frameworkReportName(ctx.framework));
+  await allure.suite("Framework Features");
+  await allure.subSuite(feature);
+  await allure.tag("framework-specific");
+}
+
 /** Full showcase invoked from each framework's main test. */
 export async function runAllureFeatureShowcase(ctx: ShowcaseContext): Promise<void> {
   await applyFrameworkLabels(ctx);

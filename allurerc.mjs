@@ -140,7 +140,7 @@ const config = {
             open: false,
             publish: true,
             filter: ({ labels }) =>
-              labels.find(({ name, value }) => name === "framework" && (value === fw || value === `${fw}js`)),
+              labels.find(({ name, value }) => name === "report" && value === FRAMEWORK_REPORT_NAMES[fw]),
           },
         },
       ]),

@@ -5,7 +5,7 @@
   },
   "item": [
     {
-      "name": "Auth \u2014 OAuth token endpoint",
+      "name": "Auth — OAuth token endpoint",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "name": "Catalog \u2014 search API",
+      "name": "Catalog — search API",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/docs/intro"
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "name": "Checkout \u2014 pricing quote",
+      "name": "Checkout — pricing quote",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "name": "Payments \u2014 flaky authorization",
+      "name": "Payments — flaky authorization",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "name": "Payments \u2014 card tokenization",
+      "name": "Payments — card tokenization",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "name": "Payments \u2014 payment authorization",
+      "name": "Payments — payment authorization",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "name": "Payments \u2014 payment refund",
+      "name": "Payments — payment refund",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "name": "Payments \u2014 fraud score",
+      "name": "Payments — fraud score",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "name": "Payments \u2014 subscription billing",
+      "name": "Payments — subscription billing",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "name": "Payments \u2014 settlement report",
+      "name": "Payments — settlement report",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "name": "Inventory \u2014 stock sync",
+      "name": "Inventory — stock sync",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "name": "Notifications \u2014 webhook callback",
+      "name": "Notifications — webhook callback",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "name": "Reporting \u2014 export bundle",
+      "name": "Reporting — export bundle",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "name": "Reliability \u2014 cache warmup",
+      "name": "Reliability — cache warmup",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -382,7 +382,7 @@
       ]
     },
     {
-      "name": "Compliance \u2014 audit feed",
+      "name": "Compliance — audit feed",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -402,7 +402,7 @@
       ]
     },
     {
-      "name": "Analytics \u2014 known regression",
+      "name": "Analytics — known regression",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "name": "API \u2014 health check",
+      "name": "API — health check",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "name": "Users \u2014 profile service",
+      "name": "Users — profile service",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "name": "Journeys \u2014 password reset",
+      "name": "Journeys — password reset",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "name": "Baseline \u2014 metadata smoke",
+      "name": "Baseline — metadata smoke",
       "request": {
         "method": "GET",
         "url": "https://playwright.dev/"
@@ -500,6 +500,129 @@
           }
         }
       ]
+    },
+    {
+      "name": "Newman · Pre-request script showcase",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate request ID and timestamp before the request",
+              "pm.variables.set('requestId', 'req-' + Math.random().toString(36).slice(2, 10));",
+              "pm.variables.set('requestTimestamp', new Date().toISOString());",
+              "pm.variables.set('correlationId', 'corr-' + Date.now());"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// @allure.label.os:{{ALLURE_OS}}",
+              "// @allure.label.framework:newman",
+              "// @allure.label.feature:Pre-request scripts",
+              "// @allure.label.story:Variable injection",
+              "// @allure.label.epic:Framework Showcase",
+              "// @allure.label.parentSuite:Newman · Postman API",
+              "// @allure.label.suite:Framework Features",
+              "// @allure.label.tag:framework-specific",
+              "pm.test('response ok', () => pm.response.to.have.status(200));",
+              "pm.test('request-id was injected', () => {",
+              "  pm.expect(pm.variables.get('requestId')).to.match(/^req-/);",
+              "});",
+              "pm.test('correlation-id was injected', () => {",
+              "  pm.expect(pm.variables.get('correlationId')).to.match(/^corr-/);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "https://playwright.dev/"
+      }
+    },
+    {
+      "name": "Newman · Response schema validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// @allure.label.os:{{ALLURE_OS}}",
+              "// @allure.label.framework:newman",
+              "// @allure.label.feature:Response validation",
+              "// @allure.label.story:Schema and header checks",
+              "// @allure.label.epic:Framework Showcase",
+              "// @allure.label.parentSuite:Newman · Postman API",
+              "// @allure.label.suite:Framework Features",
+              "// @allure.label.tag:framework-specific",
+              "pm.test('status is 2xx', () => pm.response.to.be.success);",
+              "pm.test('response time under 5s', () => {",
+              "  pm.expect(pm.response.responseTime).to.be.below(5000);",
+              "});",
+              "pm.test('content-type header present', () => {",
+              "  pm.expect(pm.response.headers.get('content-type')).to.be.a('string');",
+              "});",
+              "pm.test('response body is not empty', () => {",
+              "  pm.expect(pm.response.text().length).to.be.above(0);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "https://playwright.dev/"
+      }
+    },
+    {
+      "name": "Newman · Environment variable chaining",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.environment.set('sessionToken', 'tok-' + Math.random().toString(36).slice(2));",
+              "pm.environment.set('userId', 'usr-' + Math.floor(Math.random() * 9000 + 1000));"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// @allure.label.os:{{ALLURE_OS}}",
+              "// @allure.label.framework:newman",
+              "// @allure.label.feature:Variable chaining",
+              "// @allure.label.story:Cross-request environment variables",
+              "// @allure.label.epic:Framework Showcase",
+              "// @allure.label.parentSuite:Newman · Postman API",
+              "// @allure.label.suite:Framework Features",
+              "// @allure.label.tag:framework-specific",
+              "pm.test('session token was set', () => {",
+              "  const tok = pm.environment.get('sessionToken');",
+              "  pm.expect(tok).to.match(/^tok-/);",
+              "});",
+              "pm.test('user id was set', () => {",
+              "  const uid = pm.environment.get('userId');",
+              "  pm.expect(uid).to.match(/^usr-/);",
+              "});",
+              "pm.test('response ok', () => pm.response.to.have.status(200));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "https://playwright.dev/"
+      }
     }
   ]
 }
