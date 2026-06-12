@@ -1,0 +1,18 @@
+// @allure.label.os:macOS
+// @allure.label.framework:newman
+// @allure.label.feature:Response validation
+// @allure.label.story:Schema and header checks
+// @allure.label.epic:Framework Showcase
+// @allure.label.parentSuite:Newman · Postman API
+// @allure.label.suite:Framework Features
+// @allure.label.tag:framework-specific
+pm.test('status is 2xx', () => pm.response.to.be.success);
+pm.test('response time under 5s', () => {
+  pm.expect(pm.response.responseTime).to.be.below(5000);
+});
+pm.test('content-type header present', () => {
+  pm.expect(pm.response.headers.get('content-type')).to.be.a('string');
+});
+pm.test('response body is not empty', () => {
+  pm.expect(pm.response.text().length).to.be.above(0);
+});
