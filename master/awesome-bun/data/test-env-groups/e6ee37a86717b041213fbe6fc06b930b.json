@@ -1,0 +1,1 @@
+{"id":"e6ee37a86717b041213fbe6fc06b930b","fullName":"playwright-features/deep-steps.spec.ts:9:7","name":"records 4-level allure.step + test.step hierarchy with parallel branches","status":"passed","testResultsByEnv":{"linux":"b9a997c2de7acc650e109265c1b57536","macos":"091008d82cd60fa43af769f8be4d0359","windows":"70642f0bde3cecbf3ab69e49679da6a6"}}

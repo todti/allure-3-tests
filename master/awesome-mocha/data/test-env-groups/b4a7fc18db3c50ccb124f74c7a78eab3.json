@@ -1,0 +1,1 @@
+{"id":"b4a7fc18db3c50ccb124f74c7a78eab3","fullName":"playwright-features/browser-interaction.spec.ts:39:7","name":"intercepts network request and validates mock response","status":"failed","testResultsByEnv":{"linux":"c51349a3c04693677ab6474c68cbbbbb","macos":"c60c230b60a842a3e646dda6c2c91acd","windows":"5cdfb2f7be892d071c5eb7fde9505abb"}}

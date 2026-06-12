@@ -1,0 +1,10 @@
+// @allure.label.os:macOS
+// @allure.label.framework:newman
+// @allure.label.epic:Payments
+// @allure.label.feature:Fraud prevention
+// @allure.label.story:Transaction scoring
+// @allure.label.severity:critical
+// @allure.label.tag:fraud
+const roll = Number(pm.environment.get('fraud_roll'));
+if (roll < 0.3) { pm.test('fraud score', () => { throw new Error('Manual review triggered: score ' + roll.toFixed(2)); }); }
+else { pm.test('fraud score approved', () => pm.response.to.have.status(200)); }

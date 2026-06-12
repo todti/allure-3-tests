@@ -1,0 +1,12 @@
+
+> @allure-tests/bun@1.0.0 test /home/runner/work/allure-3-tests/allure-3-tests/packages/bun
+> bun ./node_modules/mocha/bin/mocha.js
+
+[41m[30m ERR_PNPM_RECURSIVE_FAIL [39m[49m 
+
+
+Summary: [31m1 fails[39m, 0 passes
+
+/home/runner/work/allure-3-tests/allure-3-tests/packages/bun:
+[41m[30m ERROR [39m[49m [31m@allure-tests/bun@1.0.0 test: `bun ./node_modules/mocha/bin/mocha.js`[39m
+[31mExit status 2[39m
